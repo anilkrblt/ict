@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f7f5f1" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#131519" media="(prefers-color-scheme: dark)">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="ICT Notlar">
+<meta name="description" content="ICT Mentorship transkriptlerinden çıkarılmış ders ve eleme notları.">
+<title>ICT Eleme Notları — Okuyucu</title>
+<style>
+/* ============ Tema değişkenleri ============ */
+:root{
+  --paper:#f7f5f1; --surface:#ffffff; --surface-2:#f1eee8;
+  --ink:#1c1a17; --ink-soft:#4a4640; --ink-faint:#7d776e;
+  --line:#e2ddd4; --line-strong:#cfc8bb;
+  --accent:#b0532c; --accent-soft:#f6e7de;
+  --shadow:0 1px 2px rgba(28,26,23,.05), 0 8px 28px rgba(28,26,23,.07);
+  --radius:12px;
+  --font-ui:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --font-read:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+  --font-mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+  --read-size:19px;
+}
+:root[data-theme="dark"],
+:root[data-theme="auto"]{ color-scheme: light; }
+@media (prefers-color-scheme: dark){
+  :root[data-theme="auto"]{
+    --paper:#131519; --surface:#191c21; --surface-2:#20242a;
+    --ink:#e7e3db; --ink-soft:#b3ada2; --ink-faint:#847d72;
+    --line:#2a2f36; --line-strong:#39404a;
+    --accent:#e08a5c; --accent-soft:#33251c;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.35);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#131519; --surface:#191c21; --surface-2:#20242a;
+  --ink:#e7e3db; --ink-soft:#b3ada2; --ink-faint:#847d72;
+  --line:#2a2f36; --line-strong:#39404a;
+  --accent:#e08a5c; --accent-soft:#33251c;
+  --shadow:0 1px 2px rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.35);
+  color-scheme: dark;
+}
+
+/* ============ Temel ============ */
+*,*::before,*::after{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; scroll-padding-top:96px; }
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:var(--font-ui); font-size:16px; line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+a{ color:var(--accent); }
+button{ font:inherit; color:inherit; }
+::selection{ background:var(--accent-soft); }
+
+/* ============ Üst çubuk ============ */
+.topbar{
+  position:sticky; top:0; z-index:60;
+  background:color-mix(in srgb, var(--surface) 88%, transparent);
+  backdrop-filter:saturate(1.6) blur(12px);
+  border-bottom:1px solid var(--line);
+}
+.topbar-inner{
+  max-width:1340px; margin:0 auto; padding:10px 18px;
+  display:flex; align-items:center; gap:12px;
+}
+.brand{
+  display:flex; align-items:baseline; gap:9px; font-weight:650;
+  letter-spacing:-.01em; white-space:nowrap;
+}
+.brand .dot{
+  width:9px; height:9px; border-radius:50%; background:var(--accent);
+  display:inline-block; transform:translateY(-1px);
+}
+.brand small{ color:var(--ink-faint); font-weight:500; font-size:12px; }
+
+.spacer{ flex:1 1 auto; }
+
+/* doküman seçici */
+.picker{ position:relative; }
+.picker-btn{
+  display:flex; align-items:center; gap:10px;
+  background:var(--surface); border:1px solid var(--line-strong);
+  border-radius:10px; padding:7px 12px; cursor:pointer; min-width:210px;
+  box-shadow:var(--shadow); transition:border-color .15s, transform .05s;
+}
+.picker-btn:hover{ border-color:var(--accent); }
+.picker-btn:active{ transform:translateY(1px); }
+.picker-btn .pb-label{ font-weight:620; font-size:14px; }
+.picker-btn .pb-sub{ color:var(--ink-faint); font-size:11.5px; }
+.picker-btn .pb-text{ display:flex; flex-direction:column; align-items:flex-start; line-height:1.25; }
+.picker-btn .chev{ margin-left:auto; color:var(--ink-faint); font-size:11px; }
+.picker-menu{
+  position:absolute; top:calc(100% + 8px); left:0; min-width:340px; max-width:min(440px,92vw);
+  background:var(--surface); border:1px solid var(--line-strong); border-radius:12px;
+  box-shadow:var(--shadow); padding:6px; display:none; max-height:70vh; overflow:auto;
+}
+.picker-menu.open{ display:block; }
+.picker-menu .pm-head{
+  font-size:11px; text-transform:uppercase; letter-spacing:.08em;
+  color:var(--ink-faint); padding:8px 10px 6px;
+}
+.pm-item{
+  display:flex; gap:11px; align-items:flex-start; width:100%; text-align:left;
+  background:none; border:0; padding:9px 10px; border-radius:9px; cursor:pointer;
+}
+.pm-item:hover{ background:var(--surface-2); }
+.pm-item[aria-current="true"]{ background:var(--accent-soft); }
+.pm-num{
+  flex:none; width:26px; height:26px; border-radius:7px; background:var(--surface-2);
+  border:1px solid var(--line); display:grid; place-items:center;
+  font-size:11.5px; font-weight:650; color:var(--ink-soft); font-family:var(--font-mono);
+}
+.pm-item[aria-current="true"] .pm-num{ background:var(--accent); color:#fff; border-color:var(--accent); }
+.pm-body{ min-width:0; }
+.pm-label{ font-weight:640; font-size:14px; }
+.pm-sub{ color:var(--ink-faint); font-size:12px; margin-top:1px;
+  overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+
+/* arama */
+.search{ position:relative; flex:0 1 300px; }
+.search input{
+  width:100%; padding:8px 30px 8px 32px; border-radius:10px;
+  border:1px solid var(--line-strong); background:var(--surface); color:var(--ink);
+  font-size:14px; outline:none;
+}
+.search input:focus{ border-color:var(--accent); box-shadow:0 0 0 3px var(--accent-soft); }
+.search .ico{ position:absolute; left:10px; top:50%; transform:translateY(-50%);
+  color:var(--ink-faint); font-size:13px; pointer-events:none; }
+.search kbd{
+  position:absolute; right:8px; top:50%; transform:translateY(-50%);
+  font-family:var(--font-mono); font-size:10.5px; color:var(--ink-faint);
+  border:1px solid var(--line); border-radius:5px; padding:1px 5px; background:var(--surface-2);
+}
+.search input:focus + .ico + kbd{ display:none; }
+
+.iconbtn{
+  border:1px solid var(--line-strong); background:var(--surface); border-radius:10px;
+  width:36px; height:36px; display:grid; place-items:center; cursor:pointer;
+  transition:border-color .15s;
+}
+.iconbtn:hover{ border-color:var(--accent); color:var(--accent); }
+.iconbtn.small{ width:auto; padding:0 10px; font-size:13px; }
+#tocToggle{ display:none; }
+
+.progress{ height:2px; background:transparent; }
+.progress > i{ display:block; height:100%; width:0; background:var(--accent); transition:width .1s linear; }
+
+/* ============ Yerleşim ============ */
+.shell{
+  max-width:1340px; margin:0 auto; padding:0 18px;
+  display:grid; grid-template-columns:274px minmax(0,1fr) ; gap:34px; align-items:start;
+}
+.sidebar{
+  position:sticky; top:64px; max-height:calc(100vh - 84px);
+  overflow:auto; padding:22px 4px 40px; overscroll-behavior:contain;
+}
+.sidebar h2{
+  font-size:11px; text-transform:uppercase; letter-spacing:.09em;
+  color:var(--ink-faint); margin:0 0 10px 10px; font-weight:650;
+}
+.toc a{
+  display:block; padding:5px 10px; border-radius:7px; text-decoration:none;
+  color:var(--ink-soft); font-size:13.4px; line-height:1.4;
+  border-left:2px solid transparent; transition:background .12s,color .12s;
+}
+.toc a:hover{ background:var(--surface-2); color:var(--ink); }
+.toc a.lvl-1{ font-weight:680; color:var(--ink); font-size:12px; text-transform:uppercase;
+  letter-spacing:.06em; margin-top:16px; }
+.toc a.lvl-2{ padding-left:12px; }
+.toc a.lvl-3{ padding-left:24px; font-size:12.6px; color:var(--ink-faint); display:none; }
+.toc a.lvl-3.show{ display:block; }
+.toc a.active{ background:var(--accent-soft); color:var(--accent); border-left-color:var(--accent); font-weight:640; }
+
+/* ============ İçerik ============ */
+.content{ padding:34px 0 100px; min-width:0; }
+.doc{ max-width:790px; }
+.doc[hidden]{ display:none; }
+.doc-head{ margin-bottom:34px; padding-bottom:24px; border-bottom:1px solid var(--line); }
+.doc-kicker{
+  display:inline-block; font-size:11.5px; font-weight:680; letter-spacing:.09em;
+  text-transform:uppercase; color:var(--accent); background:var(--accent-soft);
+  padding:4px 10px; border-radius:100px; margin-bottom:14px;
+}
+.doc-title{
+  font-family:var(--font-read); font-size:clamp(28px,4.2vw,40px); line-height:1.15;
+  margin:0 0 8px; letter-spacing:-.02em; font-weight:600;
+}
+.doc-sub{ margin:0; color:var(--ink-soft); font-size:17px; }
+.doc-meta{
+  margin-top:18px; display:flex; flex-wrap:wrap; gap:8px 16px;
+  font-size:12.5px; color:var(--ink-faint);
+}
+.doc-meta span{ display:inline-flex; align-items:center; gap:6px; }
+.doc-meta span + span::before{
+  content:""; width:3px; height:3px; border-radius:50%; background:var(--line-strong);
+  margin-right:10px; margin-left:-10px;
+}
+.mono{ font-family:var(--font-mono); font-size:11.5px; }
+
+.doc-body{ font-family:var(--font-read); font-size:var(--read-size); line-height:1.75; color:var(--ink); }
+.doc-body h1,.doc-body h2,.doc-body h3,.doc-body h4{
+  font-family:var(--font-ui); letter-spacing:-.015em; scroll-margin-top:92px; position:relative;
+}
+.doc-body h1{
+  font-size:15px; text-transform:uppercase; letter-spacing:.1em; font-weight:700;
+  color:var(--accent); margin:64px 0 20px; padding-bottom:10px;
+  border-bottom:2px solid var(--accent-soft);
+}
+.doc-body h2{ font-size:27px; font-weight:660; margin:52px 0 14px; line-height:1.25; }
+.doc-body h3{ font-size:19.5px; font-weight:660; margin:34px 0 10px; color:var(--ink); }
+.doc-body h4{ font-size:16px; font-weight:660; margin:26px 0 8px; color:var(--ink-soft); }
+.doc-body p{ margin:0 0 18px; }
+.doc-body strong{ font-weight:640; color:var(--ink); }
+.doc-body em{ font-style:italic; color:var(--ink-soft); }
+.doc-body ul,.doc-body ol{ margin:0 0 20px; padding-left:24px; }
+.doc-body li{ margin:0 0 9px; }
+.doc-body li::marker{ color:var(--ink-faint); }
+.doc-body hr{
+  border:0; height:1px; background:var(--line); margin:44px 0;
+}
+.doc-body code{
+  font-family:var(--font-mono); font-size:.85em; background:var(--surface-2);
+  border:1px solid var(--line); border-radius:5px; padding:1px 5px;
+}
+.doc-body pre{
+  background:var(--surface-2); border:1px solid var(--line); border-radius:10px;
+  padding:14px 16px; overflow:auto; font-size:13.5px;
+}
+.doc-body pre code{ border:0; background:none; padding:0; }
+.doc-body blockquote{
+  margin:24px 0; padding:14px 20px; border-left:3px solid var(--accent);
+  background:var(--surface); border-radius:0 10px 10px 0;
+  color:var(--ink-soft); box-shadow:var(--shadow);
+}
+.doc-body blockquote p:last-child{ margin-bottom:0; }
+
+.anchor{
+  position:absolute; left:-22px; top:50%; transform:translateY(-50%);
+  opacity:0; text-decoration:none; color:var(--line-strong); font-size:.8em;
+  transition:opacity .12s;
+}
+.anchored:hover .anchor{ opacity:1; }
+.anchor:hover{ color:var(--accent); }
+
+/* tablolar */
+.table-wrap{
+  margin:24px 0; overflow-x:auto; border:1px solid var(--line);
+  border-radius:var(--radius); background:var(--surface); box-shadow:var(--shadow);
+}
+table{ border-collapse:collapse; width:100%; font-family:var(--font-ui); font-size:14.5px; }
+thead th{
+  background:var(--surface-2); font-weight:660; color:var(--ink-soft);
+  font-size:12.5px; text-transform:uppercase; letter-spacing:.05em;
+  padding:11px 14px; border-bottom:1px solid var(--line-strong); white-space:nowrap;
+}
+tbody td{ padding:11px 14px; border-bottom:1px solid var(--line); vertical-align:top; }
+tbody tr:last-child td{ border-bottom:0; }
+tbody tr:hover{ background:var(--surface-2); }
+
+/* vurgulama */
+.flash{ animation:flash 1.6s ease-out; border-radius:6px; }
+@keyframes flash{ 0%,25%{ background:var(--accent-soft); } 100%{ background:transparent; } }
+mark{ background:var(--accent-soft); color:inherit; border-radius:3px; padding:0 2px; }
+
+/* doküman alt gezinme */
+.docnav{
+  max-width:790px; margin-top:60px; padding-top:26px; border-top:1px solid var(--line);
+  display:flex; gap:12px; flex-wrap:wrap;
+}
+.docnav a{
+  flex:1 1 240px; text-decoration:none; color:inherit; border:1px solid var(--line);
+  border-radius:var(--radius); padding:14px 16px; background:var(--surface);
+  transition:border-color .15s, transform .1s; min-width:0;
+}
+.docnav a:hover{ border-color:var(--accent); transform:translateY(-1px); }
+.docnav .dn-dir{ font-size:11px; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-faint); }
+.docnav .dn-title{ font-weight:640; margin-top:3px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.docnav a.next{ text-align:right; }
+.docnav a[hidden]{ display:none; }
+
+/* arama sonuçları */
+.results{ max-width:790px; }
+.results[hidden]{ display:none; }
+.res-head{ font-size:13px; color:var(--ink-faint); margin-bottom:18px; }
+.res-group{ margin-bottom:26px; }
+.res-group h3{
+  font-size:12px; text-transform:uppercase; letter-spacing:.08em; color:var(--accent);
+  margin:0 0 8px;
+}
+.res-item{
+  display:block; width:100%; text-align:left; background:var(--surface);
+  border:1px solid var(--line); border-radius:10px; padding:12px 14px; margin-bottom:8px;
+  cursor:pointer; transition:border-color .15s;
+}
+.res-item:hover{ border-color:var(--accent); }
+.res-crumb{ font-size:11.5px; color:var(--ink-faint); margin-bottom:4px; }
+.res-text{ font-size:14.5px; line-height:1.55; }
+.empty{ color:var(--ink-faint); font-size:14.5px; padding:20px 0; }
+
+/* ============ Ders / Eleme blokları ============ */
+.block{ margin:26px 0; border-radius:var(--radius); }
+.block > :first-child{ margin-top:0; }
+.block > :last-child{ margin-bottom:0; }
+
+/* DERS — videonun anlattığı; açık zeminli kutu */
+.block-ders{
+  background:var(--surface-2);
+  border-left:4px solid var(--line-strong);
+  padding:20px 22px;
+}
+/* ELEME — değerlendirme; normal akış, ince vurgu çizgisi */
+.block-eleme{
+  border-left:4px solid var(--accent);
+  padding:4px 0 4px 22px;
+}
+
+/* İlk satırdaki **DERS** / **ELEME** -> rozet */
+.block > p:first-child{ margin:0 0 14px; }
+.block > p:first-child strong{
+  display:inline-block; font-size:11px; font-weight:700;
+  letter-spacing:.14em; text-transform:uppercase;
+  padding:3px 10px; border-radius:3px; border:1px solid currentColor;
+}
+.block-ders > p:first-child strong{ color:var(--ink-faint); }
+.block-eleme > p:first-child strong{ color:var(--accent); }
+
+/* Kutu içindeki başlıklar biraz daha sakin */
+.block h4{ font-size:15px; color:var(--ink-soft); letter-spacing:.03em; }
+.block .table-wrap{ box-shadow:none; }
+.block-ders .table-wrap{ background:var(--surface); }
+
+/* ============ Duyarlı ============ */
+@media (max-width:1080px){
+  .shell{ grid-template-columns:1fr; gap:0; }
+  #tocToggle{ display:grid; }
+  .sidebar{
+    position:fixed; inset:57px auto 0 0; width:290px; z-index:55;
+    background:var(--surface); border-right:1px solid var(--line);
+    max-height:none; height:calc(100vh - 57px); padding:18px 10px 40px;
+    transform:translateX(-102%); transition:transform .22s ease; box-shadow:var(--shadow);
+  }
+  .sidebar.open{ transform:none; }
+  .scrim{ position:fixed; inset:0; background:rgba(0,0,0,.35); z-index:54; display:none; }
+  .scrim.open{ display:block; }
+  .brand small{ display:none; }
+}
+@media (max-width:760px){
+  .topbar-inner{ flex-wrap:wrap; padding:9px 14px; }
+  .search{ order:9; flex:1 1 100%; }
+  .picker-btn{ min-width:0; }
+  .brand{ font-size:14px; }
+  .shell{ padding:0 14px; }
+  :root{ --read-size:17.5px; }
+  .doc-body h2{ font-size:23px; }
+  /* Dar ekranda kutular kenar boşluğu yemesin */
+  .block-ders{ padding:16px 14px; }
+  .block-eleme{ padding-left:14px; }
+  table{ font-size:13.5px; }
+  thead th{ padding:9px 10px; }
+  tbody td{ padding:9px 10px; }
+  .table-wrap{ margin:18px 0; }
+}
+
+@media print{
+  .topbar,.sidebar,.docnav,.scrim,.results{ display:none !important; }
+  .shell{ display:block; padding:0; } .content{ padding:0; }
+  .doc-body{ font-size:11.5pt; } body{ background:#fff; }
+  .table-wrap,.doc-body blockquote{ box-shadow:none; }
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand"><span class="dot"></span>ICT Eleme Notları <small>okuyucu</small></div>
+
+    <div class="picker">
+      <button class="picker-btn" id="pickerBtn" aria-haspopup="listbox" aria-expanded="false">
+        <span class="pb-text">
+          <span class="pb-label" id="pbLabel">—</span>
+          <span class="pb-sub" id="pbSub"></span>
+        </span>
+        <span class="chev">▼</span>
+      </button>
+      <div class="picker-menu" id="pickerMenu" role="listbox">
+        <div class="pm-head">Dokümanlar</div>
+        <div id="pickerItems"></div>
+      </div>
+    </div>
+
+    <div class="spacer"></div>
+
+    <div class="search">
+      <input id="q" type="search" placeholder="Tüm dokümanlarda ara…" autocomplete="off" spellcheck="false">
+      <span class="ico">⌕</span>
+      <kbd>/</kbd>
+    </div>
+
+    <button class="iconbtn small" id="fontBtn" title="Yazı boyutu">A<span style="font-size:1.25em">A</span></button>
+    <button class="iconbtn" id="themeBtn" title="Tema değiştir">◐</button>
+    <button class="iconbtn" id="tocToggle" title="İçindekiler">☰</button>
+  </div>
+  <div class="progress"><i id="progressBar"></i></div>
+</header>
+
+<div class="scrim" id="scrim"></div>
+
+<div class="shell">
+  <aside class="sidebar" id="sidebar">
+    <h2>İçindekiler</h2>
+    <nav class="toc" id="toc"></nav>
+  </aside>
+
+  <main class="content">
+    <div class="results" id="results" hidden></div>
+    <div id="docs">
+<!--__SECTIONS__-->
+    </div>
+    <nav class="docnav" id="docnav">
+      <a class="prev" id="navPrev" href="#"><span class="dn-dir">← Önceki</span><span class="dn-title"></span></a>
+      <a class="next" id="navNext" href="#"><span class="dn-dir">Sonraki →</span><span class="dn-title"></span></a>
+    </nav>
+  </main>
+</div>
+
+<script>
+const DOCS = /*__DOCS_JSON__*/null;
+const $ = s => document.querySelector(s);
+const $$ = s => Array.from(document.querySelectorAll(s));
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const plain = s => String(s).replace(/[`*]/g, '');
+
+/* ---------- Türkçe duyarsız arama için katlama ---------- */
+const FOLD = {'ı':'i','İ':'i','I':'i','ş':'s','Ş':'s','ğ':'g','Ğ':'g','ü':'u','Ü':'u','ö':'o','Ö':'o','ç':'c','Ç':'c','â':'a','î':'i','û':'u'};
+const fold = s => s.replace(/[ıİIşŞğĞüÜöÖçÇâîû]/g, c => FOLD[c] || c).toLowerCase();
+
+/* ---------- Durum ---------- */
+const store = {
+  get(k, d){ try { const v = localStorage.getItem(k); return v === null ? d : v; } catch(e){ return d; } },
+  set(k, v){ try { localStorage.setItem(k, v); } catch(e){} }
+};
+let current = 0;
+const articles = $$('.doc');
+
+/* ---------- Tema ---------- */
+const themeBtn = $('#themeBtn');
+function applyTheme(t){
+  document.documentElement.setAttribute('data-theme', t);
+  themeBtn.textContent = t === 'dark' ? '☾' : t === 'light' ? '☀' : '◐';
+  themeBtn.title = 'Tema: ' + ({auto:'sistem', light:'açık', dark:'koyu'})[t];
+}
+applyTheme(store.get('ict.theme', 'auto'));
+themeBtn.onclick = () => {
+  const order = ['auto','light','dark'];
+  const next = order[(order.indexOf(document.documentElement.getAttribute('data-theme')) + 1) % 3];
+  store.set('ict.theme', next); applyTheme(next);
+};
+
+/* ---------- Yazı boyutu ---------- */
+const SIZES = ['17px','19px','21px','23px'];
+function applySize(i){
+  document.documentElement.style.setProperty('--read-size', SIZES[i]);
+  store.set('ict.size', i);
+}
+let sizeIdx = parseInt(store.get('ict.size', '1'), 10) || 0;
+applySize(sizeIdx);
+$('#fontBtn').onclick = () => { sizeIdx = (sizeIdx + 1) % SIZES.length; applySize(sizeIdx); };
+
+/* ---------- Doküman seçici ---------- */
+const pickerBtn = $('#pickerBtn'), pickerMenu = $('#pickerMenu');
+DOCS.forEach((d, i) => {
+  const b = document.createElement('button');
+  b.className = 'pm-item'; b.type = 'button'; b.dataset.index = i;
+  b.innerHTML = '<span class="pm-num">' + String(i + 1).padStart(2, '0') + '</span>' +
+    '<span class="pm-body"><span class="pm-label">' + esc(plain(d.label)) + '</span>' +
+    '<span class="pm-sub">' + esc(plain(d.subtitle || d.title)) + ' · ~' + d.minutes + ' dk</span></span>';
+  b.onclick = () => { showDoc(i, true); closePicker(); };
+  $('#pickerItems').appendChild(b);
+});
+function openPicker(){ pickerMenu.classList.add('open'); pickerBtn.setAttribute('aria-expanded','true'); }
+function closePicker(){ pickerMenu.classList.remove('open'); pickerBtn.setAttribute('aria-expanded','false'); }
+pickerBtn.onclick = e => { e.stopPropagation(); pickerMenu.classList.contains('open') ? closePicker() : openPicker(); };
+document.addEventListener('click', e => { if(!pickerMenu.contains(e.target)) closePicker(); });
+
+/* ---------- İçindekiler ---------- */
+function buildToc(i){
+  const toc = $('#toc'); toc.innerHTML = '';
+  let parent = null;
+  DOCS[i].toc.forEach(h => {
+    if(h.level > 3) return;
+    const a = document.createElement('a');
+    a.href = '#' + h.id; a.className = 'lvl-' + h.level;
+    a.textContent = plain(h.text);
+    a.dataset.id = h.id;
+    if(h.level <= 2){ parent = h.id; } else { a.dataset.parent = parent; }
+    a.onclick = e => { e.preventDefault(); goTo(h.id); closeDrawer(); };
+    toc.appendChild(a);
+  });
+}
+
+/* ---------- Doküman gösterimi ---------- */
+function showDoc(i, push){
+  current = i;
+  articles.forEach((a, k) => { a.hidden = k !== i; });
+  const d = DOCS[i];
+  $('#pbLabel').textContent = plain(d.label);
+  $('#pbSub').textContent = plain(d.subtitle || d.title);
+  $$('#pickerItems .pm-item').forEach((b, k) => b.setAttribute('aria-current', k === i ? 'true' : 'false'));
+  buildToc(i);
+  document.title = d.label + ' — ICT Eleme Notları';
+  store.set('ict.doc', d.slug);
+  const prev = DOCS[i-1], next = DOCS[i+1];
+  const np = $('#navPrev'), nn = $('#navNext');
+  np.hidden = !prev; nn.hidden = !next;
+  if(prev){ np.querySelector('.dn-title').textContent = prev.label; np.onclick = e => { e.preventDefault(); showDoc(i-1, true); }; }
+  if(next){ nn.querySelector('.dn-title').textContent = next.label; nn.onclick = e => { e.preventDefault(); showDoc(i+1, true); }; }
+  if(push) location.hash = d.slug;
+  $('#q').value = '';
+  clearSearch();
+  window.scrollTo({ top:0, behavior:'auto' });
+  updateActive();
+}
+
+function goTo(id){
+  const el = document.getElementById(id);
+  if(!el) return;
+  el.scrollIntoView({ behavior:'smooth', block:'start' });
+  el.classList.remove('flash'); void el.offsetWidth; el.classList.add('flash');
+  history.replaceState(null, '', '#' + DOCS[current].slug + '/' + id);
+}
+
+/* ---------- Kaydırma: aktif başlık + ilerleme ---------- */
+let ticking = false;
+function updateActive(){
+  const art = articles[current];
+  if(!art || art.hidden) return;
+  const heads = Array.from(art.querySelectorAll('h1[id],h2[id],h3[id]'));
+  const y = window.scrollY + 110;
+  let active = null;
+  for(const h of heads){ if(h.offsetTop <= y) active = h; else break; }
+  const links = $$('#toc a');
+  links.forEach(a => a.classList.remove('active'));
+  if(active){
+    const link = links.find(a => a.dataset.id === active.id);
+    if(link){
+      link.classList.add('active');
+      const key = link.classList.contains('lvl-3') ? link.dataset.parent : link.dataset.id;
+      links.forEach(a => a.classList.toggle('show', a.classList.contains('lvl-3') && a.dataset.parent === key));
+      const r = link.getBoundingClientRect(), sb = $('#sidebar').getBoundingClientRect();
+      if(r.top < sb.top + 8 || r.bottom > sb.bottom - 8) link.scrollIntoView({ block:'center' });
+    }
+  }
+  const docH = document.documentElement.scrollHeight - window.innerHeight;
+  $('#progressBar').style.width = (docH > 0 ? (window.scrollY / docH) * 100 : 0) + '%';
+}
+window.addEventListener('scroll', () => {
+  if(ticking) return; ticking = true;
+  requestAnimationFrame(() => { updateActive(); ticking = false; });
+}, { passive:true });
+
+/* ---------- Tam metin arama ---------- */
+const INDEX = [];
+articles.forEach((art, di) => {
+  let head = null;
+  art.querySelectorAll('h1[id],h2[id],h3[id],h4[id],p,li,td,blockquote > p').forEach((el, k) => {
+    if(/^H[1-4]$/.test(el.tagName)) head = el;
+    const text = el.textContent.replace(/\s+/g,' ').trim();
+    if(text.length < 3) return;
+    if(!el.id) el.id = 'b' + di + '-' + k;
+    INDEX.push({ doc:di, id:el.id, head:head ? head.textContent.replace(/#$/,'').trim() : '', text, fold:fold(text) });
+  });
+});
+
+function highlight(text, tokens){
+  let out = text.replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+  const f = fold(out);
+  const marks = [];
+  tokens.forEach(t => { let p = 0, idx; while((idx = f.indexOf(t, p)) !== -1){ marks.push([idx, idx + t.length]); p = idx + t.length; } });
+  if(!marks.length) return out;
+  marks.sort((a,b) => a[0] - b[0]);
+  const merged = [];
+  for(const m of marks){
+    if(merged.length && m[0] <= merged[merged.length-1][1]) merged[merged.length-1][1] = Math.max(merged[merged.length-1][1], m[1]);
+    else merged.push(m.slice());
+  }
+  let res = '', last = 0;
+  for(const [a,b] of merged){ res += out.slice(last,a) + '<mark>' + out.slice(a,b) + '</mark>'; last = b; }
+  return res + out.slice(last);
+}
+
+function snippet(text, tokens){
+  const f = fold(text);
+  let pos = -1;
+  for(const t of tokens){ const i = f.indexOf(t); if(i !== -1 && (pos === -1 || i < pos)) pos = i; }
+  if(pos === -1) pos = 0;
+  const start = Math.max(0, pos - 90), end = Math.min(text.length, pos + 190);
+  return (start > 0 ? '… ' : '') + text.slice(start, end) + (end < text.length ? ' …' : '');
+}
+
+function runSearch(qs){
+  const tokens = fold(qs).split(/\s+/).filter(t => t.length > 1);
+  const box = $('#results');
+  if(!tokens.length){ clearSearch(); return; }
+  const hits = INDEX.filter(r => tokens.every(t => r.fold.includes(t)));
+  $('#docs').hidden = true; $('#docnav').hidden = true; box.hidden = false;
+  if(!hits.length){
+    box.innerHTML = '<p class="empty">“' + qs + '” için sonuç yok.</p>';
+    return;
+  }
+  let html = '<div class="res-head"><strong>' + hits.length + '</strong> sonuç · ' +
+    new Set(hits.map(h => h.doc)).size + ' doküman</div>';
+  const byDoc = new Map();
+  hits.slice(0, 120).forEach(h => { if(!byDoc.has(h.doc)) byDoc.set(h.doc, []); byDoc.get(h.doc).push(h); });
+  byDoc.forEach((list, di) => {
+    html += '<section class="res-group"><h3>' + DOCS[di].label + ' · ' + list.length + ' eşleşme</h3>';
+    list.forEach(h => {
+      html += '<button class="res-item" data-doc="' + di + '" data-id="' + h.id + '">' +
+        (h.head ? '<div class="res-crumb">' + esc(h.head) + '</div>' : '') +
+        '<div class="res-text">' + highlight(snippet(h.text, tokens), tokens) + '</div></button>';
+    });
+    html += '</section>';
+  });
+  box.innerHTML = html;
+  box.querySelectorAll('.res-item').forEach(b => {
+    b.onclick = () => {
+      const di = +b.dataset.doc, id = b.dataset.id;
+      $('#q').value = '';
+      if(di !== current) showDoc(di, true); else clearSearch();
+      setTimeout(() => goTo(id), 60);
+    };
+  });
+}
+
+function clearSearch(){
+  $('#results').hidden = true; $('#results').innerHTML = '';
+  $('#docs').hidden = false; $('#docnav').hidden = false;
+}
+
+let searchTimer;
+$('#q').addEventListener('input', e => {
+  clearTimeout(searchTimer);
+  const v = e.target.value.trim();
+  searchTimer = setTimeout(() => v ? runSearch(v) : clearSearch(), 140);
+});
+$('#q').addEventListener('keydown', e => {
+  if(e.key === 'Escape'){ e.target.value = ''; clearSearch(); e.target.blur(); }
+});
+
+/* ---------- Klavye ---------- */
+document.addEventListener('keydown', e => {
+  const typing = /INPUT|TEXTAREA/.test(document.activeElement.tagName);
+  if(!typing && (e.key === '/' || ((e.ctrlKey || e.metaKey) && e.key === 'k'))){
+    e.preventDefault(); $('#q').focus(); $('#q').select();
+  }
+  if(!typing && e.key === 'Escape'){ closePicker(); closeDrawer(); }
+  if(!typing && (e.key === 'j' || e.key === 'k')){
+    const d = e.key === 'j' ? 1 : -1;
+    if(DOCS[current + d]) showDoc(current + d, true);
+  }
+});
+
+/* ---------- Mobil çekmece ---------- */
+function closeDrawer(){ $('#sidebar').classList.remove('open'); $('#scrim').classList.remove('open'); }
+$('#tocToggle').onclick = () => { $('#sidebar').classList.toggle('open'); $('#scrim').classList.toggle('open'); };
+$('#scrim').onclick = closeDrawer;
+
+/* ---------- Başlangıç ---------- */
+(function init(){
+  const hash = decodeURIComponent(location.hash.replace(/^#/, ''));
+  const [slug, sect] = hash.split('/');
+  let idx = DOCS.findIndex(d => d.slug === slug);
+  if(idx === -1){
+    const saved = store.get('ict.doc', '');
+    idx = Math.max(0, DOCS.findIndex(d => d.slug === saved));
+  }
+  showDoc(idx, false);
+  if(sect) setTimeout(() => goTo(sect), 120);
+  else if(slug && DOCS[idx].toc.some(h => h.id === slug)) setTimeout(() => goTo(slug), 120);
+})();
+window.addEventListener('hashchange', () => {
+  const [slug, sect] = decodeURIComponent(location.hash.replace(/^#/, '')).split('/');
+  const i = DOCS.findIndex(d => d.slug === slug);
+  if(i !== -1 && i !== current) showDoc(i, false);
+  if(sect) goTo(sect);
+});
+</script>
+</body>
+</html>
