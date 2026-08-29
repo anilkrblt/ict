@@ -1371,3 +1371,433 @@ Ve bu ölçütün bu ay için pratik sonucu tek satır: **on yıllık veri elind
 Bu, senin `#013`'ünün — iki motor, kör veri sarmalayıcısı — aynı ilkesidir. On bir ay boyunca bu belgelerde eksik bulunan şeyin adı **veri** değildi; **sıra**ydı.
 
 Kalan bir ay için de aynı: Ağustos'un yukarıdan aşağı PDF şablonları, bu ayın dört videosunun tamamının işaret ettiği yer. O şablonlar bir prosedür verecek — ve prosedürün ölçülebilir olup olmadığı, **eşiklerinin şablonun içinde mi yoksa sonunda mı olduğuna** bakılarak anlaşılacak.
+
+---
+
+# BÖLÜM IV — Kesinlikle bilmen gerekenler
+
+Temmuz'un kavramları: **tanım · nasıl bulunur · ne işe yarar.** Sonda dört varlık sınıfının ortak seçim iskeleti.
+
+---
+
+## 1. Mega trade — tanım ve sınırlar
+
+**Tanım.** *"Her yıl gerçekleşen büyük hareketleri bulma fikri. **Büyük bir fiyat salınımı ya da trend** — muazzam potansiyel kazanç üretebilen, ve **göreli piyasalarla karşılaştırıldığında hepsinden daha iyi performans gösteren.**"*
+
+**Kaynak açıkça veriliyor:** *"Bu **Larry Williams**'tan aldığım bir şey, açıkçası **onun sloganıydı.**"*
+
+**Üç özelliği:**
+1. **Tarihsel olarak grafiklerde kolayca görülür — her takvim yılında var**
+2. **Büyük kurumsal sponsorluğu var**
+3. **Gerçek arz-talep faktörlerinden güçlü etki alıyor**
+
+**Zaman ölçeği — varlık sınıfına göre:**
+
+| Varlık | Süre |
+|---|---|
+| **Döviz** | *"Bir swing işlem ile bir pozisyon işlemi **arasında**"* |
+| **Hisse** | **6 – 9 ay veya daha fazla** |
+| **Tahvil** | Mayıs–Haziran'dan sonbahara — **4–5 ay** |
+
+**Ve bir sayısal eşik — tahvil için, en sonda veriliyor:**
+> *"Tahvil piyasası için **10.000 USD ya da daha fazlasını** görmek isterim ki yıllık hareket gerçekten mega trade olarak nitelensin. **Bundan azı sadece gerçekten iyi bir işlem, ama mega trade değil.**"*
+
+**Bu, on bir ayda "mega trade" için verilen tek sayısal tanım** — ve yalnızca tahvil için.
+
+---
+
+## 2. Uzmanlaşmama kuralı
+
+> *"Emtia piyasalarını takip ederken **uzman ya da tek piyasa işlemcisi olmaktan kaçınmak en iyisi.** Favori bir emtia bolca kurulum sağlayabilir ama **diğer piyasalar alev alevken o uykuda olabilir.**"*
+
+**Ve döviz için aynısı, tersinden:** *"**Tüm büyük hareketler bu yedi parite ile belirlenebilir** ve takip etmen gereken tek şey onlar."*
+
+---
+
+# A. EMTİA MEGA TRADE'LERİ
+
+## A1. Evren — 18 piyasa
+
+**Tarımsal (11):**
+
+| Sektör | Takip edilecekler |
+|---|---|
+| **Tahıl** | Soya, CBOT buğday, CBOT mısır **(3)** |
+| **Canlı hayvan / et** | Canlı sığır, besi sığırı, yağlık domuz **(3)** |
+| **Softs** | Kahve, kakao, şeker, portakal suyu **(4)** |
+| **Lif** | Pamuk **(1)** |
+
+**Finansal (7):**
+
+| Sektör | Takip edilecekler |
+|---|---|
+| **Değerli metal** | Altın, gümüş **(2)** |
+| **Endüstriyel metal** | High grade bakır **(1)** |
+| **Enerji** | Ham petrol, ısıtma yağı, benzin, doğalgaz **(4)** |
+
+**Çıkarılanlar ve gerekçeleri:**
+- **Yulaf, kanola, pirinç:** *"oldukça ince bir piyasa, **limit hareketler yapmaya başlarsa canın yanabilir**"*
+- **Paladyum, platin:** *"**çok ince, çok çok ince**"*
+- **Doğalgaz için çıkar beyanı:** *"vadeli sözleşme işlem deneyimim olmadığını kabul ediyorum"*
+
+## A2. Manşet yöntemi — ve ters yönde manşet kuralı
+
+**Temel tarama:**
+> *"Kuru sıkıcı ürün raporlarından geçmemize gerek yok — **basit bir gazete manşeti temel bir sonuç çıkarmak için gereken tek şey olabilir.**"*
+
+**Ve karşıt kural — bu daha ilginç:**
+> *"**Futures dergisine** bakıyorum. 'Şu anda sıcak emtialar' bölümü var, ve neredeyse **tuhaf biçimde her zaman onlardan bir süre hareket ettikten sonra bahsediyorlar** — **tam bir dönüş noktası olabilecek zamanda.**"*
+>
+> *"Piyasa duyarlılığında bir uç olduğunda — ister aşırı boğa ister aşırı ayı — bunlar **harika karşıt sinyaller.**"*
+
+**Ölçüm notu.** Manşet taraması **yazılamaz** — "ilgi uyandıracak haber" tanımsız. **Ama karşıt versiyon vekillenebilir:** bir duyarlılık endeksi (Market Vane, Williams %R, COT small spec pozisyonu) uçlarına bakılarak aynı fikir mekanik hale getirilir.
+
+## A3. Prim taraması — ayın öncelikli ilk adımı
+
+**Prosedür:**
+1. **Teslimat ayı kapanış fiyatlarına** danış
+2. **Uzak bir aya göre primi olan** emtiaları not et
+3. Normalde aylar uzadıkça daha pahalı olmalı — **tersine dönerse** yakın ayda prim var
+
+> *"**Bu her yıl piyasaya girerken yapacağımız birincil aramamız olacak**, çünkü bunlar **patlayıcı boğa piyasalarının ortak bileşeni.**"*
+
+**İki boğa piyasası tipi:**
+
+| Tip | Karakter | Süre |
+|---|---|---|
+| **Carrying charge (standart)** | *"yukarı aşağı yukarı aşağı, tipik merdiven"* | Hedefe ulaşması **aylar** |
+| **Prim (commercial)** | *"**parabolik dikey giderler** ve çok hızlı çok yol kat ederler"* | *"**son derece hızlı**"* |
+
+**Çekince:** *"Boğa bir emtiada olmak için prim **gerekmiyor** — sadece güçlü bir ralli olasılığını artırıyor."*
+
+**Neden ölçülebilir.** Vade yapısı **kamuya açık ve tartışmasız** — bir fiyat farkı. Ve fiyat grafiğinden bağımsız. Hipotez net: *primli emtiaların sonraki N aylık getirisi, carrying charge olanlardan farklı mı?*
+
+## A4. Emtia süreci — altı adım
+
+1. **Manşet taraması**
+2. **Primli piyasaları ara** — zorunlu değil ama **öncelikli**
+3. **Dolar endeksiyle yön teyidi** — dolar yukarı → emtia aşağı
+4. **Her sektörde göreli güç:** boğayken **dipleri** karşılaştır, **daha düşük dip yapmayanı** al; ayıyken **tepeleri**, **daha yüksek tepe yapmayanı** sat
+5. **Her sektörden bir lider** süz
+6. **Kâğıt üzerinde opsiyonla** uygula — *"kontrollü risk, ödediğin prim artı komisyonla sınırlı"*
+
+## A5. Sepet tahsisi — iki tur eleme
+
+**Birinci tur:** her sektörden bir lider (adım 4–5).
+
+**İkinci tur:** liderler **kendi aralarında** karşılaştırılıyor — hangisi kısa vadeli tepeleri **daha erken** kırıyor, hangisi düşüş mumlarında daha çok destek buluyor.
+
+**Tahsis:**
+> *"Diyelim ki sekiz liderle bitirdik — o sekiz sonunda **gerçekten üstün performans gösteren üçe** indirilebilir. Sermayenin **%50'si o üçüne** gider, kalanı diğer sektörlere yayılır."*
+
+**Gerekçe:**
+> *"Seçilen her lider beklendiği gibi performans göstermeyecek — bu yüzden **çeşitlendirilmiş bir yaklaşım** bir mega trade yakalama olasılığını artıracak. **Kazananlarda görülen büyüklük çoğu zaman düşük performansın yan hasarını karşılayacak.**"*
+
+**Ne işe yarar — ve bu bir portföy fikri.** On bir ayda ilk kez **birden fazla eşzamanlı pozisyonun** nasıl boyutlandırılacağı konuşuluyor. Ve mantık doğru: yüksek çarpıklıklı getiri dağılımında çeşitlendirme, tek isabet olasılığını artırır.
+
+---
+
+# B. DÖVİZ MEGA TRADE'LERİ
+
+## B1. Üç bileşen
+
+### 1. Çeyreklik kaymalar
+
+> *"**Her 3 ay civarında piyasalar bir ara vadeli dönüş noktası** oluşturma eğiliminde olacak."*
+
+**Ve hemen ardından gelen sınırlama:**
+> *"**Tek başına sana yön eğilimi vermez** — o, kurumsal emir akışı olacak."*
+
+### 2. Mevsimsel eğilimler — ve bir hiyerarşi kuralı
+
+> *"Bazen mevsimsel eğilim düşmesi gerektiğini ima ediyor olabilir **ama piyasa iç dinamikleri aksini söylüyor ve teknikler yukarı gitmesiyle uyumluysa, o zaman işlem fikrini mevsimsel eğilime dayanarak gerçekten zorlayamazsın.**"*
+>
+> *"**Mevsimsel eğilime dayanarak gerçekleşmek zorunda olduğu için çiftliği bahse koyma.**"*
+
+**Yani hiyerarşi net: teknikler > mevsimsellik.** Ve bu, Ocak'ta olmayan bir düzelme.
+
+### 3. Dolar endeksi ön koşulu — yasaklayıcı, ve bu iyi
+
+> *"**Forex'teki her önemli hareket, kökenini ABD dolar endeksinin fiyat hareketinde bulacak.**"*
+>
+> **"Dövizlerde mega trade araması, işlem fikrinin dolar endeksindeki desteğine bağlı olacak — YA DA NİTELİKLİ BİR MEGA TRADE KURULUMU DEĞİLDİR."**
+
+| İşlem fikri | Dolar endeksinde aranan |
+|---|---|
+| Sterlin **yükselecek** | Dolar endeksi **satış koşulunda** |
+| CAD **düşecek** | Dolar endeksi **boğa görünümünde** |
+
+**Kısa vadeli istisna:** *"Çok kısa vadede ve özellikle gün içi işlemde, dolar endeksi konsolide olabilir ve **yine de yabancı dövizlerin ona karşı güçlü ya da zayıf işlem gördüğünü görebiliriz.**"*
+
+**Neden değerli.** Bu, **yasaklayıcı** bir kural — ve yasaklayıcı kurallar üretici olanlardan daha test edilebilirdir. Ve tamamen mekanik: dolar endeksi destekliyor mu, evet/hayır.
+
+## B2. Evren — yedi major
+
+EUR/USD (fiber) · GBP/USD (cable) · AUD/USD (Aussie) · NZD/USD (kiwi) · USD/CHF (swissy) · USD/CAD (Loonie) · USD/JPY (yen)
+
+**Ve çaprazlar için kural:**
+> *"Mega trade bir major'da olabilir ya da bir çaprazda olabilir — **ama çaprazda bulmak için bu major'ları anlamak zorundasın.** Bu muhtemelen **tüm mentorluğun en önemli derslerinden biri.**"*
+
+**Vadeli karşılıkları:** Euro FX, British pound, Australian dollar, New Zealand dollar, Swiss franc, Canadian dollar, Japanese yen.
+
+## B3. Göreli güç analizi — iki yöntem
+
+### Yöntem 1 — vadeli grafikler, dip/tepe karşılaştırması
+
+Boğa senaryosu (zayıf dolar) için yedi vadelinin **dipleri** karşılaştırılıyor:
+- **Daha yüksek dip yapan** piyasalar
+- **Ve eski tepeleri / prim array'leri kırabilme yeteneği**
+
+> *"Prim array'lerden geçebilen ve daha yüksek dipleri tutan piyasalar **varsayılan olarak göreli güçlü bir dövizdir.**"*
+>
+> *"Bazıları prim array'leri kıramayacak — **bu sana altta yatan zayıflığı veriyor. O bireysel piyasaların üzerini çizmek istersin.**"*
+
+### Yöntem 2 — MT4 overlay
+
+Birden çok pariteyi tek grafiğe bindirip SMT ayrışmasını çizgi bazında görmek.
+
+### Kritik ters çevirme kuralı
+
+> *"Zayıf dolar bekleniyorsa **daha yüksek dipleri olan pariteleri arayabiliriz — yeter ki taban döviz yabancı döviz olsun.** Yani **AUD/USD, EUR/USD, GBP/USD, NZD/USD** — dolar **ikinci** sırada.
+> **USD/JPY, USD/CAD, USD/CHF** için **tersine çevirmek zorundasın.**"*
+
+### İki yöntemin denkliği
+
+> *"**İkisi de önemli hareket edenleri süzecek. Birini ya da diğerini yaparak bir mega trade'i kaçırmazsın.**"*
+
+## B4. Güçlü ve zayıfın imzaları
+
+| **Güçlü döviz** | **Zayıf döviz** |
+|---|---|
+| Prim array'lerden (ayı order block, eski tepeler) **kolayca geçer** | İskonto array'lerden **kolayca geçer** |
+| İskonto array'lerde **destek bulur**, daha yüksek dip yapar | Prim array'lerde **direnç bulur**, daha düşük tepe yapar |
+| Genişleme hareketleri **yukarıda en güçlü**, geri çekilmeler **sığ** | Tersi |
+
+## B5. Döviz süreci — beş adım
+
+1. Vadelilerde **güçlü ve zayıf dövizleri** bul
+2. **Dolar endeksiyle teyit et**
+3. Küçük grubu **kendi içinde** göreli güce göre **sırala**
+4. **En güçlüyü ve en zayıfı ayır**, bir-iki dövize daralt
+5. Ya vadeliyi/opsiyonu işle, **ya da ikisini birleştirip bir çapraz oluştur**
+
+## B6. Korelasyon gerekçesiyle eleme — nadir ve doğru
+
+Temmuz 2017 taramasında **NZD** eleniyor, ama zayıf olduğu için değil:
+
+> *"Güçlü bir boğa piyasası... ama bir işlem aralığına girdi. Elmaları elmalarla karşılaştırırsak, **Aussie kurumsal emir akışında çok daha güçlü** — yani **yakından korele oldukları için Yeni Zelanda'nın üzerini çizeriz.**"*
+
+**Neden kaydedilmeli.** On bir ayda ilk kez bir aday, **korelasyon gerekçesiyle** — yani portföy mantığıyla — eleniyor. İki yüksek korelasyonlu pozisyon tek bir pozisyondur, ve bu doğru bir portföy düşüncesi.
+
+## B7. Çapraz kurma — Temmuz 2017 örneği
+
+**Sonuç:** güçlü = **AUD ve CAD**; zayıf = **JPY.**
+
+| Çapraz | Yapı | Sonuç |
+|---|---|---|
+| **CAD/JPY** | güçlü CAD + zayıf JPY | **845 pip** |
+| **AUD/JPY** | güçlü AUD + zayıf JPY | **630 pip** |
+
+**Ve çapraz uyarısı:**
+> *"Çaprazlar hakkında çok konuşmam çünkü **bunu yapmak için bu bilgiyi anlaman gerekiyor.** Sadece çaprazları işlemek için işliyorsan, **aslında canını yakabilirler.**"*
+
+**Dikkat — ve bu ayın en net eleme noktası.** Video 845/630 pip'i Euro ve cable'ın *"birkaç yüz pip'ine"* karşı sunuyor. **Ama pip yanlış birim:** JPY çaprazlarının pip değeri ve oynaklığı farklı. Doğru karşılaştırma **R cinsinden** ya da **ATR'ye bölünmüş** olmalı. Çapraz oynaklığı major'ların ~1,5–2 katı olduğu için, 845 pip R cinsinden 400 pip'lik bir major hareketiyle **denk** çıkabilir.
+
+---
+
+# C. HİSSE MEGA TRADE'LERİ
+
+## C1. Çeyreklik kaymanın farklı kaynağı
+
+> *"Forex'te tanımladığım çeyreklik kaymalardan küçük bir sapma: **hisse senetlerinde gerçekleşen çeyreklik kaymalar KAZANÇLARLA yakından korele.**"*
+>
+> *"Her üç ayda bir **kazanç nöbetinde** olabiliriz ve kendi kazançlarına dayanarak bir sonraki büyük hareket edenleri öngörebiliriz."*
+
+**Neden bu bir iyileşme.** Döviz için çeyreklik kayma **anlatı** düzeyindeydi ("piyasa yeni ilgi üretmeli"). Hissede **gerçek bir takvim mekanizması** var: kazanç açıklamaları. Ve o takvim **kamuya açık ve önceden bilinebilir.**
+
+## C2. Mevsimsellik ve kazanç penceresi örtüşmesi
+
+| Dönem | Karakter |
+|---|---|
+| Yıl başı | Dip |
+| Yıl başı → ilkbahar | Yükseliş |
+| İlkbahar → sonbahar | **Konsolidasyon** |
+| **Eylül–Ekim (bazen Kasım)** | *"Bence hisse yatırımı için **en iyi alım fırsatı**"* |
+| Sonbahar → yıl sonu | **Büyük ralli** |
+
+**Ve iki pencerenin kazanç sezonlarıyla üst üste bindirilmesi:**
+- **Mart** → 1. çeyrek kazanç beklentisi
+- **Sonbahar** → 3. çeyrek kazançları, *"yıl sonu büyük rallisinin büyük bir üreticisi"*
+
+## C3. Dört kademeli hiyerarşi
+
+> **"Piyasa → sektör → endüstri grubu → hisse"**
+>
+> *"Boğa bir piyasada **boğa sektörleri** arıyorsun, o sektörlerin içinde **en güçlü endüstri gruplarını**, o grupların içinde **en güçlü performans gösteren hisseleri.**"*
+>
+> *"Yani **en güçlünün en güçlüsünün en güçlüsüne** odaklanıyorsun."*
+
+**Ana piyasa yönü:** üç ortalama — **NASDAQ, S&P, Dow** — topluca yukarı mı?
+
+> *"Güçlü hisseler ana piyasa yönü olmadan da ralli yapabilir **ama tipik olarak geniş piyasalar yukarı hareket ettiğinde hızlanırlar.**"*
+
+**Ve yalnızca alım tarafı:**
+> *"Mega trade'ler gerçekten özellikle **alımlara** yönelik, çünkü piyasa yukarı gitmeye yatkın."*
+
+## C4. Merkezî teknik sinyal — "Silver Bullet"
+
+> *"Bunu **endekslerde görülen SMT ayrışmasıyla** — NASDAQ, S&P ve Dow arasında — birleştirirsen, **altın buldun.**"*
+>
+> *"**Silver Bullet** budur... bence dışarıdaki en iyi şey, çünkü **gerçek kurumsal sponsorluğu** gösteriyor."*
+
+**Bu, Haziran V11'in endeks SMT'sinin aynısı** — ve aynı sebeple değerli: üç enstrüman gerçekten bağımsız (farklı sektör bileşimleri).
+
+## C5. Bilgi sınırı beyanı — kaydedilmeli
+
+> *"Kabul ediyorum, **tüm temellerden geçip o şeyleri sindirecek kadar akıllı değilim.** Neredeyse 24 yıldır, **kişi olarak sınırlı kapasitem yüzünden temellere çok nadiren baktım** — bu yüzden benden daha akıllı insanlar aracılığıyla yön eğilimi veren kestirme yollar aradım."*
+
+**Kaynak:** Investors Business Daily (IBD 50 listesi), ve **CAN SLIM** — *"William J. O'Neil'ın kullandığı yaklaşımın parçası."* Çıkar beyanı da var: *"Ondan bir şey aldığım için değil ama müşteriyim."*
+
+**Ve listeye dair açık uyarı** ile **alternatif kaynaklar** da veriliyor — on bir ayda nadir bir dürüstlük.
+
+---
+
+# D. TAHVİL MEGA TRADE'LERİ
+
+## D1. Mevsimsel eğilim — ayın merkezî iddiası
+
+> *"Genellikle yıl başında zayıflık başlıyor ve **Mayıs ile Haziran ayları arasında** gerçekleşen bir mevsimsel dibe kadar düşüyor."*
+>
+> **"Bu, her yıl aramanı istediğim bir numaralı kurulum."**
+
+**İkincil pencere:** **Eylül–Ekim–Kasım** rallileri — *"genellikle **kısa vadeli** doğadalar."*
+
+| Pencere | Ne için |
+|---|---|
+| **Mayıs – Haziran** | **Mega trade** |
+| **Eylül – Ekim** | **Kısa vadeli swing** |
+
+## D2. Üç ayrı çekince — seride bir iddianın etrafına konan en yoğun küme
+
+> *"Mayıs–Haziran dibinin tarihsel olarak görülebilir olması, **her yılın Mayıs/Haziran'da bir dip yaratacağı anlamına gelmiyor.** Sadece **potansiyel olarak orada olabileceğini araştırmamız gerektiği** anlamına geliyor."*
+>
+> *"**Bu bir garanti değil, panacea değil, %100 değil** — yani zorlarsan büyük ihtimalle para kaybedeceksin."*
+>
+> *"**İstatistiksel bir avantaj %100 değildir** — çoğu zaman bir dip oluştuğu anlamına gelir. Yılın geri kalanında yükseleceği anlamına mı geliyor? **Hayır.**"*
+
+## D3. Faiz oranı SMT — üç enstrüman
+
+| Enstrüman | Rol |
+|---|---|
+| **5 yıllık** | **Kısa vadeli** getiri |
+| **10 yıllık** | **Ara vadeli** getiri |
+| **30 yıllık** | **Uzun vadeli** getiri — *işlem yapılan* |
+
+**Kural:** *"Bu üç piyasa **birbiriyle uyum içinde hareket etmek zorunda.** Ayrışırlarsa — **ve sadece birinin ayrışması yeter** — **bu senin erken uyarı işaretin.**"*
+
+**Mekanizma:**
+> *"Akıllı para adım attığında öyle büyük hacimde işlem yapıyor ki **riskini kısa, ara ve uzun vadeye yayacak.** Bunun sonucu olarak **korelasyonda bir çatlak** olacak."*
+
+**Ve görsel:** *"akıllı para filinin ayağını çamura bastığı yeri görmek."*
+
+## D4. Tahvil süreci — dört adım
+
+1. **Mevsimsel eğilim:** **Mayıs–Haziran** tahvil dibi
+2. **Kurumsal emir akışını tanımla**, üst zaman diliminde bir **PD array** bekle, **iskonto** bölgesine gelmesini bekle
+3. **Günlük tarama:** 5Y / 10Y / 30Y arasında **faiz oranı SMT ayrışması**
+4. **Giriş**, hedef: **sonbahar tepeleri (Eylül–Ekim)**
+
+**Aşırı işlem yasağı:** *"**Tahvilleri aşırı işlem yapmak istemezsin.** Bu Mayıs–Haziran dönemini, önümüzdeki birkaç ay boyunca trendi başlatmak için ara."*
+
+## D5. On yıllık kayıt — on bir ayda ilk kez tam bir dizi
+
+Video **2008'den 2017'ye kadar on takvim yılını sırayla ve atlamadan** geçiyor.
+
+**Ve giriş fiyatları için açık beyan:**
+> *"**Bu tamamen geriye dönük ve tamamen varsayımsal.** ... **En iyi giriş fiyatını seçmeye çalışmıyoruz.**"*
+
+**Birim:** *"her tam handle **sözleşme başına bin dolar.**"*
+
+| Yıl | Ayrışan | Giriş | Sonuç |
+|---|---|---|---|
+| 2008 | 10Y daha yüksek dip | 112½ | **12.000 USD** |
+| 2009 | 5Y daha yüksek dip | 114 | **8.500 USD** (+~3.000 roll) |
+| 2010 | 5Y biraz daha yüksek dip | 122½ | **14.000 USD** |
+| 2011 | 30Y daha yüksek dip | 124 | **19.000 USD** |
+| 2012 | 10Y ve 30Y daha yüksek dip | 148 | **~5.000, sonra ters döndü** |
+| **2013** | **Ayrışma yok** | — | **YOK** |
+| 2014 | 10Y ve 30Y aşağı gidemedi | 135 | **~7.000 USD** |
+| 2015 | 5Y daha yüksek dip | 149 | **14.000 USD** |
+| 2016 | 10Y ve 30Y daha yüksek dip | 163 | **14.000 USD** |
+| 2017 | 30Y daha düşük dip | 150 | **7.000 USD** (yıl bitmemiş) |
+
+**Ve başarısız yıllar açıkça işaretleniyor:**
+> *"Art arda **2012 ve 2013 yılları** boğa mevsimsel eğilimimizi sağlamadı. **2012 ve 2013'ün boş yıllar olduğunu söyleyeceğiz.**"*
+>
+> *"2017'de yedi bin dolarlık ödemenin bir mega trade olup olmadığına **sen karar ver — şahsen ben olduğuna inanmıyorum.**"*
+
+**Neden bu kayıt kaydedilmeli.** On bir ayda **ilk kez bir dizi ardışık yıl atlamadan sunuluyor**, ve **iki boş yıl açıkça adlandırılıyor.** Bu, YONERGE §4'teki *"kaçırılanların sayılmaması"* hatasının en belirgin düzelmesi.
+
+**Ama örneklem hâlâ 10.** Ve girişler geriye dönük seçilmiş, çıkışlar tanımsız.
+
+## D6. Ayrışmanın alternatif tanımı — 2011'in özel durumu
+
+2011'de iki-pivot karşılaştırması çalışmıyor, ve video **üçüncü bir referans noktası** ekliyor:
+
+> *"**Üç referans noktası** kullanarak bir salınım dibi yapıyoruz — **ortada en düşük, solda daha yüksek dip, sağda daha yüksek dip.** Karşılaştırmalı olarak bunun 10 yıllıkta olmadığını görüyoruz. **Yani bu bir ayak izi — aynı akıllı para birikim örüntüsü, ama farklı bir yorum, aynı sonuçla.**"*
+
+**Dikkat — ve bu ölçüm için önemli.** Bir tanım çalışmadığında **ikinci bir tanıma geçilmesi**, "ayrışma" kavramının kapsamını genişletiyor. Ölçerken **tek bir tanım seç ve sabit tut** — yoksa geriye dönük bakışta her yılda bir ayrışma bulunur.
+
+---
+
+# E. Dört varlık sınıfının ortak seçim iskeleti
+
+On bir ayın en tam tanımlı işlem seçim prosedürü bu ayda, ve dört modülde de aynı yapı var.
+
+## E1. Ortak beş adım
+
+| Adım | Emtia | Döviz | Hisse | Tahvil |
+|---|---|---|---|---|
+| **1. Zaman penceresi** | Manşet / mevsimsellik | Çeyreklik kayma | **Kazanç sezonu** | **Mayıs–Haziran** |
+| **2. Makro yön** | **Dolar endeksi** | **Dolar endeksi (zorunlu)** | Üç ortalama | Faiz ortamı |
+| **3. Yapısal filtre** | **Prim / carrying charge** | — | Sektör → endüstri | — |
+| **4. Göreli güç** | Sektör içi dip/tepe | **Yedi vadeli sıralaması** | Dört kademeli hiyerarşi | — |
+| **5. Teyit (SMT)** | Emtia ↔ dolar | Parite ↔ dolar | **NASDAQ/S&P/Dow** | **5Y/10Y/30Y** |
+
+## E2. Ve dört modülün ortak çekirdeği
+
+**Hepsi aynı iki soruyu soruyor:**
+
+1. **Hangi enstrüman göreli olarak en güçlü / en zayıf?**
+   Yöntem her yerde aynı: bir grup korelasyonlu enstrümanın **pivotlarını karşılaştır**, uyuşmayanı bul.
+
+2. **O ayrışma, üst zaman dilimi yönüyle uyumlu mu?**
+
+**Ve bu, on bir ayın en ölçülebilir tek fikri** — çünkü:
+- Pivot karşılaştırması **tamamen aritmetik**
+- Her modülde karşılaştırılan seriler **gerçekten bağımsız**
+- Çıktı bir **sıralama** — ve sıralamalar doğrudan test edilebilir
+
+## E3. Ölçmeye en değer dört çıktı
+
+**1. Göreli güç sıralaması (B3–B5).**
+*"Yedi major'ı pivot karşılaştırmasıyla sırala; en güçlü ve en zayıfı seç; çapraz kur."*
+**Sıfır seçim noktası** (bir sıralama), ve karşılaştırma grubu doğal: rastgele seçilmiş çapraz.
+**Ve R cinsinden ölç, pip cinsinden değil.**
+
+**2. Faiz oranı SMT (D3).**
+5Y/10Y/30Y — üç kamuya açık seri, mekanik karşılaştırma. **Tek bir ayrışma tanımı sabitle.**
+
+**3. Prim / carrying charge taraması (A3).**
+Vade yapısı tartışmasız, fiyat grafiğinden bağımsız, ve **öncelik kuralı** üretiyor.
+
+**4. Dolar endeksi ön koşulu (B1-3).**
+**Yasaklayıcı** kural: dolar endeksi desteklemiyorsa kurulum yok. Tek başına ölçülür — *"o ön koşulu sağlayan kurulumlar, sağlamayanlardan farklı sonuç veriyor mu?"*
+
+## E4. Ve ölçmeye değmeyen üçü
+
+**Manşet taraması (A2)** — yazılamaz. *(Ama karşıt versiyonu bir duyarlılık endeksiyle vekillenebilir.)*
+
+**"Mega trade" tanımının kendisi** — yalnızca tahvil için sayısal eşik var (10.000 USD); diğer üç varlık sınıfı için tanım yok. **Ölçmeden önce kendi eşiğini koy** (ör. ATR'nin N katı).
+
+**Sepet tahsisi (A5)** — %50/üç lider bölüşümü keyfi, ve tahsis kuralı bir edge değil bir tercih. *(Ama çeşitlendirme mantığı doğru ve ayrıca ölçülebilir.)*

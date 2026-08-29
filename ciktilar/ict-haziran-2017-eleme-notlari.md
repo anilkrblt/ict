@@ -2618,3 +2618,542 @@ Ve buradan kalan iki ay için ek bir ölçüt çıkıyor, ve bu, ölçüm sıras
 Bu ayın en iyi fikirlerinin (terim yapısı, açık pozisyon, göreli güç) **onlarca yıllık literatürü var**, ve o literatür taban çizgisini, bilinen sınırlarını ve tipik etki büyüklüğünü zaten söylüyor. Ölçmeye sıfırdan başlamak gerekmiyor — **başkalarının nerede durduğunu bilerek başlamak gerekiyor.**
 
 Serinin özgün kısımları için böyle bir zemin yok, ve bu yüzden onlar sıfırdan ölçülmek zorunda. Haziran'ın gösterdiği şey, bu iki kategorinin **aynı belgede yan yana durabildiği** — ve hangisinin hangisi olduğunu bilmek, ölçüm bütçesinin nereye gideceğini belirliyor.
+
+---
+
+# BÖLÜM IV — Kesinlikle bilmen gerekenler
+
+Haziran dört ayrı varlık sınıfını işliyor, ve her modülün kendi araçları var. Sözlük modül modül düzenlendi. Sonda dört modülün ortak iskeleti.
+
+---
+
+# A. EMTİA MODÜLÜ
+
+## A1. COT — ham veriden hedging programına
+
+### Veri nereden alınır
+
+| Ne | Nereden | Nasıl |
+|---|---|---|
+| **Ham COT verisi** | **www.cftc.gov** | **Futures Contract only, short format**, CME altında |
+| **Grafik** | **barchart.com** | Günlük grafik, altta **net trader position line chart**, en az **bir yıllık** veri |
+
+**Opsiyon pozisyonlarına bakılmıyor:** *"onlarla hiç ilgilenmiyorum, sadece vadeli pozisyonlara bakıyorum."*
+
+### Grafiği okuma
+
+| Çizgi | Kim | İzlenir mi |
+|---|---|---|
+| **Kırmızı** | **Ticariler (commercials)** | **Evet — tek izlenecek çizgi** |
+| Yeşil | Büyük işlemciler | *"Her zaman kırmızının tam tersi, umursamıyoruz"* |
+| Mavi | Küçük spekülatörler | *"Sokak parası"* |
+
+### Net pozisyon hesabı
+
+Örnek (Japon Yeni):
+
+| Kalem | Sözleşme |
+|---|---|
+| Ticari uzun | **143.450** |
+| Ticari kısa | **76.426** |
+| **Net** | **67.024 uzun** |
+
+Pozitifse net uzun, negatifse net kısa.
+
+**Ama:** *"Bu, mevcut hedging programları hakkında bize **hiçbir şey söylemiyor.** Daha derine bakmamız gerekiyor."*
+
+### İki katman
+
+| Katman | Ne |
+|---|---|
+| **Alım/satım programı** (makro) | Ticariler **sıfır çizgisinin üstünde** → alım programı; **altında** → satış programı |
+| **Hedging programı** (kısa vadeli) | Program ne olursa olsun içinde alım da satım da olur |
+
+> *"Uzun vadeli bir **satış programı**, içinde hâlâ **boğa hedging alım programları** barındırabilir."*
+
+### Yöntem — dört adım (ayın merkezî prosedürü)
+
+1. Ticarilerin net pozisyonunun **son 6 ay** ve **son 12 aydaki** en yüksek ve en düşük değerini bul
+2. O aralığı **ikiye böl** → **yeni bir baz çizgisi**
+3. **Sıfır çizgisi yok sayılır**; konum bu yeni baz çizgisine göre okunur
+4. Ortaya çıkan yerel alım/satım patlamalarına **"nodül" (nodule)** denir
+
+**Formül:** `(mevcut − N dönem min) / (N dönem maks − N dönem min)`, eşik **%50**. **Sıfır seçim noktası.**
+
+### Uçlar kuralı
+
+> *"**Dört yıllık, iki yıllık ya da 12 aylık bir uca** ulaşırsak, genellikle devrede uzun vadeli bir **trend dönüşü** vardır. O uçlara ulaşıldığında **kısa vadeli hedging programını ıskonto ederiz.**"*
+
+**Kaynak:** *"Williams 60'larda ve 70'lerde bunu çözmüştü — **ama yalnızca uçlarda.**"*
+
+**Haziran'ın gerçek eklentisi:** aynı normalizasyonu **uç olmayan bölgede**, yerel bir salınım göstergesi olarak kullanmak.
+
+### Üçlü harman
+
+1. **Program:** ticariler sıfır çizgisinin üstünde mi altında mı
+2. **Hedging programı:** son 6 ve 12 aylık aralıktaki konum
+3. **Kurumsal emir akışı:** fiyat ne söylüyor
+
+Yön ayrımı: boğa emir akışında **iskonto PD array'ler** net uzun ticari okumalarla harmanlanır; ayıda **prim PD array'ler** net kısa okumalarla.
+
+**Dikkat.** Üçüncü ayak (**"kurumsal emir akışı"**) on aydır tanımsız. **Ama ilk iki ayak üçüncüsü olmadan da ölçülebilir.**
+
+**Ve zamanlama uyarısı — video hiç anmıyor:** COT verisi **Salı günkü pozisyonları gösterir ve Cuma yayımlanır** — **üç günlük gecikme.** Ölçerken modellemezsen sonuç geçmişte hep iyi görünür.
+
+---
+
+## A2. Liderlik ve sempatik hareket
+
+### Emtia sepeti — takip edilen evren
+
+| Grup | Enstrümanlar |
+|---|---|
+| Tahıllar | Mısır, buğday, soya |
+| Canlı hayvan | Besi sığırı, yağlık domuz, canlı sığır |
+| Gıda | Kakao, portakal suyu, kahve, şeker |
+| Lif | Pamuk |
+| Borçlanma | 30 yıl, 10 yıl, 5 yıl |
+| Para birimleri | AUD, CAD, JPY, GBP, CHF, EUR, NZD |
+| Metaller | Altın, gümüş, bakır |
+| Enerji | Ham petrol |
+
+**Dışarıda:** yulaf, kanola, kereste, paladyum, platin — *"çok ince piyasalar."*
+
+### Temel çerçeve
+
+> **"Dolar endeksi kral. Doların ne yaptığı diğer her şeyin tonunu belirler."**
+
+### Liderlik tespiti — ayın merkezî kuralı
+
+> *"Aradığımız şey, **dolar endeksinin daha yüksek tepe yaptığı bir zamanda daha düşük dip yapmayı BAŞARAMAYAN** bir piyasa. Bu temelde bir **SMT ayrışması.**"*
+
+| | Lider piyasa | Sempatik piyasa |
+|---|---|---|
+| **Ne yapar** | Daha düşük dip **yapamaz** | Daha düşük dip **yapar**, sonra sempatiyle yükselir |
+| **Karakter** | En güçlü, en hızlı | *"Daha uyuşuk"*, hedefe ulaşabilir ama zayıf |
+
+**Teyit karakteristikleri:** kısa vadeli tepeler kırılıyor · düşüşler **sığ** · yükseliş mumları düşüşlerden **belirgin biçimde büyük**
+
+**Neden ölçülebilir.** Tanım tamamen mekanik (iki seri, iki pivot, karşılaştır), ve **sıralama üretiyor** — hangi enstrüman lider. Karşılaştırma grubu doğal: lider seçilenlerin sonraki N günlük getirisi vs sempatik olanlarınki.
+
+---
+
+## A3. Prim ve carrying charge piyasaları
+
+### İki yapı
+
+| Yapı | Tanım | Anlamı |
+|---|---|---|
+| **Carrying charge** (normal) | Yakın ay **daha ucuz** | Normal. *"Parabolik hareket olasılığı çok daha düşük"* |
+| **Prim** | Yakın ay **daha pahalı** | **Talep yüksek, arz kıt** |
+
+**Güçlü prim tespiti:** *"Bir sonraki aya bakmakla yetinme — **sonraki birkaç aya** git."*
+
+**Ticari boğa piyasası mantığı:**
+> *"Ticariler **şu anda teslim almak** istiyorlar. İleride beklenen carrying charge yerine **şimdi prim ödemeye razılarsa**, temel olarak bir şeyler olduğunu biliyorlar."*
+
+### Kritik terminoloji uyarısı
+
+> *"Emtialarda **prim** dediğimde bu, yakın ayın bir sonraki aya göre spesifik fiyatlamasıdır. **Bunu prim ve iskonto PD array'leriyle KARIŞTIRMA.**"*
+
+### Spread grafiği — barchart.com'da
+
+1. Chart type → **spread chart**
+2. **First symbol:** emtia + **yakın ay**
+3. **Second symbol:** aynı emtia + **bir sonraki ay**
+4. **Operatör: eksi (−)** — *"bu çok önemli, farkı verecek"*
+5. Draw
+
+**Sıfır çizgisinin üstü = yakın ayın primi.**
+
+**Neden ölçülebilir.** Vade yapısı **kamuya açık ve tartışmasız** — bir fiyat farkı. Ve **fiyat grafiğinden tamamen bağımsız.** Bu, seride nadir.
+
+---
+
+## A4. Açık pozisyon (open interest)
+
+### Tanım
+
+Her işlem günü sonunda katılımcıların elinde tuttuğu **toplam açık sözleşme sayısı.**
+
+> *"**Hacim** bir fiyat trendinin arkasındaki baskıyı ölçerken, **açık pozisyon vadeli piyasaya para akışını ölçer.**"*
+
+### Trendlerde — klasik tablo
+
+| Fiyat | Açık pozisyon | İşaret |
+|---|---|---|
+| **Yükseliş** | **Artıyor** | **BOĞA** |
+| **Düşüş** | **Artıyor** | **AYI** |
+| **Yükseliş** | **Azalıyor** | **AYI** — akıllı para likidite ediyor |
+| **Düşüş** | **Azalıyor** | **BOĞA** — *"kaybedenlerin arzı tükendiğinde düşüş biter"* |
+
+> *"**Açık pozisyon büyük bir trendde artmaya devam ettiği sürece, devam etmesi için gerekli sponsorluğa sahip olacaktır.**"*
+
+### Konsolidasyonlarda — videonun eklentisi
+
+| Fiyat | Açık pozisyon | İşaret |
+|---|---|---|
+| **Konsolidasyon** | **Artıyor** | **AYI** |
+| **Konsolidasyon** | **Azalıyor** | **BOĞA** |
+
+Gerekçe: *"**Sokak parası uzun tarafı oynar.** Artan açık pozisyon, ticarilerin **kısa tarafı** aldığını gösterir."*
+
+### Konumla birleştirme — kuralı test edilebilir kılan kısım
+
+| Fiyat nerede | Açık pozisyon | Sonuç |
+|---|---|---|
+| Üst zaman dilimi **destek / iskonto array** | **Düşüyor** | **BOĞA** |
+| Üst zaman dilimi **direnç / prim array** | **Yükseliyor** | **AYI** |
+
+**Veri kaynakları:** barchart.com (toplam), **CRB Trader** ve **pricecharts.com** (mevsimsel ortalamayla birlikte — noktalı çizgi çok yıllı ortalama, düz siyah çizgi gerçek).
+
+**Kaynak atfı — dürüst:** *"Onun açık pozisyon kavramları **temelde yaygın olarak bilinen** şeyler. Burada öğreteceğim her şey **temelde Larry Williams'tan öğrendiğim şey.**"*
+
+---
+
+# B. TAHVİL MODÜLÜ
+
+## B1. Enstrüman ve seans yapısı
+
+| Kalem | Değer |
+|---|---|
+| **Enstrüman** | 30 yıllık ABD hazine tahvili vadelisi, **ZB**, CBOT |
+| Teslim ayları | **Mart (H), Haziran (M), Eylül (U), Aralık (Z)** |
+| Sembol | **ZBU17** = Eylül 2017 |
+| **Minimum tick** | **31,25 USD / sözleşme** |
+| **Tam handle** | **32 tick = 1.000 USD** |
+
+**Seans yapısı (NY saati):**
+
+| Öğe | Zaman |
+|---|---|
+| **En yüksek hacim** | **08:00 – 09:30** |
+| **Gerçek gün** | **08:00 – 15:00** |
+| **Açılış aralığı** | **08:00 – 09:00** |
+| **Gece / Londra** | **02:00 – 05:00** — *yalnızca referans* |
+| **New York AM** | **08:00 – 12:00** |
+| **New York öğle arası** | **11:00 – 13:00** |
+| **New York PM** | **12:00 – 15:00** |
+
+## B2. Açılış aralığı kuralı
+
+> *"**08:00 ile 09:00 arasındaki açılış aralığı, tahvil piyasasının günün tepesini ya da dibini oluşturma eğilimindedir.**"*
+
+**Aralık nasıl tanımlanır:** öncelikle **gövdeler**, ama **fitiller de** dahil; ve **08:00'ın hemen soluna düşen önceki tepe/dipler.**
+
+**Sinyal zamanlaması:** *"Sinyallerin **08:20'de ya da sonrasında** oluşmasını severim. Hedef zaman **08:20 ya da CME açılışı.**"*
+
+**Neden ölçülebilir — ve taban çizgisi hesaplanabilir.** Gerçek gün 08:00–15:00 = **7 saat.** Düzgün dağılımda bir saatlik pencerenin beklenen payı **%14,3.** İddia bunun belirgin üstünde olduğu.
+
+**Karşılaştır:** AM seansı (4 saat) için taban **%57** — yani o iddia **çok daha az bilgi taşıyor.** İkisini birlikte ölçmek, hangisinin gerçek olduğunu gösterir.
+
+## B3. Hacim fiyattan önce gelir
+
+**Yeni olan bu — gerçek hacim ilk kez elde.**
+
+| Gözlem | Okuma |
+|---|---|
+| Fiyat **daha düşük dip** yapıyor, hacim **daha düşük** | Satış baskısı yok → **stop koşusu** → yükselir |
+| Fiyat **daha yüksek tepe** yapıyor, hacim **azalıyor** | Ralli zayıf → **dönüş** beklenir |
+
+> *"İdeal olarak en yüksek tepeye giden harekette hacim çubuğu **daha yüksek** olmalıydı."*
+
+**Neden değerli.** On ay boyunca "hacim gövdelerde" gibi **yanlış** hacim iddiaları vardı. Burada **gerçek hacim** var (vadeli piyasa), ve kullanım biçimi klasik ve doğru.
+
+## B4. Gerçekçi tahvil hedefleri
+
+| Hedef | Değer |
+|---|---|
+| Gün içi, makul | **5 – 8 tick** |
+| İyi bir gün | **16 tick = 500 USD** |
+| Büyük aralıklı gün | **32 tick = 1.000 USD** — *"normal olan bu değil"* |
+| Konsolidasyon günü scalp'ı | **5 – 10 tick** |
+
+**Kaçınma:** FOMC, faiz raporları, NFP öncesi. *"Likidite kurur, piyasa **gap** yapacak, ve muhtemelen pozisyonuna karşı."*
+
+**Ve tahvil ihale günlerinde AM seansında işlem yok.**
+
+## B5. Konsolidasyon günü öngörücüleri — beşi, dördü takvimden
+
+| # | Öngörücü | Tipi |
+|---|---|---|
+| **1** | Haftanın ilerleyen günlerinde yüksek/orta etkili ABD raporu | **Takvim** |
+| **2** | Üst zaman dilimi prim/iskonto array'ine ulaşıldıktan sonra | Yorum |
+| **3** | Üst zaman dilimi salınımının **dengesine** ulaşıldığında | Aritmetik |
+| **4** | **ABD banka tatilleri** öncesi | **Takvim** |
+| **5** | **Tahvil ihale günleri** ve öncesi | **Takvim** |
+
+**Üçü tamamen takvimden okunuyor ve aylar öncesinden bilinebiliyor.** Bu, Mart ve Nisan'daki takvim maskesi fikrinin genişletilmiş hali; **tahvil ihale takvimi yeni bir bileşen.**
+
+**Ve denge hakkında bir uyarı:** *"Dengeye geri çekildiğimizde **her zaman anında bir tepki bekleme** — o seviyeyi bazen **birden fazla kez** çalışacaklar."*
+
+## B6. Trend günü kurulumunun üç bileşeni
+
+1. **Oynaklık filtresi:** günlük aralıklar küçülüyor
+2. **Konum:** yakın zamanda bir **iskonto** (yukarı) ya da **prim** (aşağı) array'ine işlem görülmüş
+3. **Katalizör:** ekonomik takvim **08:30 NY**'de yüksek/orta etkili ABD raporu gösteriyor
+
+Ve: *"Açılış aralığı **12 tick veya daha azsa** genellikle bir genişleme hareketi olacak."*
+
+## B7. AM/PM kuralı
+
+> *"Günün aslan payının AM seansı tarafından tamamlandığını biliyorsak, **New York öğle arasından önce düz pozisyona geçebiliriz ve PM'de hiç işlem yapmayabiliriz. İkinci porsiyon için geri gelme.**"*
+
+**PM'de işlem yalnızca** AM seansı **henüz bir stop koşusu yapmadıysa** — yani dokunulmamış bir likidite havuzu varsa.
+
+**Ve faiz sürücüsü (14:00) olan günlerde PM'de işlem yok** — *"oynaklık ne kadar iyi görünürse görünsün, güven bana, sadece kaçın."*
+
+---
+
+# C. ENDEKS MODÜLÜ
+
+## C1. Enstrüman ve seans yapısı
+
+| Kalem | Değer |
+|---|---|
+| **Enstrüman** | E-mini S&P 500, **ES** (*"spoos"*) |
+| Format | **ESU17** = Eylül 2017 |
+| **Tick değeri** | **12,50 USD** |
+| **Tick büyüklüğü** | **0,25 puan** |
+| **Bir puan** | 4 tick = **50 USD** |
+| Kaldıraç | **50 USD × endeks seviyesi** |
+
+Diğer iki takip edilen: **NASDAQ e-mini (NQ)**, **Dow mini (YM)**.
+
+**Seans yapısı (NY saati) — üç endeks için aynı:**
+
+| Öğe | Zaman |
+|---|---|
+| **En yüksek hacim** | **09:30 – 10:00** |
+| **Gerçek gün** | **09:30 – 16:00** |
+| **Açılış aralığı** | **09:30 – 10:30** |
+| **AM seansı** | **09:30 – 12:00** |
+| **Öğle arası** | Nominal **12:00 – 13:00**; **11:00 kadar erken, 14:00 kadar geç** |
+| **PM seansı** | **13:00 – 16:00** |
+| **PM ekstremum penceresi** | **15:00 – 16:00** |
+
+**Zaman dilimi uyarısı:** barchart.com grafikleri **merkez saatte** — grafikte 08:30–09:30 görünen şey aslında NY **09:30–10:30.**
+
+## C2. Açılış aralığı ve genişletilmiş aralık kuralı
+
+> *"**09:30 – 10:30 açılış aralığı, günün tepesini ya da dibini oluşturma eğilimindedir.**"*
+
+**Genişletilmiş aralık kuralı:**
+> *"Açılış aralığı **geniş** olduğunda, günün ilerleyen saatlerinde tepenin ya da dibin **ihlal edilmesini** ararız. **Uzatılmış aralıklar bize geri dönülecek bir aralık ve karşı uçtaki stopları arama imkânı verir.**"*
+
+## C3. Açılış aralığı – kapanış saati ilişkisi — ayın en zarif hipotezi
+
+> *"İlk saat günün **tepesini** yaratıyorsa, **son saat (15:00–16:00) genellikle DİBİ yaratır.**"*
+
+**Neden zarif:**
+- İki sabit zaman penceresi
+- Koşullu bir iddia (eğer A ise B)
+- **Tamamen yanlışlanabilir** — ya oldu ya olmadı
+- Taban çizgisi hesaplanabilir
+
+## C4. Endeks SMT — ayın en tanımlı SMT kuralı
+
+**Karşılaştırılan:** **ES, NQ, YM** arasındaki göreli tepe ve dipler.
+
+| Seans | Pencere (NY) |
+|---|---|
+| **AM için** | **05:00 – 09:30** |
+| **PM için** | **12:00 – 15:00** |
+
+**Kural:**
+
+| Emir akışı | Neye bakılır | Sinyal |
+|---|---|---|
+| **Boğa** | Göreli **dipler** | Üçü aşağı giderken **biri daha düşük dip yapamıyor** |
+| **Ayı** | Göreli **tepeler** | Üçü yukarı giderken **biri daha yüksek tepe yapamıyor** |
+
+**Kritik netleştirme:**
+> *"**Onları kale direği gibi, sınırlar gibi düşünme** — belirli olarak o tepeleri ve dipleri yaratmıyorlar. **O pencere içindeki göreli dipler ve tepeleri** arayıp karşılaştıracaksın."*
+
+**Tek enstrümanda işlem:**
+> *"Bu ayrışmaları **e-mini S&P'de** işlem sinyali olarak kullanıyorum. **Dow'u ya da NASDAQ vadelilerini işlem yapmaya çalışmıyorum.**"*
+
+**Ve ayrışan endeks ES olmak zorunda değil:** *"NASDAQ aşağı gitmeyi başaramazsa, bu tek başına S&P'nin ralli yapması gerektiğini destekler."*
+
+**Neden bu, on ayın en tanımlı SMT'si.** Üç enstrüman **gerçekten farklı** (farklı sektör bileşimleri), pencere sabit, karşılaştırma aritmetik. Forex'teki dolar endeksi SMT'sinin bağımsızlık sorunu burada yok.
+
+**Ve videonun kendi örneklem vurgusu:**
+> *"**Bu yüzden büyük bir örneklem büyüklüğüne bakman önemli.**"*
+
+## C5. AM ve PM trendleri
+
+| Trend | Pencere | Karakter |
+|---|---|---|
+| **AM trendi** | 09:30 – 12:00 | Gecenin devamı ya da **09:30'dan doğrudan dönüş.** Bitişi 10:30–11:00 |
+| **PM trendi** | 13:00 – 16:00 | AM'in devamı ya da **gün içi dönüş.** Başlangıç tipik **14:00** |
+
+> *"Öğleden sonraki **ölçülmüş hareketler, AM seansında görülenden daha hızlı olma eğilimindedir.**"*
+
+**Öğle arası uzunluğu koşullu:** sabah hızlıysa işlemciler öğle arasında çalışır → **kısa arada;** sabah uyuşuksa **11:00'den 14:00'e** kadar uzayabilir.
+
+## C6. Sekiz projekte edilen aralık
+
+| # | Profil | Koşul |
+|---|---|---|
+| **1** | **İki seans yükseliş kapanışı** | Emir akışı boğa, **karşıt array'lere henüz işlem görülmemiş** |
+| **2** | **İki seans düşüş kapanışı** | Aynası |
+| **3** | **AM rallisi, PM dönüşü** | Boğa **ama fiyat bir prim array'in altında** — AM oraya çarpar |
+| **4** | **AM düşüşü, PM dönüşü** | Aynası |
+| **5** | **Konsolidasyon, AM rallisi, PM düşüşü** | Emir akışı **nötr/belirsiz**, ve **haber yok** |
+| **6** | **Konsolidasyon, AM düşüşü, PM rallisi** | Aynası |
+| **7–8** | Varyant: **PM basitçe konsolide olur** | Tüm hareket sabah yapılmış |
+
+### Seçim kuralı — videonun en mekanik kısmı
+
+> *"Öğle arası tepelerini mi yoksa gün içi tepeyi mi süpürecek? **Bu, hangisinin bir prim array olduğuna bağlı.**
+> AM seansının çarptığı bir üst zaman dilimi prim array'i **varsa** → oraya geri gitmeyecek (*"o seviyeyi zaten savundular"*), sadece **öğle arası tepelerini** süpürür.
+> **Yoksa** → öğleden sonra **gün içi tepeyi** süpürüp döner."*
+
+### Devam kuralı
+
+> *"PM trendi **yeniden yükselebilir** — eğer AM'in ralli yaptığı iskonto array'i bir **üst zaman dilimi** iskonto array'ine eşitse. **Filtre şu: 4 saatlik/günlük veya daha üstü bir array değilse, içinden geçip aşağı gitmesi beklenir.**"*
+
+### Kapanış çerçevesi
+
+> *"Endeksler **stop arar.** Üst zaman diliminde trend edebilirler, ama **gün içi bazda her şey likidite ve stopların nerede olduğuyla ilgili. Bu bir işlemci piyasası.**"*
+
+## C7. Endeks tutma kuralı — zaman, fiyat değil
+
+> *"Saat sadece 14:00 ise ve lehimize birkaç handle görmüşsek — **o kârları masadan almak konusunda agresif olma**, çünkü günün saatinin daha yüksek bir teslimat seviyesine ulaşmasına izin vermek istiyorsun. **Kapanışa doğru ne kadar çok tutarsan, daha fazla aralık elde etme fırsatın o kadar artar.**"*
+
+---
+
+# D. HİSSE SENEDİ MODÜLÜ
+
+## D1. Evren ve kaynak
+
+| Kalem | Değer |
+|---|---|
+| **Evren** | **Dow Jones 30** — *"ihtiyacın olan tüm hisse işlemlerini sadece bu listeden yapabilirsin"* |
+| **Mevsimsellik kaynağı** | **Moore Research / Steve Moore** |
+| **Örneklemler** | **20 yıl, 15 yıl, 5 yıl** ortalamaları |
+
+## D2. Yılın üç bölümü
+
+| Dönem | Karakter |
+|---|---|
+| **Yılın ilk yarısı** | **Yüksek büyüklük** — çok oynaklık, **yönlü sürülen**, genelde boğa |
+| **Mayıs – Ekim** | **DÜŞÜK BÜYÜKLÜK DÖNEMİ** |
+| **Son çeyrek** | Boğa |
+
+**Düşük büyüklük kuralı:**
+> *"Mayıs'tan Ekim'e **çok daha az yönlü sürülen** piyasalar göreceksin. **İşlem yapacaksan çok daha az kaldıraç kullan; opsiyon yapacaksan çok daha az aktivite yap.**"*
+
+**Odak pencereleri:** **Ekim – yıl sonu** ve **Şubat – Mayıs.**
+
+## D3. Ay ay Dow mevsimselliği
+
+| Ay | Eğilim |
+|---|---|
+| Ocak | **Ayı** |
+| Şubat | **Boğa** |
+| Mart | Konsolidasyon |
+| Nisan | **Boğa** |
+| Mayıs | **Ayı** |
+| Haziran | Konsolidasyon, ayı biten |
+| Temmuz | **Boğa** |
+| Ağustos | Konsolidasyon |
+| Eylül | İlk yarı boğa, **ikinci yarı ayı** |
+| Ekim | **Son çeyreğin dibi** |
+| Kasım | **Boğa** |
+| Aralık | **Noel Baba rallisi** |
+
+**Düşük olasılıklı aylar açıkça:** **Mart, Haziran, Ağustos.**
+
+## D4. Ayı ayların asıl değeri — ayın en iyi metodolojik cümlesi
+
+> *"Mevsimsel eğilim, hisselerin **satın alınıp tutulmasına** yönelik altta yatan eğilimi vurguladığı için en güçlü **alım tarafı** eğilimlerini gösterecek. Ama **ayı aylar** — son 20 yılda borsa yükselirken bile Mayıs'ın, Eylül'ün ikinci yarısının ve Ocak'ın genellikle ayı olduğunu görüyorsak — o aylar, **altta yatan boğa piyasalarında bile ayıysa, ayı piyasalarında agresif satış anlamına gelebilir.**"*
+
+**Neden değerli.** Bu, mevsimsellik verisinin **yapısal yanlılığını** kendisi tespit ediyor: boğa dönemde ölçülmüş bir seride ayı görünen aylar, gerçekten güçlü bir sinyaldir.
+
+**Ve Ocak'ta olmayan üç düzelme bu ayda var:**
+1. **Anti-kiraz-toplama tavrı** — karşı örnekler peşinen kabul ediliyor
+2. **Düşük olasılıklı aylar açıkça adlandırılıyor** (Mart, Haziran, Ağustos)
+3. **Üç örneklem** karşılaştırılıyor (20/15/5 yıl)
+
+**Ama bir bağımsızlık sorunu duruyor:** 15 ve 5 yıllık ortalamalar, 20 yıllığın **alt kümesi.** Uyuşmaları teyit değil, **tanım gereği beklenen.**
+
+## D5. İzleme listesi kurma — iki filtre
+
+| | **Alım listesi** | **Satış listesi** |
+|---|---|---|
+| **Filtre 1** | Borsa ralli yapmaya hazır mı? | Borsa düşmeye hazır mı? |
+| **Filtre 2** | Boğa aylarda **daha yüksek dip** yapan hisseler | Ayı aylarda **daha düşük tepe** yapan hisseler |
+| **Pencere** | **Şubat–Mayıs**, **Ekim–Ocak** | **Ocak**, **Mayıs–Temmuz** |
+| **Daraltma** | **İki ile dört şirkete** | **İki ile dört şirkete** |
+
+**Merkezi kural (satış tarafı):**
+> *"Kurumlar tarafından agresif biçimde satılan liderlik hisseleri, ayı aylarda **üç ana endeks ralli yaparken — ta ki biri karşılaştırmalı olarak daha yüksek tepe yapmayı başaramayana kadar — yükselmeyi başaramayan** hisseler olarak bulunacaktır."*
+
+## D6. Anti-kiraz-toplama kuralı — on ayda ilk
+
+> *"Burada bir mum var, onun hakkında bir argüman yapabilirdim **ama yapmayacağım. Sadece diyeceğiz ki ayrışma yoktu — çünkü kurallar şu: BELİRGİN DEĞİLSE, SMT'DE AYRIŞMA YOKTUR.**"*
+
+**Neden önemli.** On ayda kaydedilen **tek açık anti-kiraz-toplama kuralı**, ve önemli olan yönü: sinyal **bulmaya karşı** bir önyargı koyuyor.
+
+**Ve ölçüm için doğrudan sonucu var:** "belirgin" hâlâ öznel, ama **vekili kolay** — ayrışmanın büyüklüğü için bir eşik (ör. dip farkı / ATR). O eşik takıldığında kural tam mekanik olur, **ve eşiğin kendisi taranabilir.**
+
+---
+
+# E. Dört modülün ortak iskeleti
+
+On dokuz videonun tamamı aynı üç soruyu farklı varlık sınıflarında soruyor.
+
+## E1. Ortak yapı
+
+| Soru | Emtia | Tahvil | Endeks | Hisse |
+|---|---|---|---|---|
+| **1. Yön nereden?** | COT orta çizgisi + dolar endeksi | Faiz ortamı + üst zaman dilimi array | Endeks SMT | Mevsimsellik + endeks SMT |
+| **2. Ne zaman?** | Mevsimsellik + açık pozisyon | **08:00–09:00** açılış aralığı | **09:30–10:30** açılış aralığı | Ay bazlı pencereler |
+| **3. Teyit nereden?** | Prim/carrying charge, açık pozisyon | **Hacim ayrışması** | **Üç endeks ayrışması** | Daha yüksek dip / daha düşük tepe |
+
+## E2. Ortak açılış aralığı fikri
+
+Üç modülde de aynı yapı, farklı saatlerle:
+
+| Varlık | Açılış aralığı | Gerçek gün | Taban çizgisi |
+|---|---|---|---|
+| **Tahvil** | **08:00 – 09:00** | 08:00 – 15:00 (7 saat) | **%14,3** |
+| **Endeks** | **09:30 – 10:30** | 09:30 – 16:00 (6,5 saat) | **%15,4** |
+| **Forex (CBDR, Nisan)** | 14:00 – 20:00 | 00:00 – 15:00 | — |
+
+**Üçü de aynı hipotezi test ediyor:** *günün ekstremumu belirli bir saat penceresinde oluşuyor mu?* Ve üçünde de **taban çizgisi hesaplanabilir.**
+
+## E3. Ortak ayrışma fikri
+
+| Modül | Neyle neyi karşılaştırıyor | Bağımsızlık |
+|---|---|---|
+| Emtia (V2) | Emtia ↔ dolar endeksi | **İyi** |
+| Tahvil (V6) | **Fiyat ↔ hacim** | **İyi** — farklı veri türü |
+| Endeks (V11–V12) | ES ↔ NQ ↔ YM | **En iyi** — farklı sektör bileşimleri |
+| Hisse (V15–V17) | Hisse ↔ üç endeks | **İyi** |
+
+**Ve bu, ayın en değerli çıkarımı:** SMT fikri, **karşılaştırılan iki serinin gerçekten bağımsız olduğu** ölçüde bilgi taşıyor. Forex'te dolar endeksi paritelerden hesaplandığı için bu sorunluydu; **bu ayki dört uygulamada da sorun yok.**
+
+## E4. Ölçmeye en değer beş çıktı
+
+**1. Endeks SMT (C4).** Üç gerçekten bağımsız enstrüman, sabit pencere, aritmetik karşılaştırma. **Ayın birinci önceliği.**
+
+**2. Açılış aralığı iddiaları (B2, C2).** Sabit pencere, hesaplanabilir taban çizgisi, ve **dar pencere versiyonu** (bir saat) test etmeye değer olan.
+
+**3. COT orta çizgisi (A1).** Formül: `(mevcut − 12 ay min) / (12 ay maks − 12 ay min)`, eşik %50. **Sıfır seçim noktası**, kamuya açık haftalık veri, onlarca yıllık geçmiş. **Ve Salı–Cuma gecikmesi modellenmeli.**
+
+**4. Hacim ayrışması (B3).** *"Yeni ekstremum daha düşük hacimle geliyorsa stop koşusudur."* Gerçek hacim, mekanik karşılaştırma.
+
+**5. Prim / carrying charge yapısı (A3).** Vade yapısı tartışmasız, **fiyat grafiğinden tamamen bağımsız.**
+
+## E5. Ve ayın kaydedilmesi gereken tek geri çekilmesi
+
+Bu ayda **on ayda ilk kez bir öğreti geri alınıyor.** Mart V8'de COT yöntemi için *"internette bulamazsın, kitaplarda yok, böyle bir şey dışarıda yok"* deniyordu. Haziran V1 ve V5'te:
+
+> *"Burada öğreteceğim her şey **Larry Williams'tan öğrendiğim şey**, birkaç kendi eklentimle."*
+> *"Onun açık pozisyon kavramları **temelde yaygın olarak bilinen** şeyler."*
+
+**Ve Haziran'ın versiyonu doğru:** bir aralığı normalize edip eşiğe göre okumak literatürde **Williams COT Index** olarak biliniyor.
+
+**Haziran'ın gerçek eklentisi ise adlandırılabilir ve ölçülebilir:** Williams **uçları** kullanıyordu; bu yöntem aynı normalizasyonu **uç olmayan bölgede**, yerel bir salınım göstergesi olarak kullanıyor. **Bu, test edilebilir bir fark.**

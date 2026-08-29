@@ -1630,3 +1630,404 @@ Aynı ayın en ölçülemez üç parçası ise tam tersi: on iki haftalık profi
 **Fark, karmaşıklıkta değil — kuralın neye baktığında.** Saate bakan kural ölçülebilir çıkıyor; grafiğe bakıp "hangisi" diye soran kural çıkmıyor. Ocak'ın ölçütü doğruydu ve Mart onu bir ayın içinde, aynı öğretmenin aynı modülünde yan yana gösteriyor.
 
 Ve buradan pratik bir sıralama çıkıyor, kalan beş ayı elerken de kullanılacak: **bir kuralı ölçmeye değer kılan ilk soru, girdisinin bir tarih mi yoksa bir yorum mu olduğudur.** Tarihse kodla. Yorumsa, önce yorumu bir tarihe ya da bir sayıya çevirebilir misin diye bak; çeviremiyorsan bırak.
+
+---
+
+# BÖLÜM IV — Kesinlikle bilmen gerekenler
+
+Mart'ın kavramları: **tanım · nasıl bulunur · ne işe yarar.** Sonda ayın on üç adımlık modeli.
+
+---
+
+## 1. Kısa vadeli işlem (one shot one kill) — tanım ve sınırlar
+
+**Tanım.** Videonun kendi ifadesiyle: **"birkaç günlük işlem — en az bir gün, en fazla bir hafta."**
+
+| Kalem | Değer |
+|---|---|
+| **Süre** | **1 gün – 1 hafta** |
+| **Çerçeveleme** | Aylık ve haftalık grafikler |
+| **Uygulama** | **1 saatlik** |
+| **Analiz** | 4 saatlik (*"one shot one kill için en kolay zaman dilimi"*) |
+| **Hedef** | Mevcut ya da sonraki haftanın aralığının bir kısmı |
+
+**Ölçek tabanı — ayın en net teknik sınırı:**
+
+> *"**1 saatlik grafiğin altındaki her şey etkinliği gerçekten azaltır.** 60 dakikalığın altına inersen aslında gün içi işlem ya da scalping yapıyorsundur."*
+
+**Videonun vurgusu:** *"Haftalık aralık, kısa vadeli işlemdeki başarının belkemiğidir."*
+
+---
+
+## 2. Merkezi mantık — karşıt array eşleştirmesi
+
+**Ayın tek cümlelik çerçevesi:**
+
+> **Bir aylık PD array bul, ona KARŞIT olan haftalık PD array'i hedefle.**
+
+| Piyasa | Odaklanılan | Hedeflenen |
+|---|---|---|
+| **Boğa** | Aylık **iskonto** array'i | Haftalık **prim** array'i |
+| **Ayı** | Aylık **prim** array'i | Haftalık **iskonto** array'i |
+
+**Bu iki nokta arasındaki mesafe = işlem aralığın.** Risk/ödül modelin bu.
+
+**Uyarı:** aralık 300 pip ise *"20 pip alıp çıkarım"* diye bölünmez. Yol boyunca kademeli kâr alınır ama **son parça nihai hedefe kadar tutulur.**
+
+> *"O küçük parçayı bırakıp maksimum potansiyeline kadar tutarsan, çoğu zaman tüm pozisyonu ilk hedefte kapatsaydın kazanacağın kadarını **tek başına o parça** kazandırır."*
+
+---
+
+## 3. Beş zaman dilimli sıralama
+
+Şubat'ta dört vardı; Mart **1 saatliği** ekliyor ve uygulama zaman dilimi o oluyor.
+
+**Satış için:** aylık prim array'inden uzaklaşıyor → haftalık aynı → günlük aynı → 4 saatlik aynı → **1 saatlikte uygulama.**
+
+**Alım için:** tam tersi.
+
+**Kritik ayrıntı.** Her zaman diliminde **hem prim hem iskonto** array'lerinin tamamı taranır. Ayı iken iskonto array'lerine neden bakılır? **Kırıldıklarını görmek için** — teyit.
+
+**Esneklik kuralı.** Aylık array'i kaçırdıysan (fiyat ondan zaten uzaklaşmışsa) onu **işlem için** kullanamazsın ama **yön göstergesi** olarak kullanırsın. Sonra haftalık, günlük ya da 4 saatliğe düşersin.
+
+> *"O dört zaman diliminden biri sana bir kurulum verecek."*
+
+---
+
+## 4. PD array tarama sırası — bağlayıcı hiyerarşi
+
+**Yedi ayda ilk kez sıra bağlayıcı olarak veriliyor.**
+
+Fiyattan **dışa doğru** (prim için yukarı, iskonto için aşağı) aranacak sıra:
+
+| Sıra | Prim (yukarı) | İskonto (aşağı) |
+|---|---|---|
+| 1 | Bearish **mitigation block** | Bullish **mitigation block** |
+| 2 | Bearish **breaker** | Bullish **breaker** |
+| 3 | **Likidite boşluğu** | **Likidite boşluğu** |
+| 4 | **Fair value gap** | **Fair value gap** |
+| 5 | Bearish **order block** | Bullish **order block** |
+| 6 | **Rejection block** | **Rejection block** |
+| 7 | **Eski tepe / eski dip** | **Eski dip / eski tepe** |
+
+> *"Algoritmanın o fiyat referans noktalarını arayacağı sıra budur. **Başka bir sırada değiller.**"*
+
+**Kapsam gözlemi:** *"Nadiren hepsi elimizde olur. Üç ya da dört tanelik bir seçim olabilir, hatta iki tane kadar az."*
+
+---
+
+## 5. Tükenme kuralı — ayın en değerli yeni kısıtı
+
+**Kural.** Bir PD array **zaten işlem görmüşse tükenmiştir** — artık kullanılmaz.
+
+> *"Bir bullish order block — fiyat oraya inmiş, tepki vermiş ve daha yüksek fiyatlar gelmiş. O PD array artık **tükenmiştir**; başka bir iskonto PD array'i araman gerekir."*
+
+**Gerekçe (V5'te veriliyor):**
+> *"Algoritma fiyatın oraya bir kez gittiğini biliyor; **yeni likidite** arayacak ve bankaların katılımına izin vermek için genişleyecek."*
+
+**Ne işe yarar.** Yedi ay boyunca sorun şuydu: geriye dönük bakınca her fiyat noktasının yakınında bir order block bulunuyordu. **Tükenme kuralı o havuzu daraltıyor** — ve tamamen mekanik: dokunuldu mu dokunulmadı mı.
+
+**Ölçüm açısından:** doğrudan test edilebilir hipotez — *"ilk kez dokunulan array'ler, ikinci kez dokunulanlardan farklı sonuç veriyor mu?"* Karşılaştırma grubu doğal.
+
+**Dikkat.** Şubat'ta bunun tersi öğretiliyordu — kurulum başarısız olursa *"bir sonraki array'e git."* İkisi çelişiyor.
+
+---
+
+## 6. Zorlamama kuralı
+
+> *"Bu PD array'lerin hiçbirinin fikrini **zorlamıyoruz.** Ya grafiktedirler ya değildirler. Herhangi birinin yokluğu ideal bir kurulumun geçerliliğini ne geçersiz kılar, ne artırır, ne azaltır — sadece seçeceğin **daha az şey** olduğu anlamına gelir."*
+
+**Ne işe yarar.** Filtre yığını probleminin panzehiri: eksik bileşen kurulumu geçersiz kılmıyor.
+
+---
+
+## 7. Pazartesi–Çarşamba kuralı — ayın işaretlenmiş kuralı
+
+Video bunu *"özellikle odaklanmanı istediğim tek bileşen"* diye ayrıca işaretliyor.
+
+**Gözlem:** *"Haftanın dipleri genellikle **Pazartesi, Salı ve Çarşamba** günlerinde oluşuyor."*
+
+**Kural (boğa):**
+> Pazartesi ile Çarşamba arasında oluşan **tepe**, hafta içinde (Perşembe ya da Cuma) **kırılırsa** → fiyat aylık/haftalık prim array'ine **agresif biçimde genişleme** eğilimindedir.
+
+**Kural (ayı):** Pazartesi–Çarşamba arasında oluşan **dip** hafta içi kırılırsa → agresif satış programı teyidi.
+
+**Referans noktası.** Teknik olarak Pazar açılışıyla tanımlanır, ama tutarlılık için **Pazartesi açılışından Çarşamba kapanışına** kadar olan aralığın en yüksek tepesi/en düşük dibi kullanılabilir.
+
+**Neden ölçülebilir.** Haftanın günü **tartışılmaz**, tepe/dip aritmetik, kırılım ikili. **Sıfır seçim noktası.**
+
+**Ve buna bağlı sayısal iddia (V6):**
+> *"Haftalık aralıkların tipik olarak **%30 ila %50'si Pazartesi ile Çarşamba arasında** tamamlanır — yani **Çarşamba Londra kapanışına** kadar."*
+
+**Pratik sonuçları:**
+- Pazartesi–Çarşamba'yı kaçırdıysan **"pip sarhoşu" olma** — Cuma'ya kadar aslan payını kovalamaya çalışma
+- *"İşlem haftasının son iki gününde büyük bir hareket bekleme"*
+- Patlayıcı hareket genelde **Salı ya da Çarşamba**; Perşembe biraz devam, **Cuma ya geri çekilme ya nötr**
+
+**Ve V8'de bir yüzde daha veriliyor:** tepenin ya da dibin Pazartesi–Çarşamba arasında oluşması, **%76 olasılıkla.** (Yetmiş bir videoda verilen ilk yüzde — ama arkasında hiçbir örneklem, dönem ya da parite bilgisi yok.)
+
+---
+
+## 8. On iki haftalık profil
+
+Altı tip, her biri boğa ve ayı versiyonuyla. Her profil için: **piyasa koşulu · beklenen manipülasyon · nasıl önceden anlaşılır.**
+
+| # | Profil | Manipülasyon | Zamanlama |
+|---|---|---|---|
+| **1–2** | **Klasik Salı dibi / tepesi** | Pazartesi array'in üstünde/altında dolaşır, **Salı** array'e girip haftanın dibini/tepesini yapar | Salı **Londra açılışı ve/veya New York** |
+| **3–4** | **Çarşamba dibi / tepesi** | Pazartesi **ve Salı** array'in dışında, **Çarşamba** array'e girer | Çarşamba Londra/New York |
+| **5–6** | **Konsolidasyon + Perşembe dönüşü** | Pazartesi–Çarşamba **yatay**, sonra hafta içi dip/tepe süpürülüp dönüş | **Perşembe, New York ~14:00** — genelde **FOMC / faiz** |
+| **7–8** | **Konsolidasyon + hafta ortası ralli/düşüş** | Pazartesi–Çarşamba yatay, sonra hafta içi tepe/dip süpürülüp **Cuma'ya doğru genişleme** | Hafta ortası |
+| **9–10** | **Seek and destroy — Cuma** | Pazartesi–Perşembe konsolidasyon, **iki taraflı sığ stop süpürme**, sonra Cuma genişleme | **İşlem yapma** |
+| **11–12** | **Çarşamba haftalık dönüşü** | Pazartesi–Salı konsolidasyon, array'e doğru sürülme, **güçlü dönüş** | Uzun/ara vadeli tepe-dipte |
+
+**Nasıl önceden anlaşılır — ortak mantık:** üst zaman dilimi array'lerini bil. **Piyasa o array'e ulaşmayı başaramazsa**, sonraki gün(ler)de ulaşması beklenir.
+
+**Seek and destroy uyarısı — kaydedilmesi gereken dürüstlük:**
+> *"Bu koşullarda **hiç işlem yapmamak** daha iyi."*
+Ne zaman oluşur: **faiz açıklaması / tarım dışı istihdam beklenirken**, ve **Temmuz–Ağustos yaz aylarında.**
+
+---
+
+## 9. Şablonların iki evrensel kuralı
+
+Bu iki kural on iki şablonun **her senaryosunda** aynen tekrarlanıyor, ve ayın en mekanik parçası.
+
+### Kural 1 — Hedef, girişten daha KÜÇÜK bir zaman diliminde
+
+| Giriş nereden | Hedef nerede |
+|---|---|
+| **Aylık** likidite havuzu | **Haftalık veya günlük** karşıt array |
+| **Haftalık** tepe/dip | **Günlük veya 4 saatlik** karşıt array |
+| **Günlük** array | **4 saatlik** karşıt array |
+
+**Gerekçe:** *"Aylık ya da haftalık bir seviyeden hareket eden bir hamle için çoğu zaman **bir haftadan uzun sürecek** bir şeyi tutmak istemiyoruz."*
+
+Yani hedefin küçültülmesi, işlemin **haftalık zaman kutusuna sığması** için.
+
+### Kural 2 — Hedef bir Fibonacci uzantısıyla örtüşmeli
+
+Aranan üç değerden biri:
+- **127** uzantısı
+- **168** uzantısı
+- **%100 simetrik salınım** (ölçülü hareket)
+
+> *"Sadece 127 ve 168 aramıyoruz. Onu da yapıyoruz ama **karşıt, daha küçük zaman dilimi PD array'iyle birleştiriyoruz.**"*
+
+### Fibonacci nereye çapalanır — beş adım
+
+1. **Pazartesi açılışı ile Çarşamba arasındaki en düşük dibi** bul
+2. **Çarşamba'nın en yüksek tepesini** bul
+3. Aradaki mesafeyi pip cinsinden hesapla
+4. **× 1,27**, sonucu Çarşamba tepesinden **çıkar** → 127 projeksiyonu
+5. **× 1,68**, aynı şekilde → 168 projeksiyonu
+
+> *"Bunun için Fibonacci aracına ihtiyacın yok — sadece Çarşamba'nın en yüksek tepesini ve haftanın en düşük dibini al."*
+
+**Ne işe yarar.** **İki bağımsız hedef kaynağının kesişimi:** yapı (karşıt PD array) + geometri (Fib uzantısı). Ve ikisi de mekanik.
+
+---
+
+## 10. Salınım derecelendirmesi — dört aşama
+
+| Aşama | Ne |
+|---|---|
+| **1. salınım derecesi** | Genel hareketin **ilk geri çekilmesi** |
+| **2. aşama** | **Dengeye (equilibrium)** götüren |
+| **3. salınım derecesi** | Denge ile nihai hedef arasındaki **orta nokta** |
+| **Terminus** | İşlemin sonu, beklenen maksimum hareket |
+
+**Girişler bu üç noktada aranır:** 1. derece, denge, ya da 3. derece.
+
+**3. derece hakkında özel not:**
+> *"Genellikle üçüncü salınım derecesinde bir **stop koşusu görmezsin** — hedeflediğin hareketin belirleyici kısmından hemen önce. Ama bazen orada işlem yapabileceğin küçük bir order block çıkar."*
+
+---
+
+## 11. IPDA aralığı tanımı ve özyinelemeli çeyrekleme
+
+**Ayın en mekanik tanımı — ve serinin ürettiği en temiz aralık tanımı.**
+
+### Aralık nasıl kurulur
+
+1. Son **60 işlem gününü** al (~üç ay)
+2. Aralık, **en yüksek ve en düşük mum GÖVDESİ** ile tanımlanır — **fitiller değil**
+3. Video iki kez netleştiriyor: *"Son 60 işlem günündeki **en yüksek açılış ya da kapanışı** arıyorum — hangisi olduğu umurumda değil. Ve **en düşük açılış ya da kapanışı.**"*
+
+### Çeyrekleme
+
+4. Fib'i en yüksek gövdeden en düşük gövdeye çek, **%50** işaretle
+5. **Üst yarının %50'sini** bul → çizgi
+6. **Alt yarının %50'sini** bul → çizgi
+7. Orta noktanın üstü **prim**, altı **iskonto**
+8. **Ve bu özyinelemeli:** her çeyrek kendi içinde ikiye bölünüp **kendi prim/iskonto aralığı** olarak okunabilir
+
+### Düşme kuralı
+
+Son **20 işlem gününün** en düşük dibi ihlal edilirse → **40 günlüğe değil**, doğrudan **60 günlük geriye bakıştaki** bir sonraki daha düşük dibe gidilir.
+
+### İşlem kuralları
+
+| Ne | Nerede |
+|---|---|
+| **En iyi alımlar** | Toplam aralığın **alt yarısında, alt çeyrekte** |
+| **En iyi satışlar / uzun çıkışları** | Prim bölgesinin **üst kısmında, son çeyrekte** |
+| **Aralığın ortası** | *"En çok orada hırpalanırsın"* |
+
+### Genel primde bile alım — videonun özel vurgusu
+
+> *"Toplam konsolidasyonun orta noktasının üstündeyiz, yani teknik olarak genel bir prim piyasadayız — **ama yine de uzun alabiliriz.** Konsolidasyonu ikiye bölüyoruz, yarımları da yarıya, çeyrekleri de yarıya. **İskonto bölgesinden alıp** ilk kârı daha alçak bir 4 saatlik/1 saatlik prim bölgesinde alarak."*
+
+Ve gösterge reddine bağlanışı:
+> *"Normalde aşırı alım sayılacak bir şeyi böyle çerçeveleyerek biz öyle görmüyoruz. **Göstergelerin algoritmik açıdan neden işe yaramadığı budur.**"*
+
+**Dikkat — ve bu önemli.** Özyineleme sınırsız olduğu için **her fiyat noktası bir çeyreğin iskonto bölgesinde** kalabilir. Bölmeye kaç kez devam edileceğinin kuralı yok, ve o kural olmadan filtre bir şey filtrelemiyor. **Kendi sınırını koy** (ör. en fazla iki bölme).
+
+---
+
+## 12. Mean threshold — tanım netleşiyor
+
+**Mart'ta ilk kez tam tanım:**
+
+> **Üç mumun gövde aralıkları — fitiller değil gövdeler — içindeki en yüksek tepe ve en düşük dip; onun orta noktası.**
+
+Yani tek bir mumun gövde ortası değil, **mum grubunun** gövde aralığının ortası.
+
+---
+
+## 13. Haftalık pip hedefleri ve power three
+
+**Kademeli hedefler:**
+
+| Aşama | Haftalık hedef |
+|---|---|
+| Başlangıç | **30 – 50 pip** |
+| Sonra | **50 – 75 pip** |
+| Sonra | **75 – 100 pip** |
+| Üst sınır | *"100 pip'ten fazlasını denemezdim"* |
+| **Videonun tercihi** | **50 – 75 pip** |
+
+> *"Haftalık aralığın aslan payını arıyorsan, ondan **bir parça** alman kariyerin için yeterli."*
+
+**Power three (haftalık ölçekte):**
+> *"Piyasa boğaysa **açılış aralığın dibine yakın, kapanış tepesine yakın** olur."*
+
+Yani: haftanın açılışında aşağı bir hareket (haftanın dibi), sonra yukarı genişleme, tepeye yakın kapanış.
+
+---
+
+## 14. Hafta içi dönüş tespiti — hız ve mesafe
+
+**Ayın en somut ölçütü.**
+
+**Kural:**
+> *"Bu fiyat düşüşü — hareket ettiği **hız** ve **mesafe** — işte o, telltale işaret. Haftanın başında **çok hızlı** hareket ediyoruz ve **çok mesafe** kat ediyoruz. Bu olduğunda **hemen** hafta içi dönüş profiline sebep olabilecek üst zaman dilimi PD array'lerini aramaya başla."*
+
+**Operasyonel eşik:**
+> *"**Son beş günün ortalama günlük aralığı** neyse, onun **belirgin biçimde üstüne** çıkarsa — büyük olasılıkla bir piyasa dönüş profili göreceksin."*
+
+**Ve açık uyarı:**
+> *"'Hızlı hareket ediyor, demek ki iki katı kazanacağım ve hafta içinde eşit bir ayak daha gelecek' diye düşünme. **Hayır.**"*
+
+**Neden ölçülebilir.** ADR (ortalama günlük aralık) standart bir hesap, aşım ikili. **Sıfır seçim noktası** — tek eksik "belirgin biçimde" eşiği, ve o kenarda (ör. 1.5× ADR).
+
+**Hız neyin göstergesi — videonun ayrımı:**
+
+| Durum | Okuma |
+|---|---|
+| Faiz açıklaması sırasında ani hareket | **Merkez bankası yeniden fiyatlaması** — alım satıma atfedilmez |
+| Müdahale yokken hızlı hareket | **Spekülasyon yoluyla değerleme** |
+
+Ve dürüst bir bilgi sınırı: *"Temeller değişebilir. Ve evet — **onların ne olduğunu bilmiyorum.** Bilmeme gerek yok, kanıtlarını fiyatta görebiliyorum."*
+
+---
+
+## 15. Örtüşen modeller
+
+**Kural.** Aynı anda birden fazla işlem disiplininin (pozisyon, swing, kısa vadeli, gün içi) modeli örtüştüğünde, **üst zaman dilimi kazanır.**
+
+**Pratik kaçınma kuralı:** modeller çelişiyorsa işlem alma, netleşmesini bekle.
+
+---
+
+## 16. COT orta çizgisi — Mart versiyonu
+
+Şubat'ta 12 aylık orta çizgi verilmişti. Mart aynı yöntemi tekrarlıyor ve **uygulama detayı** ekliyor:
+
+**Yöntem:**
+1. Son **bir takvim yılını** (12 ay) geri sar
+2. **Yalnızca ticarilerin** net pozisyonunun en yüksek tepesi ve en düşük dibi
+3. İkisinin ortası = **yeni sıfır-toplam çizgisi**
+
+**Nasıl yapılıyor:** *"Bir gösterge yok. Bunu aslında **Paint ile** yapıyorum."* CFTC verisi bir siteden alınıp elle çiziliyor.
+
+**Kapsam:** nominal 39 piyasa, gerçek odak **EUR ve GBP** — *"iki pariteye odaklandığımda saniyeler sürüyor."*
+
+**Ticariler kimdir:** bankalar, büyük kurumlar, mal üreticileri. Hem **üreten** hem **tüketen/yeniden satan** gruplar — bu yüzden ticari düzeyde her zaman hem alım hem satım var; net pozisyon toplamıdır.
+
+**Özgünlük iddiası — ve kaydedilmesi gereken:**
+> *"Bunu internette bulamazsın, kitaplarda yok. Yüce Tanrı'ya yemin ederim, **böyle bir şey dışarıda yok.**"*
+
+**Ama bu yanlış.** Bir aralığı normalize edip eşiğe göre okumak literatürde **Williams COT Index** olarak biliniyor. Ve Şubat'ta aynı yöntem verilirken **Larry Williams kaynak olarak gösterilmişti.** Haziran 2017'de bu geri alınacak: *"burada öğreteceğim her şey Larry Williams'tan öğrendiğim şey."*
+
+---
+
+## Mart'ın on üç adımlık modeli
+
+Ayın kapanış videosu tüm modülleri tek prosedüre bağlıyor.
+
+### Bağlam kurma (1–4)
+
+| # | Adım | Kaynak |
+|---|---|---|
+| **1** | Mevcut ya da sonraki **çeyreklik kaymayı** belirle | Ocak |
+| **2** | **IPDA veri aralıklarındaki** üst zaman dilimi PD array'lerini tespit et | Ocak |
+| **3** | **Faiz piyasalarının profiline** bak — trend mi, sıkışık mı? | Ocak V6 |
+| **4** | Takvim yılı boyunca **mevsimsellikleri** tara | Ocak V10-12 |
+
+Adım 3'ün gerekçesi net: *"Trend ediyorlarsa hareket izni alırsın; konsolide ve sıkışıklarsa piyasanın hareket etmesi çok zor olur."*
+
+### Yapı kurma (5–8)
+
+| # | Adım |
+|---|---|
+| **5** | Üst zaman dilimlerinden 60 dakikalığa kadar **salınım analizi** — fraktalları çıkar, hangi salınımların projeksiyon için kullanılacağına karar ver |
+| **6** | Oluşabilecek **haftalık profilleri** öngör (12 profilden hangileri) |
+| **7** | O profillere karşılık gelen **manipülasyon şablonlarını** belirle |
+| **8** | **Prim ve iskonto bölgelerini** tespit et (60 gün, gövdeler, özyinelemeli çeyrekleme) |
+
+### Zamanlama ve teyit (9–10)
+
+| # | Adım |
+|---|---|
+| **9** | **Oynaklığın büyük aralık sinyali vermesini bekle** — *"piyasaya sessizken girmek istiyoruz ki genişleyip büyük aralıklar alalım"* |
+| **10** | **COT ve açık pozisyonla** akıllı para hareketini teyit et |
+
+### Kurulum (11–13)
+
+| # | Adım |
+|---|---|
+| **11** | **Karşıt PD array'lerle** düşük dirençli likidite koşusu çerçevele |
+| **12** | **Fibonacci'yi karşıt PD array'le örtüştür** (127 / 168 / %100) |
+| **13** | **Piyasalar arası analizle** teyit et |
+
+### Uygulama katmanı
+
+- **Giriş:** kill zone'da (Londra açılışı, New York açılışı; JPY/AUD/NZD için **Asya: NY saatiyle 18:00–21:00**)
+- **Haftanın günü:** dip/tepe **Pazartesi–Çarşamba** arasında
+- **Hedef:** girişten **daha küçük** zaman diliminde, Fib uzantısıyla örtüşen karşıt array
+- **Beklenti:** haftalık aralığın **%30–50'si Çarşamba Londra kapanışına kadar**
+
+### Bu modelin ölçülebilirlik durumu
+
+**Adım 1, 4 ve 13 doğrulanamaz** (çeyreklik kayma tespiti, mevsimsellik, piyasalar arası).
+
+**Adım 2, 5, 8, 9, 11, 12 tamamen mekanik** — ve tek başlarına test edilebilir.
+
+**Ölçmeye en değer üç çekirdek:**
+
+1. **Pazartesi–Çarşamba kuralı** — haftanın günü tartışılmaz, kırılım ikili. Ve **%30–50 iddiası** tek bir sorguyla doğrulanır.
+2. **Tükenme kuralı** — ilk kez dokunulan array vs ikinci kez. Karşılaştırma grubu doğal.
+3. **ADR aşımı → dönüş** — ADR standart, aşım ikili.
+
+Üçü de **sıfır seçim noktası** içeriyor, ve üçü de senin harness'ında tek parametre eklemesi.

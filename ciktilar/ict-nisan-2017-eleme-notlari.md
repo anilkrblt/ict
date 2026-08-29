@@ -1641,3 +1641,480 @@ Ve bu ay bir şey daha gösteriyor: **ölçülebilirlik ile doğruluk aynı şey
 Sekiz ayın en kullanışlı sonucu belki de bu ayrımdır. Bir kuralın kodlanabilir olması onu doğru yapmaz; yalnızca **yanlışlanabilir** yapar. Ve bu serinin ürettiği en değerli şey doğru kurallar değil — **yanlışlanabilir kurallar**, ve onların hangi taban çizgisine karşı sınanacağı.
 
 Kalan dört ayı elerken ölçüt aynı kalıyor, bir ekle: **kural bir saate mi bir yoruma mı bakıyor, ve iddia edilen oranın taban çizgisi ne?**
+
+---
+
+# BÖLÜM IV — Kesinlikle bilmen gerekenler
+
+Nisan'ın kavramları: **tanım · nasıl bulunur · ne işe yarar.** Bu ay serinin en mekanik içeriği — saat tabloları, pip eşikleri ve karar ağaçları. Sonda ayın tam gün içi modeli.
+
+---
+
+## 1. Zaman tablosu — ayın omurgası
+
+**Tüm saatler New York saatiyle.** (Yaz saati olsun olmasın: New York'ta o an saat kaçsa o.)
+
+| Öğe | Başlangıç | Bitiş |
+|---|---|---|
+| **Asya aralığı** | **20:00** | **00:00** |
+| **CBDR (Central Bank Dealers Range)** | **14:00** | **20:00** |
+| **Londra kill zone** | **01:00** | **05:00** |
+| **Londra öğle arası** | **05:00** | **07:00** |
+| **New York kill zone** | **07:00** | **10:00** |
+| **Londra kapanış kill zone** | **10:00** | **12:00** |
+| **IPDA gerçek günü (true day)** | **00:00** | **15:00** |
+
+**Ek referans: CME açılışı 08:20.**
+
+**Neden 15:00 günü bitiriyor:**
+> *"Tahviller kapanıyor ve faizin döviz üzerindeki etkisi o zamana kadar bitiyor. **Son bir saat — 14:00'ten 15:00'e — FOMC ile ilgili her hareketi kapsar.**"*
+
+**Ve neden Ctrl+Y kullanılmıyor:**
+> *"Bu dikey çizgiler **perakende** 24 saatlik günü gösterir. Onları grafiğinde tutup günü onlara göre çerçeveleyenler — bu, ne yaptıklarını bilmediklerinin klasik işaretidir."*
+
+**Ne işe yarar.** Günlük aralığın dört köşesini (açılış, tepe, dip, kapanış) **zaman sınırlarıyla** tanımlıyor. Ve **sıfır seçim noktası** içeriyor: bir saat bir saattir.
+
+---
+
+## 2. CBDR — Central Bank Dealers Range
+
+**Ayın merkezî aracı, ve serinin en mekanik tek aleti.**
+
+### Tanım ve ölçüm
+
+| Kalem | Değer |
+|---|---|
+| **Zaman penceresi** | **14:00 – 20:00 NY** |
+| **Boyut kuralı** | **< 40 pip** |
+| **İdeal** | **20 – 30 pip** |
+| **Ölçüm** | Pencere içindeki **en yüksek açılış-ya-da-kapanış** ile **en düşük açılış-ya-da-kapanış** |
+
+**Neden gövde, fitil değil — ve bu ilk kez doğru gerekçe:**
+> *"Fitiller her zaman hatalı fiyat gösterecek, çünkü **broker'ının işlem spread'i var.** Herkesin her mumdaki tepe ve dibi arasında bir fark olacak; asla uyuşmayacak. Ben işlemin ağırlığını kullanıyorum, o da gövde."*
+
+Video yine de ikisini de yapmayı öneriyor: *"gövdelerle yaptığın her şeyi fitillerle de yapacaksın."*
+
+### Standart sapmalar
+
+CBDR yüksekliği (tepe − dip) alınır ve tekrarlanır:
+- **1 SD yukarı** = CBDR tepesi + aralık
+- **1 SD aşağı** = CBDR dibi − aralık
+- **2 SD** = 1 SD ucundan bir kez daha
+- **4 SD'ye kadar** sürdürülür
+
+### Projeksiyon kuralları
+
+| Koşul | Beklenti |
+|---|---|
+| Çoğu **satış günü** | Günün tepesi **3 SD'ye kadar** yukarı |
+| Çoğu **alım günü** | Günün dibi **3 SD'ye kadar** aşağı |
+| **İdeal satış günü** | Tepe **2 SD'yi geçmez**, çoğu zaman **1 SD** |
+| **İdeal alım günü** | Dip **2 SD'nin altına inmez**, çoğu zaman **1 SD** |
+| **4 SD** | Çok yüksek etkili haber, ya da New York dönüş profili |
+
+### 20–30 pip idealinin gerekçesi
+
+> *"ADR tipik olarak **100 pip** civarındaysa, bunun **üçte biri yaklaşık 33 pip.** Bu yüzden 20–30 pip ideal, ve 40'tan az olsun."*
+
+### Ne işe yarar
+
+> *"CBDR'nin gücü, **günün dibini ya da tepesini seçmeye** yardım etmesinde. Bir gün içi işlemci olarak odaklanabileceğimiz en önemli şey bu."*
+
+**Ölçüm açısından.** Zaman penceresi sabit, ölçüm aritmetik, boyut filtresi sayısal, projeksiyon çarpma. **Serinin sıfır seçim noktalı tek aracı** — ve karşılaştırma grubu doğal (rastgele bir 6 saatlik pencere).
+
+**Ve videonun kendi reddettiği örnek kaydedilmeli:** dört örnekten biri (58 pip CBDR) **atlanıyor.** *"Bu çok büyük. Bu işlem gününde kriteri kullanamayız."* Sekiz ayda ilk kez bir araç, kendi eşiği yüzünden reddediliyor.
+
+---
+
+## 3. Karşı uç projeksiyonu
+
+**V3 girişin ekstremumunu veriyordu; V4 karşı ucu veriyor.**
+
+**Kural:** Londra'daki protraksiyon (Judas swing) **kaç SD kullandıysa**, **CBDR + kullanılan tüm SD'lerin toplam aralığı** karşı uca yansıtılır.
+
+**Prosedür — altı adım:**
+1. CBDR'yi belirle (14:00–20:00, ≤40 pip)
+2. Yön eğilimini üst zaman diliminden al
+3. Londra'da protraksiyonun **kaç SD sürdüğünü gözlemle** (1, 2 ya da 3)
+4. **CBDR + kullanılan SD'lerin toplam aralığını** hesapla
+5. O aralığı **karşı uçtan** projekte et
+6. Zaman sınırı: **Londra kapanış KZ (10:00–12:00)**, nihayetinde **14:00**
+
+**Kritik netlik:** *"Bu Fibonacci uzantısı ya da projeksiyonu **değil.**"*
+
+**Ve önceden bilmeye gerek yok:**
+> *"Uzantının ne kadar uzaklaşacağını **pip'ine kadar önceden bilmek zorunda değiliz.** Hareket başladıktan sonra ne olduğunu bilmemiz yeterli."*
+
+**Zaman kapağı:** *"Uzun soluklu bir trend gününde bile **14:00 genellikle günün tepesini ya da dibini sınırlar.**"*
+
+---
+
+## 4. Dört Londra profili — ayın karar ağacı
+
+İki yön × iki zamanlama. **Profil seçimi iki ikili soruyla yapılıyor.**
+
+### Karar ağacı — videonun kendi özeti
+
+> *"Anahtar **02:00 New York.** Klasik Londra protraksiyonu için **00:00**'a bakıyoruz. Gece yarısından sonra o hareketi görmezsek, o zaman **02:00** senaryosunu ararız."*
+
+| | **Normal protraksiyon** | **Gecikmeli protraksiyon** |
+|---|---|---|
+| **SATIŞ günü** | Profil 1 | Profil 2 |
+| **ALIM günü** | Profil 3 | Profil 4 |
+
+### Profil 1 — normal protraksiyon, SATIŞ
+
+**Filtre zinciri, sırayla:**
+1. **CBDR < 40 pip** — *"40 pip'ten büyük gördüğün anda bu profil değildir"*
+2. **Asya aralığı 20–30 pip** — büyükse yine değil
+3. **Fiyat 00:00'dan hemen sonra 02:00'ye doğru RALLİ yapmalı** — *"başlamazsa bu profil değildir"*
+4. **Protraksiyon = CBDR'nin 1–2 SD'si**
+5. Giriş **01:00–01:30** kadar erken olabilir
+6. Günün tepesi tipik olarak **02:00–04:00**
+
+**CBDR < 40 kuralının gerekçesi:**
+> *"14:00'ten sonra fiyatın 40 pip'ten geniş bir aralıkta hareket etmesine izin verdilerse bu, **açık pozisyonun birikmesine izin veren modellerini bozar.**"*
+
+**Telafi kuralı:** CBDR geniş olabilir — **ama ancak Asya aralığı 20–30 pip'lik sıkı konsolidasyona inerse.** İkisi de sıkı değilse Londra alınmaz.
+
+> *"Herkes Londra'yı ne zaman işlem yaptığımı bilmek istiyor — **aradığım bu.** Bu malzemeler yoksa Londra'da işlem yapmam."*
+
+### Profil 2 — gecikmeli protraksiyon, SATIŞ
+
+- CBDR uygun **olmayabilir de** — her iki durumda geçerli
+- **Gece yarısından sonra ralli YOK** — fiyat hemen aşağı
+- **02:00'de ya da hemen sonrasında** protraksiyona giriliyor
+- 15 dakikalıkta **02:00'ye dikey çizgi** çiz, yukarı geri çekilme bekle
+- O ralli **daha yüksek tepe yapmaz**; bir **prim PD array**'e gidip döner
+
+### Profil 3 — normal protraksiyon, ALIM
+
+Tam simetrik:
+1. **CBDR < 40 pip**
+2. **Asya aralığı 20–30 pip**
+3. **Fiyat 00:00'dan sonra 02:00'ye doğru DÜŞMELİ** — *"görmezsek bu profil olmayacak"*
+4. **Protraksiyon 1–2 SD aşağı**
+5. **01:00–01:30'u geçerek tutarlı biçimde aşağı** gitmeli — *"işte o zaman teyidin var"*
+
+### Profil 4 — gecikmeli protraksiyon, ALIM
+
+- Asya aralığının dar olması yardımcı ama **zorunlu değil**
+- **02:00'de ya da sonrasında** protraksiyon
+- Geri çekilmede bir **iskonto PD array** aranır: gün içi OTE, order block, FVG kapatma, likidite boşluğu
+
+### Zaman taahhüdü
+
+> *"Londra işlemcisi olacaksan ideal senaryo, **00:00'dan en az 02:30–03:00'e** kadar ayakta olman. Bu üç saatlik pencere."*
+
+### Kaçırma itirafı — kaydedilmeli
+
+> *"IPDA seni işlemin dışında da tutacak. 90 pip'lik bir gün olabilir, 150 pip'lik, ve bu iki profilin hiçbiriyle içeri girmeyeceksin. **Sana sadece şunu söylüyorum: bazı günler ben de kaçırıyorum.**"*
+
+---
+
+## 5. Londra'dan kaçınma kuralları — on iki koşul
+
+**Serinin en yüksek yoğunluklu yasaklayıcı kural seti.** Ve yasaklayıcı kurallar daha test edilebilirdir.
+
+### Olay tabanlı
+
+| # | Koşul |
+|---|---|
+| **1** | Önceki gün **beş günlük ADR'nin iki katından fazla** aralık yaptıysa → ertesi gün işlem yok |
+| **2** | Günlükte **üç ardışık yükseliş kapanışından** sonra → Londra'da **uzun alma** |
+| **3** | Günlükte **üç ardışık düşüş kapanışından** sonra → Londra'da **kısa alma** |
+| **4** | **FOMC whipsaw'ından** sonra — *"CBDR'yi mahveder ve Asya'ya taşar"* |
+| **5** | **Tarım dışı istihdam (NFP) öncesi** — genelde ayın ilk Cuma'sı |
+| **6** | **Uzun hafta sonu / tatile giden** işlem günü |
+| **7** | O parite için **birden fazla** yüksek/orta etkili haber. **İdeal: tek bir haber** |
+| **8** | Londra sırasında **hiç haber olmaması** — joker gün |
+
+### Karakteristik tabanlı
+
+| # | Koşul |
+|---|---|
+| **9** | **CBDR > 50 pip** |
+| **10** | **Asya aralığı > 40 pip** — sadece gecikmeli profil değerlendirilir |
+| **11** | **20:00'den itibaren sürekli ralli/düşüş** — *"gerçek olay 0 GMT'de başlamış"* |
+| **12** | CBDR ve/veya Asya aralığı **görsel olarak konsolide olmuyorsa** |
+
+**Alt satır — videonun kendi özeti:**
+> *"CBDR ve/veya Asya aralığı **küçük, sıkı bir konsolidasyon aralığına inmek zorunda.** Bunu görmezsek, ikisinden biri ya da ikisi trend ediyorsa, Londra seansı **son derece şüphelidir.**"*
+
+### İdeal Londra koşulları
+
+1. Günlük grafik PD array'lere **açıkça saygı gösteriyor**
+2. Günlükte **prime doğru yükselmeye hazır** → Londra uzun
+3. Günlükte **iskontoya doğru düşmeye hazır** → Londra kısa
+4. **Günlük aralık yakın zamanda beş günlük ADR'sini aşmadıysa** → genişleme günü bekleniyor
+
+Dördüncüsünün gerekçesi: *"Oynaklık düşük bir koşulumuz var, ve ADR birçok kez beş günlük ADR'nin **1,5 hatta 2 katı** olabilir."*
+
+### Ve bilgi sınırı itirafı
+
+> *"Bu olaylar olurken merkez bankaları ne yapıyor? **Bilmiyorum. Bilmiyorum.** Ve ne yaptıklarını bilmiyorsam, o kesinlikle para riske atmak istediğim bir zaman değil."*
+
+---
+
+## 6. Pazar açılış fiyatı filtresi
+
+**Haftalık çerçeveleme için ayın en somut prosedürü.**
+
+**Kurulum:**
+1. **Pazar günü yeni işlem haftasının açılış fiyatını** belirle (broker Pazar mumu vermiyorsa Pazartesi açılışı)
+2. Saatlik grafiğe çiz ve **Perşembe'ye kadar ileri uzat**
+
+**Ayı yönlü hafta:**
+- Hafta başında fiyatın açılışın **üstüne** çıkması beklenir → **Judas swing**
+- Sonra: **fiyat her gün açılışın altında kaldığı sürece tüm gün içi işlemlerde kısa satış aranır**
+- Dip Londra'da, devam New York'ta
+
+**Boğa yönlü hafta:** tam simetriği.
+
+**Çekince — ve bu kritik:**
+> Bu, işlemin gidişine **karşıt** bir PD array'e işlem görülene kadar geçerli. Ayı iken bir **iskonto** array'ine çarpılırsa **satıcı olunamaz** — dönüş beklenir.
+
+**Perşembe dönüş teyidi:**
+- Ayı hafta + fiyat **Perşembe Pazar açılışının üstüne** çıkarsa → büyük hafta içi dönüş, uzun vadeli boğa işaret
+- Boğa hafta + Perşembe altına inerse → tersi
+
+**Ve videonun kapanış uyarısı:**
+> *"Pazar açılış fiyatına bakıp 'üstünde ya da altında, o zaman şunu yaparım' deme. **PD array'leri işin içine katmak zorundasın.**"*
+
+---
+
+## 7. Haftanın günü karakteristikleri
+
+| Gün | Karakteristik |
+|---|---|
+| **Pazar** | Genelde atlanır, aralık çok küçük |
+| **Pazartesi** | Genellikle **küçük aralık.** Ama başlangıçta büyük aralıkla bir PD array'e giderse **haftanın tepesi/dibi** olabilir |
+| **Salı** | **İyi gün.** Boğa haftalarda dip Londra'da: **%77**. Ayı haftalarda tepe Londra'da: **%70** |
+| **Çarşamba** | **İdeal** — iki günlük veri arkanda |
+| **Perşembe** | Genelde ideal ama **dönebiliyor.** *"Haftalık aralık genellikle Perşembe New York'ta sınırlanır"* |
+| **Cuma** | Genelde küçük aralık. Ama hedefler karşılanmadıysa **sürpriz genişleme** |
+
+**Pazartesi kontrolü:**
+> *"Pazartesi gece yarısı civarında grafiklere bak: **Pazar açılışından Frankfurt'a kadar Asya aralığı ne kadar büyük?** Büyükse haftanın tepesi ya da dibinin Pazartesi oluşmasını bekle — **acelesi var.**"*
+
+**Dikkat.** %77 ve %70 rakamlarının arkasında **hiçbir örneklem, dönem ya da parite bilgisi yok.** Ama ikisi de doğrudan sayılabilir: *"boğa haftalarda haftanın dibi kaç kez Salı Londra'da oluştu?"*
+
+---
+
+## 8. Sekiz alım kurulumu
+
+Video kendi "oyun kitabı"nı veriyor. **Hepsi Londra kill zone'unda, boğa yön eğilimiyle.**
+
+| # | Kurulum |
+|---|---|
+| **1** | **Asya aralığının altı + 5 pip** (spread payı) |
+| **2** | Önceki günün **New York seansındaki kısa vadeli dibin altındaki FVG** |
+| **3** | Kısa vadeli bir dibin **altında duran bullish order block** |
+| **4** | **CBDR/Asya aralığının 1 SD altı + iskonto PD array örtüşmesi**, 00:00–02:00 protraksiyonu içinde |
+| **5** | Kısa vadeli bir dibin altında **tamamlanan likidite boşluğu doldurması** |
+| **6** | Gece yarısı sonrası ralli olduysa: **02:00–04:00'te, 15/5 dakikalık bullish order block'a ilk geri çekilme** |
+| **7** | **Asya aralığının 1–2 SD'si + iskonto PD array** |
+| **8** | Kısa vadeli bir dip **iki kez süpürüldüyse ama yukarı protraksiyon olmadıysa** → **turtle soup** |
+
+**Satış tarafı:** tam simetriği.
+
+> *"Bunlar haftada **birkaç kez** oluşuyor."*
+
+---
+
+## 9. Stop tablosu — seride ilk kez tam sayısal
+
+| Kurulum | Stop |
+|---|---|
+| CBDR + PD array örtüşmesi | Girişin **30 pip** altı |
+| Asya aralığının altına koşu | Girişin **40 pip** altı |
+| Herhangi bir satış stopu baskını | Kullanılan dibin **30 pip** altı |
+| Order block'a **ilk** geri çekilme | Günün dibinin **10 pip** altı |
+| **İkinci** dönüş (turtle soup) | O dibin **30 pip** altı |
+| Tanımlanmayan herhangi bir kurulum | **Beş günlük ADR'nin %50'si**, Asya aralığı dibinden çıkarılır |
+
+**Stop taşıma kuralı — ve senin `#018`'inle uyumlu:**
+> *"Stop'unu taşımak için **acele etme.** Londra'da gün içi işlemde başabaşa getirmeyi unut, çünkü **çift geçiş** alabilirsin: geri gelip seni vururlar ve tüm hareketi kaçırırsın. **Günlük aralığın en az %40–50'sine ulaşana kadar** stop'u başlangıçta bırak."*
+
+---
+
+## 10. Kâr alma — on bir kademe
+
+| # | Kademe |
+|---|---|
+| **1** | **Her zaman 20–30 pip kazançta bir şeyler al** |
+| **2** | Asya aralığının ya da CBDR'nin **her iki SD'sinde** |
+| **3** | Önceki günün **tepesi + 5–15 pip** (turtle soup riski) |
+| **4** | 60 dakikalık aralığın **%50'sinde / dengesinde** |
+| **5** | **Beş günlük ADR projeksiyonunun %60–80'inde — her zaman** |
+| **6** | Önceki **haftanın tepesinin** üstünde |
+| **7** | Önceki **ayın tepesinin** üstünde |
+| **8** | **Zaman: 05:00** NY'de ya da hemen üstünde |
+| **9** | **Zaman: 07:00** New York açılışından önceki kısa vadeli tepede |
+| **10** | **Zaman: 10:00–11:00** arasında |
+| **11** | İdeal olarak yukarıdakilerden biri bir **prim PD array** ile eşleşsin |
+
+**Videonun kendi sınırlaması:**
+> *"Hepsini kullanamazsın, her işlemde uygulanabilir olmayacaklar. **Bir sürü senaryo var diye hepsinin senin işlemine uygulanabileceğini düşünme.**"*
+
+---
+
+## 11. 0 GMT kuralı — ayın en basit ve en test edilebilir çıktısı
+
+**Amaç:** Londra kill zone'una **hiç ihtiyaç duymadan**, üst zaman dilimi işlemlerine gün içi kavramlarla girmek.
+
+### Ön koşul
+
+**Önceki işlem gününde** fiyat bir günlük PD array'e saygı göstermiş olmalı:
+- **Boğa için:** günlük bir **iskonto** array'ine inilmiş, fiyat yükselme isteği göstermiş
+- **Ayı için:** günlük bir **prim** array'inde işlem görülmüş, fiyat ona saygı göstermiş
+
+### Kural
+
+| | Alım | Satış |
+|---|---|---|
+| **Giriş** | 0 GMT açılış fiyatı, **VEYA 10–20 pip ALTINA limit** | 0 GMT açılış fiyatı, **VEYA 10–20 pip ÜSTÜNE limit** |
+| **Stop** | Beş günlük **ADR**, girişten **çıkarılmış** | Beş günlük **ADR**, girişe **eklenmiş** |
+| **Hedef** | Üst zaman dilimi **prim** PD array | Üst zaman dilimi **iskonto** PD array |
+
+**Aritmetik örnek:** giriş **1.0500**, beş günlük ADR **50 pip** → stop **1.0550.**
+
+**Mantığın açıklaması:**
+> *"20 pip'i açılışa eklersen satış limitin olur; sonra ADR'yi ona eklersin. **Böylece fiyatın 0 GMT açılışından düşüş kapanışı yapmadan önce 70 pip yukarı ralli yapma ihtimali çok düşük.**"*
+
+### Bölünmüş giriş varyantı
+
+Limit dolmama riskine karşı:
+- **Yarısını 0 GMT'de** hemen içeri koy
+- **Diğer yarısını 20 pip'lik limite** koy
+
+### Büyük stop savunması
+
+> *"90–100 pip'lik stop görece önemsiz, çünkü **birkaç yüz pip ödeyecek hareketler arıyorsun.** Burada 20R yakalamaya çalışan minik riskli gün içi işlem yapmıyoruz."*
+
+### ADR nasıl hesaplanır
+
+> *"Çoğu platformdaki basit göstergeler: **ATR, average true range, beş günlük** yap, sana sayını verir."*
+
+### Neden ölçmesi en kolay kural
+
+- **Giriş fiyatı tartışmasız** (0 GMT açılışı)
+- **Stop mesafesi formülle** (5 günlük ATR)
+- **Ön koşul mekanik** (önceki gün PD array'e tepki verdi mi)
+- **Örneklem bol:** her işlem günü bir gözlem
+
+---
+
+## 12. Power three — üç ölçekte
+
+Ayın en çok tekrarlanan kavramı, ve üç zaman diliminde veriliyor.
+
+**Tanım:** *"Aç-yüksel-yüksek kapan, ya da aç-düş-düşük kapan. **Açılış aralığın bir ucuna yakın, kapanış diğer ucuna yakın.**"*
+
+| Ölçek | Boğa | Ayı |
+|---|---|---|
+| **Günlük** | Açılış dibe yakın, altında küçük fitil, yukarı genişleme, tepenin biraz altında kapanış | Simetriği |
+| **Haftalık** | Açılış haftanın dibine yakın, kapanış tepesine yakın | Simetriği |
+| **Gün içi** | Judas swing (açılışın ters yönüne) → genişleme | Simetriği |
+
+**Ölçüm açısından:** *"boğa günlerde açılış fiyatı, günlük aralığın alt %X'inde mi?"* — tek bir sorguyla cevaplanır, ve **her işlem günü bir gözlem.**
+
+---
+
+## 13. Ayın metodolojik cümlesi
+
+> *"Fiyatta bölgelerle işlem yapmam ama **zamanda bölgelerle işlem yaparım.** Yani **zamanda esnek, fiyatta spesifik** olacaksın. **Esneklik zamanda, fiyatta değil.** Fiyat bizim seviyemize gelmek zorunda."*
+
+**Ne işe yarar.** Sekiz ayın en net ölçüm ilkesi:
+- **Zaman** → pencere (01:00–05:00 gibi)
+- **Fiyat** → tek bir seviye (bölge değil)
+
+Ve bu, doğrudan uygulanabilir: kill zone'lar pencere, PD array'ler tek fiyat.
+
+---
+
+## 14. Gün içi hedefler ve gerçekçilik
+
+| Kalem | Değer |
+|---|---|
+| **Günlük hedef** | Günlük aralığın **%65 – 70'i** |
+| **Beklenen günlük aralık** | Son **beş günün ADR'sine** yakın (bazen 1,5–2 katı) |
+| **Günde kurulum** | Ortalama **iki** |
+| **Haftalık kurulum** | *"Genellikle **dokuz** kurulum var ki bunlar oldukça sağlam"* |
+| **Yeterli** | *"Bir işlem gününde **30–50 pip** alırsan ihtiyacın olan tek şey odur"* |
+
+**Ve beklenti ayarı — kaydedilmesi gereken:**
+> *"ADR 120 pip, o günün aralığı 100 pip ve sen sadece 30–40 pip aldın — bu bir kayıp değil, kaçırılmış fırsat değil, **aslında çok başarılı.** Çünkü çoğu insan para kaybediyor."*
+
+**İşlem yapılmayacak günler:** **FOMC** ve **NFP** — *"bunlar temelde 'kurulum yok' günleri."*
+
+**Ve ayrım:**
+> *"Adı gün içi işlem (day trading) diye **her gün işlem yapmak** (everyday trading) anlamına gelmez."*
+
+---
+
+## Nisan'ın tam gün içi modeli
+
+### AŞAMA 1 — Gün öncesi (önceki akşam)
+
+1. **Üst zaman dilimi yönünü** belirle: günlük ve/veya 4 saatlik, iskontodan prime mi prime iskontoya mı
+2. **Günlük PD array'leri** işaretle — gün içi için **günlük yeterli**
+3. **CBDR'yi ölç** (14:00–20:00, gövdelerle) → **> 40 pip ise gün şüpheli**
+4. **SD'leri projekte et** (1, 2, 3 yukarı ve aşağı)
+5. **Kaçınma listesini kontrol et** (12 koşul)
+6. Önceki günün **tepe/dip** ve **New York seansı tepe/dip** aralıklarını işaretle
+7. **Pazar açılış fiyatı** çizgisini kontrol et
+
+### AŞAMA 2 — Gece yarısı (00:00 NY)
+
+8. **Asya aralığını ölç** (20:00–00:00) → **20–30 pip mi?**
+9. **0 GMT açılış fiyatını** işaretle
+10. **Profil belirle:** 00:00'dan 02:00'ye hareket var mı?
+    - **Var** → normal protraksiyon (Profil 1 ya da 3)
+    - **Yok** → 02:00'ye çizgi, gecikmeli protraksiyon (Profil 2 ya da 4)
+
+### AŞAMA 3 — Londra kill zone (01:00–05:00)
+
+11. Protraksiyonun **1–2 SD** kullanmasını bekle
+12. Sekiz kurulumdan biriyle **gir** — SD + iskonto PD array örtüşmesi ideal
+13. **Stop:** kurulum tablosuna göre (10–40 pip, ya da ADR'nin %50'si)
+14. **Karşı uç projeksiyonu:** CBDR + kullanılan SD'lerin toplamını karşı uçtan yansıt
+
+### AŞAMA 4 — Yönetim
+
+15. **20–30 pip'te ilk kademe — her zaman**
+16. Her **2 SD'de** bir kademe daha
+17. **ADR projeksiyonunun %60–80'inde — her zaman**
+18. **Zaman kademeleri:** 05:00, 07:00 öncesi, 10:00–11:00
+19. **Stop'u %40–50 tamamlanana kadar taşıma**
+20. **14:00 kapağı** — gerçek gün 15:00'te biter
+
+### Alternatif: 0 GMT modeli (Londra'ya kalkmadan)
+
+Ön koşul (önceki gün PD array tepkisi) sağlanmışsa:
+- 0 GMT açılışından ya da **10–20 pip ötesine limitten** gir
+- Stop: **beş günlük ADR**
+- Hedef: üst zaman dilimi karşı array
+- *"Sonra bırak gitsin. Uyumaya git."*
+
+### Ölçülebilirlik özeti
+
+**Bu ayın modeli, sekiz ayın en mekanik çıktısı.** Neredeyse her bileşen bir saat, bir pip sayısı ya da bir aritmetik işlem:
+
+| Bileşen | Tanımsız kısım |
+|---|---|
+| Zaman tablosu | **Yok** |
+| CBDR ölçümü ve SD'ler | **Yok** |
+| Boyut filtreleri (40/30/20 pip) | **Yok** |
+| Karar ağacı (00:00 → 02:00) | **Yok** |
+| Kaçınma kuralları | **Yok** |
+| Stop tablosu | **Yok** |
+| 0 GMT kuralı | **Yok** |
+| Sekiz kurulum | **"Net, engelsiz yol"** — tek öznel bileşen |
+| Kâr kademeleri | Hangi kademenin kullanılacağı |
+
+**Ölçmeye en değer üçü:**
+
+1. **CBDR SD projeksiyonu** — *"günün tepesi/dibi, CBDR'nin 1–3 SD'si içinde mi oluşuyor?"* Sıfır seçim noktası, her gün bir gözlem, karşılaştırma grubu doğal (rastgele 6 saatlik pencere).
+2. **0 GMT kuralı** — giriş, stop ve ön koşul tamamen mekanik. Her işlem günü bir gözlem.
+3. **Kaçınma kuralları** — *"üç ardışık kapanıştan sonraki gün, ortalamadan farklı mı?"* ve *"> 2× ADR gününden sonraki gün?"* İkisi de tek sorguyla.

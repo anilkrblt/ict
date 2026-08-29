@@ -1675,3 +1675,423 @@ Karşılaştır: Aralık'ın order block'unda "destek seviyesine yakın" belirsi
 **Ve videonun bunu hiç hesaplamamış olması, ayın asıl bulgusu.** Şubat *"3:1'de %70 oranında yanılabilirsin"* diye açıkça hesap yapıyordu. Üç ay sonra aynı seri, aynı öğretmen, gereken isabet oranını iki katına çıkaran bir değişiklik yapıyor ve hesabı bir kez bile yapmıyor.
 
 Buradan kalan üç ay için ek bir ölçüt çıkıyor: **bir kural mekanikleştikçe, onun aritmetiğini kimin yaptığına bak.** Kural belirsizken aritmetik yapılamaz; kural netleştiğinde yapılabilir hale gelir — ve yapılmıyorsa, netlik kendi başına bir güvence değildir.
+
+---
+
+# BÖLÜM IV — Kesinlikle bilmen gerekenler
+
+Mayıs'ın kavramları: **tanım · nasıl bulunur · ne işe yarar.** Sonda ayın dokuz adımlık günlük rutini.
+
+---
+
+## 1. Temel kural — Asya aralığı ve açılış fiyatı
+
+**Ayın açılış kuralı, ve belki serinin en sade ifadesi:**
+
+| Gün | Nerede işlem yapılır |
+|---|---|
+| **Ayı gün** (kısa satış) | Açılış fiyatının **ve/veya Asya aralığı TEPESİNİN ÜSTÜNDE** |
+| **Boğa gün** (uzun) | Açılış fiyatının **ve/veya Asya aralığı DİBİNİN ALTINDA** |
+
+> *"Akıllı para Asya aralığı tepesinin **üstünde** satar."*
+
+**Mekanizma — Judas swing:** piyasa kısa vadeli bir duyarlılık kayması yaşar, daha az bilgili işlemciler ilk salınımda fiyatı kovalar. Bu, günün **kapanış yönüne karşıt** bir protraksiyon durumu.
+
+> *"Ayı iken Asya aralığı tepesinin üstüne çıkış perakendeyi **kırılımda alıma** çeker. Boğa iken Asya aralığının altına iniş perakendeyi **kısa satışa** tetikler — ikisi de onları yanlış tarafa koyar."*
+
+**Açılış fiyatı ne demek:** **New York gece yarısı mumu** (bu ayın odağı). 0 GMT de kullanılabilir.
+
+---
+
+## 2. Doğru kurulumun altı koşulu
+
+**Alım için (satış tam simetriği):**
+
+| # | Koşul |
+|---|---|
+| **1** | **Günlük ve/veya en az 4 saatlik iskonto array devrede** — fiyat oraya inmiş ve **tepki vermiş** olmalı |
+| **2** | Piyasa fiyatı ile karşıt prim array arasında **yeterli aralık**: **50–60 pip ideal.** *"40 pip'ten azsa scalp'tır"* |
+| **3** | Fiyat **açılış fiyatının ve Asya aralığı dibinin altına** iner |
+| **4** | Bu düşüş, **15 dakikalıkta mantıklı bir iskonto array'ine** kadar gider |
+| **5** | **Fiyat orada çok fazla zaman geçirmez** — keskin dönüş beklenir |
+| **6** | Kısa vadeli **duyarlılık en ayı** haldedir (giriş anında) |
+
+**Beşinci koşul — ayın en özgün fikri, ve dokuz ayda ilk kez bu türden bir filtre:**
+
+> *"Fiyat o 15 dakikalık iskonto array'inin yakınında ne kadar uzun kalır ya da oyalanırsa, **olasılıklar keskin biçimde düşer.** Anında tepki görmek istiyoruz, çünkü bankalar iyi bir şeyse o fiyatı iskontoda **çok uzun tutmayacaklar.**"*
+
+**Neden değerli.** Dokuz ay boyunca tüm filtreler **fiyat** ya da **zaman noktası** üzerineydi. Bu, **seviyede geçirilen süre** üzerine — yeni bir boyut, ve tamamen mekanik: kaç mum orada kaldı?
+
+**Duyarlılık ölçümü:** **10 periyotlu Williams %R, 15 dakikalık grafikte.**
+> *"Aşırı alım/satım koşullarına **bakmıyoruz.** Asıl koşullar fiyatın kendisi; duyarlılık sadece bir konfluans."*
+
+---
+
+## 3. Dört seviye kuralı ve beş seviye kaynağı
+
+**Temel iddia:**
+> **"Günlük aralık her işlem gününde DÖRT belirli seviyeyi doldurmaya ya da onlara işlem görmeye çalışacaktır."**
+
+### Kaynak 1 — Önceki günlerin tepe/dibi
+
+Önceki günün ve **son üç günün** tepe ve dipleri.
+
+### Kaynak 2 — Floor Trader Pivot noktaları (0 GMT)
+
+| Üstte | Altta |
+|---|---|
+| **M3** (merkez–R1 ortası) | **M2** (merkez–S1 ortası) |
+| **R1** | **S1** |
+| **M4** (R1–R2 ortası) | **M1** (S1–S2 ortası) |
+| **R2** | **S2** |
+| **M5** (R2–R3 ortası) | **M0** (S2–S3 ortası) |
+| **R3** | **S3** |
+
+**"Sahnelenmiş emirler" (staged orders) mantığı:**
+> *"Pivot noktalarını kullanan çoğu kişi onları **doğru kullanmıyor** ve her zaman işe de yaramıyorlar. Ama IPDA'nın oraya gitme eğilimi var **çünkü orada sahnelenmiş emirler olacak.**"*
+
+**Dürüst sınırlama:** *"Pivotlar sihirli sayı değil. Onları **aralığın ne kadar genişleyeceği** için kullanıyoruz. **Girişler için pek kullanmıyorum.**"*
+
+### Kaynak 3 — CBDR standart sapmaları
+
+Kısa satışta **CBDR'nin DİBİ** birinci seviye; her yeni SD alt ucu bir seviye daha. Alımda **CBDR'nin TEPESİ** birinci seviye.
+
+### Kaynak 4 — Asya aralığı standart sapmaları
+
+Alımda **Asya aralığının TEPESİ** birinci seviye; dört Asya aralığı yukarı beklenir. Satışta tersi.
+
+### Kaynak 5 — Flout (yeni kavram)
+
+**Flout aralığı: New York saatiyle 15:00 – 00:00.**
+
+**Prosedür:**
+1. O aralıktaki **en yüksek tepe ve en düşük dip** (ve ayrıca gövde versiyonu — **ikisini de yap**)
+2. Toplam aralığın **ortasını (denge)** bul
+3. **Projeksiyon birimi flout'un TAMAMI değil, %50'si**
+4. Kısa satışta: **dengenin ÜSTÜNDEN** sat, **flout dibi birinci seviye**
+5. Alımda: **dengenin altından** al, **flout tepesi birinci seviye**
+6. Yarım aralık tekrar tekrar projekte edilir, **dört seviye** sayılır
+
+### Sayma ve yönetim
+
+**Sayma:** girişten itibaren, işlem yönünde **ardışık dört seviye.**
+> *"R2'ye yakın kısa giriyorsak, altımızdaki dört seviye: **M4, R1, M3, merkez pivot.**"*
+
+**Yönetim:**
+> *"Dört seviye dolduktan sonra pozisyonun **%75–80'i kâr olarak alınmış**, **%25–30**'u büyük aralıklı gün ihtimali için bırakılmış olmalı."*
+
+### Hangi araç kullanılır — videonun dürüst cevabı
+
+> *"Gün başlamadan IPDA'nın neyi kullanacağını **asla kesin bilemezsin. Ben de bunu asla bilmiyorum.**"*
+>
+> *"Kendi başlarına bu aralıklar ve projeksiyonlar **hiçbir anlam ifade etmiyor — hiçbir şey.** Aradığımız şey, bu araçlardan bir ya da birkaçı arasındaki **konfluans.**"*
+
+**Ölçüm notu.** "Dört seviye" iddiası doğrudan ölçülebilir — **ama tabanı hesaplanmalı:** beş kaynak birden kullanıldığında grafik seviyeyle dolduğu için, herhangi bir günün dört seviyeye "değmesi" neredeyse kaçınılmaz. Karşılaştırma grubu: rastgele yerleştirilmiş aynı sayıda seviye.
+
+---
+
+## 4. Günde 20 pip — iki scalp yöntemi
+
+**Açılıştaki uyarı, ve kaydedilmeli:**
+> **"Her gün 20 pip kazanmayacaksın. Nokta. Bunu sana ben söz veremem, kimse söz veremez."**
+
+**Evrensel kural:** *"Girdiğin her gün içi işlemde kârdaysan **en azından 20 pip'te bir şeyler al.**"*
+
+### Yöntem 1 — Asya scalp'ı (15 dakikalık NY stopları)
+
+| Kalem | Değer |
+|---|---|
+| **Pariteler** | **Yen, AUD, NZD çaprazları** |
+| **Prosedür** | Asya boyunca (00:00 NY'ye kadar), **New York seansında oluşmuş kısa vadeli dipleri/tepeleri** tara |
+| **Tetik** | Asya o seviyeyi **yokladıktan sonra** ters yönde gir → **turtle soup** |
+| **Giriş** | Seviyenin **5 pip** ötesi |
+| **Zamanlama grafiği** | **5 dakikalık** |
+| **Hedef** | **20 pip — SABİT** |
+| **Stop** | **20 pip** |
+
+> *"**20'ye 20. 20 stop, 20 hedef. Bu kadar.** Kademelendirmiyoruz."*
+
+**Mantık:** Asya öncesi oluşan kısa vadeli tepenin üstünde **küçük bir stop cebi** var — "geç New York stopları". *"Çok çok düşük hacimli bir likidite koşusu."* Ve o hareket **Asya aralığı tepesini oluşturuyor.**
+
+### Yöntem 2 — New York genişlemesi
+
+| Kalem | Değer |
+|---|---|
+| **Pariteler** | **Hepsi.** Ayrıca **ES, Dow futures, QQQ, hisse, emtia, tahvil** |
+| **Koşul 1** | New York boyunca (10:00'a kadar), **New York açılışında oluşmuş kısa vadeli dipleri** tara |
+| **Koşul 2** | **Londra seansı günün DİBİNİ koymuş olmalı** |
+| **Koşul 3** | **Beş günlük ADR henüz doldurulmamış olmalı** |
+| **Hedef / stop** | **20 / 20 pip** |
+
+Satış tarafı: Londra günün **TEPESİNİ** koymuş, NY bir kısa vadeli tepeyi yokluyor, ADR karşılanmamış.
+
+**Mantık:** *"5 dakikalık bir dip arayıp onun altına kırmalarını bekle — **kısa satıcıları ve kırılım sanatçılarını içeri çekiyorlar**, ve bir sonraki yukarı ayaktan kâr edecek mevcut uzunları dışarı atıyorlar."*
+
+**Üçüncü koşul neden iyi.** *"ADR henüz doldurulmamış olmalı"* — bu, **kalan hareket alanı** için mekanik bir filtre. Ve dokuz ayda verilen en iyi "yer var mı" kontrolü.
+
+**Dikkat — ayın asıl aritmetik bulgusu.** Sabit **1:1** hedef, senin fat-tail bulgunla doğrudan çelişiyor: sağ kuyruğu tamamen kesiyor. Video örneklerde hareketlerin *"20 pip'in çok ötesine gittiğini"* kendisi söylüyor. **1:1'de maliyet sonrası başabaş isabet %50'nin üstüne çıkar.**
+
+---
+
+## 5. Konsolidasyonda işlem — denge hedefi
+
+**Emir akışı tabiiyeti:** *"Günlük ve/veya 4 saatlik emir akışı ne yöndeyse, konsolidasyondan çıkış çoğu zaman o yönde olur."*
+4 saatlik: **"yön eğilimini belirlemede son savunma hattı."**
+
+**İki kamp:**
+
+| Perakende | Akıllı para |
+|---|---|
+| **Kırılım** arıyor | Kırılımı **mühendislik ediyor ya da fade ediyor** |
+| Önceki dibi alıp tepeyi satıyor | **Eski dibin altından alıp eski tepenin üstünden satıyor** |
+| Fiyatı **kovalıyor** | Genişlemeleri **fade ediyor** |
+
+**Kurallar (boğa için):**
+- Konsolidasyonun **altına** her iniş = akıllı paranın satış stoplarını topladığı an
+- Dengenin **altında** kırılan her kısa vadeli dip = **alım** fırsatı
+- Hedef: konsolidasyonun üstündeki alım stopları
+
+**Hedef kuralı — ve videonun dürüst sınırlaması:**
+> *"Fiyatın **dengeye** geri dönmesini arıyoruz. Konsolidasyonun karşı ucunu **beklemiyoruz — bunu bilmiyoruz, olacağına dair hiçbir fikrimiz yok.** Sadece dengeye dönüş hareketini alıyoruz, çünkü konsolidasyonda fiyat **her zaman ortalamaya çekilmek isteyecek.**"*
+
+**Ne işe yarar.** Hedef tanımı tartışmasız (aralığın orta noktası), ve **karşılaştırma grubu doğal:** denge hedefi vs karşı uç hedefi.
+
+**Dikkat.** "Konsolidasyon" tanımsız — ve bu merkezi. Kendi tanımını koy (ör. Mart'ın 60 gün / gövde tanımı).
+
+---
+
+## 6. Sekiz dönüş
+
+| # | Dönüş | Mekanik mi |
+|---|---|---|
+| **1–2** | **Önceki günün tepesi / dibi** | Kısmen |
+| **3–4** | **Hafta içi tepe / dip** | Kısmen |
+| **5–6** | **Ara vadeli tepe / dip** (önceki hafta/ay) | Hayır — bağlam gerekiyor |
+| **7** | **New York seansı dönüşü** | **Evet** |
+| **8** | **Londra kapanışı dönüşü** | **Evet** |
+
+### 1–2. Önceki günün tepe/dibi — "taç mücevher"
+
+**Referans penceresi:** *"Her zaman **son üç güne** başvurursun, bugünü bir gün sayarak."*
+
+**İki koşul birlikte:**
+> *"**Genişleme salınımları sırasında**, önceki günün **dibinin** süpürülüp fiyatın yukarı gitmesi için fırsat yaratan daha küçük geri çekilmeler olur."*
+
+**Alım yapısı:**
+1. Fiyat daha büyük bir **genişleme salınımının** parçası olarak yukarı gidiyordu
+2. Normal geri çekilmede bir **fair value gap'e** iniyor
+3. **Ve aynı zamanda önceki günün dibinin altına** iniyor
+4. Alıcılar orada
+
+**Şart:** ikisi birden — önceki günün dibi **VE** bir iskonto array.
+> *"Sadece 'dünün tepesinin üstündeyiz, o zaman satarım' diye çalışmıyor. **Bağlam olmak zorunda.**"*
+
+### 3–4. Hafta içi tepe/dip
+
+**Aranan yapı:**
+- Piyasa bir süredir yukarı
+- Henüz karşılanmamış bir **prim array** var
+- O array **Salı, Çarşamba ya da Perşembe** işlem görülüyor
+- **Ve aynı anda önceki hafta içi tepe süpürülüyor**
+
+> *"Salı bir tepe yapar, Çarşamba daha yükseğe çıkıp bir üst zaman dilimi prim array'ine girer — **Salı'nın tepelerinin üstündeki alım stoplarıyla eşleşmiş olur.**"*
+
+**Eşit tepeler = "Şeker Diyarı":**
+> *"Perakendenin alım stoplarını hemen onun üstüne koyacağını görmek çok kolay. Onun **10 ya da 20 pip üstüne** yapılan herhangi bir baskın o alım stoplarını toplar."*
+
+**Ölçek:** *"30, 60, hatta 80 pip'lik işlem yapılabilir bir sıçrama."*
+
+### 7. New York seansı dönüşü — ayın en net kuralı
+
+**Varsayılan: DEVAM.**
+> **"New York seansı üst zaman diliminde bir prim array'de ya da bir iskonto array'de AÇILMADIKÇA, New York HER ZAMAN Londra'da görülenin devamı olarak beklenir."**
+
+| Londra ne yaptı | New York nereye açıldı | Beklenti |
+|---|---|---|
+| Aşağı gitti | **İskonto array'e** | **Yukarı dönüş** |
+| Günün dibini yaptı, yukarı | **Prim array'e** | **Aşağı dönüş** |
+| Herhangi biri | Array yok | **Devam** |
+
+> *"'Döneceğini nasıl bilebilirim?' — çünkü **bir üst zaman dilimi PD array'ine işlem gördüğünü görmedin.** Burada gizem yok."*
+
+**Neden ölçülebilir.** İki ikili soru: New York nerede açıldı, Londra ne yaptı. **Sıfır seçim noktası**, ve her işlem günü bir gözlem.
+
+### 8. Londra kapanışı dönüşü
+
+**Sayısal kural:**
+> *"Beş günlük ADR'yi aşan büyük aralıklı günler, **New York saatiyle 10:00 ile öğlen arasında toplam günlük aralığının yaklaşık %20'sini geri çekme eğilimindedir.**"*
+
+**Giriş şartı:** ADR **en az %25–33 aşılmış** olmalı. *"100 pip ADR ise **125 ya da 130 pip** ya da daha fazla."*
+
+**"İkinci süpürme" uyarısı — ve bu iyi:**
+> *"New York dönüşünü beklesen bile **Londra kapanışı geri gelip stopları bir kez daha alabilir** — tam olarak doğru tarafta olanların stoplarını. Bunu görürsen **tekrar içeri gir.**"*
+
+### Dört seansın Judas swing'i
+
+| Zaman | Judas |
+|---|---|
+| **Londra açılışı** | Klasik Judas |
+| **08:20 CME açılışı** | New York Judas'ı |
+| **20:00 NY / 0 GMT** | Asya'nın Judas'ı |
+| **Londra kapanışı** | Dönüş yaratan günlerde |
+
+---
+
+## 7. İki fiyat motor modeli
+
+**Alım programlarında IPDA iki modelden birini uygular:**
+
+| | **Offset accumulation** | **Re-accumulation** |
+|---|---|---|
+| **Ne olur** | Eski bir dibin **altına** yeniden fiyatlanır | Bir **fair value array'ine** aşağı yeniden fiyatlanır |
+| **Kim tetiklenir** | **Satış stopları** — karşı taraf yaratılır | **Zayıf uzunlar sıkıştırılır** (dar stoplar) |
+| **Özet** | *"Esasen satış stopları üzerine bir **stop koşusu**"* | *"Tipik olarak **optimal trade entry**"* |
+| **Ne zaman** | Hızlı açılır, **gün içi kilit diplerde** | Çoğu zaman **bir satış stopu baskınının ardından** |
+
+**Ne işe yarar.** Bir geri çekilmenin **hangi tür** olduğunu adlandırıyor — ve ikisi farklı giriş gerektiriyor: biri stop koşusunun **altında**, diğeri array'in **içinde.**
+
+---
+
+## 8. Scalping parametre tablosu
+
+| Parametre | Değer |
+|---|---|
+| **İşlem süresi** | **1–2 saat veya daha az** |
+| **İşlem başına pip** | **15–30 pip ortalama** |
+| **Zamanlama grafiği** | **5 dakikalık** |
+| **Haftada kurulum** | **15 veya daha fazla** |
+| **Günde kurulum** | **2–3** |
+| **Seans başına** | **~1** |
+| **Ödül/risk** | **1:1** |
+| **İşlem başına risk** | **%0,5 – %1** |
+
+**Videonun kendi ifadesi:**
+> *"**Tipik olarak bire bir olacak — ki bu ateşli değil.** Scalping düşünüyorsan bire bir düşün, alabileceğin aşağı yukarı bu kadar."*
+
+**Risk:** *"**%1 biraz yüksek olabilir.** Daha iyi oldukça %1'e yükselebilirsin — ama **bundan fazlasını yapmazdım.**"*
+
+**Kill zone şartı — mutlak:**
+> *"**Tüm scalping ICT kill zone'ları sırasında yapılmalı.** İşlemin süresi bu kadar kısa vadeli olduğu için günün **en oynak** zamanlarına ihtiyacımız var."*
+
+**Emir türü:** *"Tüm scalping'ini **piyasa emirleriyle** yap. **Limit emirlerini çıkışların için sakla.**"*
+
+---
+
+## 9. Boğa gün yapısı — sekiz aşama
+
+| # | Aşama |
+|---|---|
+| **1** | Açılış günlük aralığın **dibine yakın**; altında küçük bir düşüş olabilir |
+| **2** | **Londra açılışı ilk yukarı ayağı koyar** — **05:00 NY'den önce günlük aralığın %40–60'ı** |
+| **3** | **05:00–07:00 Londra öğle arası:** geri çekilme ya da konsolidasyon |
+| **4** | **New York açılışı devam eder**, **10:00'a kadar** genişler |
+| **5** | Konsolidasyon, günün tepesi, geri çekilme ya da tam dönüş |
+| **6** | Fiyat **beş günlük ADR tepesine** kadar çıkmalı |
+| **7** | Günün tepesi **10:00 ile öğlen** arasında, ADR tepesinde ya da üstünde |
+| **8** | Fiyat aşağı geri çekilip **tepeden uzakta kapanır** |
+
+**Ve videonun özellikle vurguladığı nitelendirme — kaydedilmeli:**
+> *"'Normalde' **her zaman demek değil.** Bu normal bir şey ama **bir panacea değil, mutlak değil.** Yüksek patlayıcı hareketlerde **10:00 fiyatı durdurmaz, öğlen durdurmaz, 13:00 durdurmaz — 15:00 tahvil kapanışına kadar ralli yapabilir.**"*
+
+---
+
+## 10. Seans scalp'ları
+
+### Londra scalp'ı
+- **0 GMT / NY gece yarısında** protraksiyon aşaması scalp edilebilir (**01:00 NY'den önce**)
+- **05:00–07:00 geri çekilmesi**, bir iskonto array'e ulaşıldığında uzun scalp verir
+- Örnek: FVG'ye iniş → doldurma → Londra açılışında yukarı → **ADR'de 30 pip'lik scalp**
+
+### New York scalp'ı
+**Koşul:** Londra günün dibini koymuş ve sponsorluk teyitli → NY'nin yukarı devam etmesi beklenir, **bir üst zaman dilimi prim array'i vurulmadıkça ve/veya ADR'ye ulaşılmadıkça.**
+- **08:20 CME açılışı** → fade edilecek **New York Judas'ını** öngörmek için
+- **Hedefler:** beş günlük ADR tepesi + 4 saatlik/60 dakikalık prim array
+- **ADR tepesine 10:00'dan önce ulaşılırsa: %80'ini al**
+
+### Londra kapanışı scalp'ı — tam parametreler
+
+**Dört koşul:**
+1. New York ve Londra **tandem** hareket etmiş
+2. **Beş günlük ADR tepesine ulaşılmış**
+3. En az **10:30 NY**
+4. İdeal olarak fiyat **ADR tepesini AŞMIŞ**
+
+**Giriş:** tepede **5 dakikalık bir başarısızlık salınımı**, sonra bir **bearish order block**'a giriş. **10:30–13:00 arası.**
+
+| Kalem | Değer |
+|---|---|
+| **Stop** | Günün tepesinin **10 pip üstü** |
+| **Hedef** | Toplam günlük aralığın **%20–30'u** (Fib 0.20–0.30) |
+| **R:R** | **1:1**, ve **20 pip'ten fazlasını hedefleme** |
+
+**Ve seride ilk olumsuz sonuç bildirimi — kaydedilmeli:**
+> *"Bu yüzden **artık Londra kapanışında işlem yapmıyorum.** Eskiden çok yapardım ama gözden düştü, çünkü ondan **yeterince pip alamıyordum**, ya da stop oluyordum ve aleyhime gitmeye devam ediyordu."*
+
+### Asya açılışı scalp'ı
+- **0 GMT açılışında ya da hemen altında** uzun
+- **15–20 pip hedefle — her zaman**
+- **Tam çıkış yap**, kısım bırakma
+- Video kendi kural çelişkisini adlandırıyor: *"Asya aralığının sana ödeme yapmasını talep ediyorsun, oysa onun **küçük bir aralık olmasını umuyorsun. Kurallar arasında bir çelişki var.**"*
+- Ve konum: *"Asya açılışı ve Londra kapanışı, **riski üstlenmeye değecek kadar ödeme yapmıyorlar.**"*
+
+---
+
+## 11. PD array öncelik kuralı — ayın yeni katkısı
+
+> *"Her zaman önce **daha alçak** olanı seçerim, **özellikle bir BREAKER'ı — çünkü diğer her şeyin önüne geçer.**"*
+
+**Ne işe yarar.** Mart'ın tarama sırası "hangi tür önce" diyordu; bu, **çakışma durumunda ne yapılacağını** söylüyor: en yakın olanı, ve breaker varsa o.
+
+**Ve fitil kuralı netleşiyor:**
+> *"Dikkat et, o **fitili saymıyorum.** Geleneksel destek-direnç adamları **98.46** dibini kullanırdı. Ben **düşüş mumuyla** ilgileniyorum — **98.53** dibini istiyorum."*
+
+---
+
+## Mayıs'ın dokuz adımlık günlük rutini
+
+Ayın kapanış videosu, tek bir günün analizini baştan sona yürütüyor.
+
+### Gün öncesi
+
+**1. Ekonomik takvim.** Bir sonraki günün yüksek ve orta etkili olaylarını, **Londra ve New York kill zone'larına göre konumlarıyla** çıkar.
+> *"Londra'da günün tepesi ya da dibi genellikle **manipülasyon kisvesi altında** oluşuyor — ve o manipülasyon genellikle bir haber açıklamasıyla görülüyor."*
+
+**2. IPDA veri aralıkları — dolar endeksinden başla.** Günlükte **60, 40, 20 işlem günü** geriye işaretle.
+> **Kritik: Pazar mumları sayılmaz.** Platformunda varsa telafi et.
+Kutular **her yeni günde bir gün ileri kayar.**
+
+**3. Çeyreklik kayma.** *"Her üç ayda bir kayma öngörürüz ama **her zaman beklemiyoruz. Bir panacea değil.**"*
+
+**4. Son 20 günün PD array'leri — dolar endeksi.**
+> *"Gün içi işlem için çoğu zaman **son 20 günde** çalışacaksın. Hepsi tükendiyse — **çok düşük olasılıklı ama olabilir** — 40 güne bakarsın."*
+Kurumsal emir akışı yönünü çıkar.
+
+**5. Aynısını işlem paritesi için yap.** Dolar endeksi ile paritenin **tutarlı** olması beklenir (biri ayı, diğeri boğa).
+
+### Yapı
+
+**6. 4 saatlik.** Günlük array'leri aktar. Amaç: *"PD array'lere bakıyoruz evet, ama **fiyatın neden aşağı gidip likidite toplamak isteyeceğine dair gerekçeler** arıyoruz."*
+Alt aralığı Fib ile çerçevele: **OTE dengenin altında**, **0.705'te** order block.
+**Geçersizlik kuralı belirle:** hangi seviye aşılırsa yakın vadeli yön iptal olur.
+
+**7. 60 dakikalık.** **Ctrl+Y** ile haftalık perspektif. Sonra temiz grafikte **konfluans** ara: bir FVG + solunda bir order block, **ikisi de eşit diplerin altında.**
+
+### Uygulama
+
+**8. Seviyeye ulaşıldığında: 15 dakikalık.**
+> *"**Central Bank Dealers Range'i, flout'u ve Asya aralığını** yap, standart sapmalarını piyasanın üstüne ve altına projekte et — bu bize **ulaşılacak potansiyel hedefler** veriyor."*
+
+**9. Haftalık şablonla senaryo kur.** Hangi haftalık profil (Mart V2'nin on iki profili) devrede?
+
+### Ölçülebilirlik özeti
+
+**Adım 1, 2, 4, 5, 8 tamamen mekanik.** Adım 3 (çeyreklik kayma), 6-7'nin array seçimi ve 9'un profil tahmini yorum gerektiriyor.
+
+**Ölçmeye en değer dördü:**
+
+1. **New York dönüş kuralı (V5-7)** — iki ikili soru, sıfır seçim noktası, her gün bir gözlem. **Ayın birinci önceliği.**
+2. **Seviyede geçirilen süre filtresi (V1)** — *"iskonto array'de N mumdan fazla kalan kurulumlar, hızlı dönenlerden farklı sonuç veriyor mu?"* Yeni bir boyut, ve tek parametre.
+3. **Londra kapanışı %20 geri çekilmesi (V5-8)** — ADR aşımı sayısal, geri çekilme yüzdesi sayısal.
+4. **Denge hedefi (V4)** — hedef tanımı tartışmasız, karşılaştırma grubu doğal.
+
+**Ve ölçerken sabit 1:1 hedefe dikkat:** senin fat-tail bulgun bunun sağ kuyruğu kestiğini gösteriyor. Aynı girişleri **1:1 ve açık hedefle** yan yana ölç.

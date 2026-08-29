@@ -1643,3 +1643,379 @@ Ve bu, ayın en kullanışlı pratik sonucunu doğuruyor — hangi işi yapacağ
 Bir de kaydedilmesi gereken bir asimetri var. Altı ay boyunca serinin tekrar eden örüntüsü şuydu: *doğru olan kısımlar herkesin bildiği kısımlar, özgün olan kısımlar ölçülmemiş kısımlar.* Şubat bunu kısmen kırıyor — COT orta çizgisi ve NR7 gibi *doğrulanabilir* araçlar getiriyor, ama ikisi de **zaten literatürde var** (Williams COT Index, Crabel'ın dar aralık filtreleri). Yani örüntü kırılmadı, sadece yer değiştirdi: **bu ayın ölçülebilir kısımları, ICT'ye özgü olmayan kısımlar.**
 
 Özgün olan tek şey birleştirmenin kendisi — ve ölçülemez olan da o.
+
+---
+
+# BÖLÜM IV — Kesinlikle bilmen gerekenler
+
+Şubat'ın kavramları: **tanım · nasıl bulunur · ne işe yarar.** Sonda ayın tam swing modeli.
+
+---
+
+## 1. Swing trading — tanım ve sınırlar
+
+**Tanım (videonun kendi ifadesi).** *"Piyasadaki öngörülebilir fiyat hareketlerini yüksek tutarlılıkla işlemleme disiplini."*
+
+| Kalem | Değer |
+|---|---|
+| **Tutuş süresi** | **İki hafta veya daha uzun** (tercihen iki hafta – bir ay) |
+| **Hedef büyüklüğü** | **200 – 500 pip** |
+| **Sıklık** | **Her 4–6 haftada 1–2 işlem** |
+| **Giriş grafiği** | **4 saatlik** |
+| **Çerçeveleme grafiği** | **Aylık ve haftalık** |
+
+**Piyasa seçimi:**
+- **"Favori pariteden kaçın."** Büyük hareketler her yıl piyasalar arasında dönüyor
+- **Her üç ayda bir** yeni fırsat oluşuyor
+- **Eleme kuralı:** son üç ayda az hareket etmiş ya da hiç hareket etmemiş durgun piyasalardan kaçın
+
+**Piyasa profilleri — aranan:**
+
+| Profil | Ne demek | Swing için |
+|---|---|---|
+| **Trend** | Aylık/haftalıkta yönlü | **Aranan** |
+| **Konsolidasyondan yeni çıkmış** | Büyük oyuncular bekleme düzeninden çıkarmış | **Aranan** |
+| **Geniş aralıkta sıkışmış** | Kurumsal ilgi yok | **Kaçınılacak** |
+
+---
+
+## 2. PD array matrisi — tarama sırası
+
+**Ayın merkezî organizasyon aracı.** Mevcut fiyatın üstü ve altı **bu sırayla** taranır:
+
+| Sıra | Üstte (prim spektrumu) | Altta (iskonto spektrumu) |
+|---|---|---|
+| 1 | En yakın **bearish mitigation block** | En yakın **bullish mitigation block** |
+| 2 | İşlem görmemiş **bearish breaker** | İşlem görmemiş **bullish breaker** |
+| 3 | **Likidite boşluğu** | **Likidite boşluğu** |
+| 4 | **Fair value gap** | **Fair value gap** |
+| 5 | En yakın **bearish order block** | En yakın **bullish order block** |
+| 6 | **Rejection block** — fitilli mumların **gövdelerinin üstü** | **Rejection block** — **gövdelerin altı** |
+| 7 | **Eski dip veya tarihsel tepe** | **Eski tepe veya tarihsel dip** |
+
+**Nasıl kullanılır.**
+- **Giriş:** bulunduğun bölgeye göre karşı listeden bir seviye seç
+- **Hedef:** karşı taraftaki listeyi **1'den 7'ye doğru** sırayla hedefle
+- **Tarama sırası:** prim array'leri için listede **aşağıdan yukarı**, iskonto array'leri için **yukarıdan aşağı**
+
+**Ve aynı tarama dört zaman diliminde:** aylık, haftalık, günlük, 4 saatlik.
+
+**Ocak V14'ün hiyerarşisiyle farkı:** Ocak listeyi veriyordu, Şubat **tarama yönünü** ekliyor ve dört zaman dilimine uyguluyor.
+
+---
+
+## 3. Üç sıralı durum — ayın en mekanik karar tablosu
+
+**Boğa tarafı:**
+
+| Durum | Aylık | Haftalık | Günlük | Ne yaparsın |
+|---|---|---|---|---|
+| **1** | Boğa | Boğa | Boğa | 4 saatlik iskonto array'lerinden al |
+| **2** | Boğa | Boğa | **Düzeltmede** | **Haftalık** iskonto array'ine inmesini bekle |
+| **3** | Boğa | **Düzeltmede** | **Düzeltmede** | **Aylık** iskonto array'ine inmesini bekle |
+
+**Ayı tarafı — tam simetriği:**
+
+| Durum | Aylık | Haftalık | Günlük |
+|---|---|---|---|
+| **1** | Ayı | Ayı | Ayı |
+| **2** | Ayı | Ayı | **Boğa (düzeltme)** |
+| **3** | Ayı | **Boğa** | **Boğa** |
+
+**Ne işe yarar.** *"Fiyat nereye kadar inecek?"* sorusuna **mekanik** cevap veriyor. Kaç zaman dilimi düzeltmedeyse, o kadar üst zaman diliminin array'ine inmesi bekleniyor.
+
+**Bu, altı ayın en temiz "ne kadar geri çekilir" kuralı.** Sıfır seçim noktası içeriyor — sadece "kaç zaman dilimi düzeltmede" sayılıyor.
+
+---
+
+## 4. Kurulum aşamaları — koşul, sahne, uygulama
+
+Videonun üç aşamalı çerçevesi:
+
+**1. KOŞUL.** Piyasa üst zaman diliminde zaten o yöne eğilimli olmalı. Kaynaklar: mevsimsellik, faiz, COT, piyasalar arası analiz.
+> *"Her şeyin uyuşmasına gerek yok — makro ölçekte az sayıda şeyin uyuşması yeterli."*
+Ve en güçlü tekil unsur: **faiz oranları.**
+
+**2. SAHNE.** Piyasa önce **ralli yapmalı** — bir **impuls fiyat salınımı.** Bu ralliye **binmezsin, beklersin.** Ralli sırasında karşı taraftaki prim array'lerini haritalarsın ve geri çekilmeyi beklersin.
+> *"Geri çekilmeyi zamanlamaya çalışma."*
+
+**3. UYGULAMA.** Geri çekilme geldiğinde, önceden haritaladığın iskonto array'lerinden gir. Kâr edilecek kısım sonraki **genişleme salınımı (expansion swing).**
+
+**Aralık tanımı:** **başlangıç noktası (point of origin)** ile geri çekilmeden önceki **ara vadeli tepe** arası. O aralığın tamamı **iskonto PD array matrisidir.**
+
+---
+
+## 5. Prim / iskonto sayısallaştırması — Fibonacci genişletme
+
+Videonun aralığı sayıya çevirme yöntemi (MT4 Fibonacci expansion aracı):
+
+| Seviye | Anlam | Kural |
+|---|---|---|
+| **0.90** | Derin prim | **Yeni uzun alma** |
+| **0.80** | Prim | **Yeni uzun alma** |
+| **0.50** | **Denge (equilibrium)** | Üstü prim, altı iskonto |
+| **0.30** | Derin iskonto | **Yeni kısa alma** |
+| **0.20** | En derin iskonto | *"20'den azını görmeyi sevmiyorum"* |
+
+**Ne işe yarar.** "Prim mi iskonto mu" sorusunu **bir sayıya** indiriyor. Ve iki yasak koyuyor — yasaklayıcı kurallar daha test edilebilirdir.
+
+**Video kendisi de zorunlu görmüyor:** *"zamanla çizmene gerek kalmayacak."*
+
+---
+
+## 6. Prim/iskonto asimetrisi — teyit kuralı
+
+**Ayın en somut teyit ölçütü.** Bir yönde işlemdeysen aranan:
+
+| Boğa işlemde | Ayı işlemde |
+|---|---|
+| **Her düşüş mumu destek sağlıyor** | **Her yükseliş mumu direnç sağlıyor** |
+| Salınım tepeleri kırılıyor, sonrasında daha yüksek tepeler | Salınım dipleri kırılıyor, sonrasında daha düşük dipler |
+| **Bearish order block'lar fiyatı tutamıyor** — içlerinden geçiliyor | **Bullish order block'lar tutamıyor** |
+| Aralığın prim tarafındaki boğa array'leri zayıf | Aralığın iskonto tarafındaki ayı array'leri zayıf |
+
+**Videonun formülü:** *"Toplama düşüş mumlarında ölçülür, dağıtım yükseliş mumlarında direnç olarak ölçülür."*
+
+**Ne işe yarar.** İşlemin **arkasında kurumsal akış olup olmadığının** sürekli bir kontrolü. Ve tamamen mekanik: mum mum sayılabilir.
+
+---
+
+## 7. "Kendini ikna ediyorsan geç"
+
+**Kural.** Grafiği incelemek zorunda kalıyorsan, ileri geri tartışıyorsan, *"bu order block mu likidite noktası mı"* diye kendinle tartışıyorsan → **geç.**
+
+> *"İşlemin grafikten kelimenin tam anlamıyla fırladığı durumlar en yüksek olasılıklı olanlar, ve aynı zamanda alınması en kolay olanlar."*
+
+**Ne işe yarar.** Bir **öz-denetim** kuralı, ve metottan bağımsız geçerli.
+
+**Dikkat.** Ölçülebilir değil — "belirgin" öznel. Ama **doğru yönde bir önyargı koyuyor:** sinyal bulmaya karşı. Ve Haziran V17'deki *"belirgin değilse SMT'de ayrışma yoktur"* kuralıyla aynı aileden.
+
+---
+
+## 8. Ödül/risk ve kaldıraç
+
+**R:R kuralı:** **3:1'den az kullanma.** Ve gerçekte çoğu zaman 5:1, bazen 10:1 – 15:1.
+
+**Başabaş isabet tablosu (videonun kendi sayıları):**
+
+| R:R | Başabaş isabet | Yanılabileceğin oran |
+|---|---|---|
+| **3:1** | **%25 – 34** | %66 – 75 |
+| **5:1** | ~%17 | %83 |
+| **10:1** | ~%9 | %91 |
+
+**Kaldıraç — ayın en muhafazakâr sayısı:**
+
+| Ortam | Kaldıraç |
+|---|---|
+| ABD forex yasal üst sınır | 50:1 |
+| Vadeli/emtia | ~10:1 |
+| Yurtdışı brokerlar | 100:1 – 400:1 |
+| **Videonun önerisi** | **3:1** |
+
+Somut: **10.000 $ hesapla yalnızca 3 mini lot.**
+
+> *"Kaldıraç swing trading'de senin kutsal kâsen"* — **kontrol edilecek, maksimize edilmeyecek.**
+
+**Getiri beklentisi:** yıllık **%20 – 30** (fon sektörü standardı).
+
+---
+
+## 9. Giriş tekniği eşlemesi — ayın en mekanik kuralı
+
+**Hangi PD array'e hangi emir türü konur:**
+
+| PD array tipi | Alım | Satış |
+|---|---|---|
+| **Breaker / mitigation block** | **Stop emri** | **Stop emri** |
+| **Likidite boşluğu / FVG** | **Stop emri** | **Stop emri** |
+| **Order block / rejection block / eski dip-tepe** | **Limit emri** (eski dibin **altında**) | **Limit emri** (eski tepenin **üstünde**) |
+
+**Ne işe yarar.** Ocak V16/V17'de "stop mu limit mi — sana kalmış" deniyordu. **Burada karar array türüne bağlanıyor** ve seçim ortadan kalkıyor.
+
+**Emrin tam yeri için:** Ocak'ın giriş teknikleri — ters mumun **açılışına** stop, **kapanışına** limit.
+
+---
+
+## 10. Kurulum başarısızlığı protokolü
+
+**Ayın en somut risk prosedürü.**
+
+Bir PD array'de giriş yaptın ve fiyat içinden geçti (kurulum başarısız):
+
+1. **Bir sonraki PD array'e** git — boğada bir alt, ayıda bir üst
+2. Orada **tekrar gir**
+3. **Pozisyon büyüklüğü: %50** (öncekinin yarısı)
+4. 4 saatlikte array kalmadıysa **günlük → haftalık → aylık** array'lere çık
+5. Kâr hedefi düşürülebilir: *"kaybettiğinin %60'ını alabiliyorsan %60'a razı ol"*
+
+**Ne işe yarar.** Ekim V5'in "kayıptan sonra riski yarıya indir" kuralının **seviye tabanlı** versiyonu. Ve ikisi birleşiyor: yeni giriş **hem daha iyi seviyede hem yarı boyutta.**
+
+---
+
+## 11. Sekiz "patlayıcı hareket" ölçütü
+
+Videonun listesi, ve **ikiye ayrılıyor:**
+
+### Ölçülebilir olanlar (beş)
+
+| # | Ölçüt | Eşik |
+|---|---|---|
+| **1** | **Ana piyasa analizi** — dört varlık sınıfı (faiz, hisse, emtia, döviz) | **Her gruptan birer tane trend etmeli.** Grup A: emtia + hisse. Grup B: döviz + faiz |
+| **3** | **COT orta çizgisi** | Son **12 ayın** en yüksek ve en düşük net pozisyonunun **ortası** = yeni sıfır çizgisi. Ticariler üstündeyse boğa |
+| **4** | **Açık pozisyon** | **%10 – 15+ düşüş** = ticari kısa kapatma → boğa. **%10 – 15+ artış** + ticari satış → ayı |
+| **6** | **Oynaklık daralması** | **Inside bar** + **son 7 günün en küçük aralığı** + **son 3 günün en küçük aralığı** |
+| **8** | **Williams %R**, periyot **15**, günlük, bölme **50** | 50 altı alım bölgesi, üstü satım. **50'deysen en son hangisinden çıktıysan onu seç** |
+
+### Ölçülemez olanlar (üç)
+
+| # | Ölçüt | Sorun |
+|---|---|---|
+| **2** | Piyasalar arası konfluans | Aynı doları içeren seriler — bağımsız değil |
+| **5** | Mevsimsel eğilim | Ocak'ın bulgusu geçerli: veri doğrulanamaz |
+| **7** | Haber başlıkları — ters yönde | Yazılamaz; "büyük başlık" tanımsız |
+
+**Videonun kendi en dürüst cümlesi (ölçüt 6 için):**
+> *"Bu sana **zamanlama vermiyor.** Sadece sahneyi veriyor. Ve piyasalar küçük aralıklarda gidiyor diye **yönü bildiğin anlamına gelmez.**"*
+
+---
+
+## 12. COT orta çizgisi — ayın en iyi yeni fikri
+
+**Sorun.** Ticari işlemciler genelde **sürekli net kısa** görünür (hedging yaptıkları için). Standart sıfır çizgisi bu yüzden çoğu zaman bilgi taşımaz.
+
+**Çözüm — dört adım:**
+1. Son **12 ayın** ticari net pozisyonunun **en yüksek** değerini bul
+2. **En düşük** değerini bul
+3. **Ortasını al** → **yeni sıfır çizgisi**
+4. Ticariler bu çizginin **üstündeyse alıyor**, altındaysa satıyor
+
+**Ne işe yarar.** Standart sıfır çizgisinin altında bile olsalar, **hedging programlarındaki değişimi** yakalıyorsun.
+
+**Neden ölçülebilir.**
+- Formül: `(mevcut − 12 ay min) / (12 ay maks − 12 ay min)`, eşik **%50**
+- **Sıfır seçim noktası**
+- Veri **haftalık, kamuya açık, onlarca yıllık geçmişi var**
+- Kaynak: **barchart.com**
+
+**Kaynak:** Larry Williams — video kendisi belirtiyor.
+
+**Dikkat.** COT raporu **Salı günkü pozisyonları gösterir ve Cuma yayımlanır** — üç günlük gecikme. Video bunu anmıyor. Ölçerken modellemezsen sonuç geçmişte hep iyi görünür.
+
+---
+
+## 13. Oynaklık daralması (inside bar)
+
+**Tanım.** Bir mumun tamamı, bir önceki mumun aralığının **içinde** kalıyor — tepesi daha düşük, dibi daha yüksek.
+
+**Üç filtre birlikte kullanılıyor:**
+1. **Inside bar** (herhangi bir zaman diliminde)
+2. **Son 7 günün en küçük aralığı**
+3. **Son 3 günün en küçük aralığı**
+
+**İddia:** bir sonraki ya da ondan sonraki mumun **büyük aralıklı** olma olasılığı yüksek.
+
+**Ne işe yarar.** **Zamanlama değil, sahne.** Videonun kendi ifadesiyle: bir kurulum zaten hizalıysa, daralma o kurulumun **ne zaman patlayacağına** dair bir işaret.
+
+**Neden ölçülebilir.** Üçü de tamamen aritmetik, sıfır seçim noktası. Ve hipotez net: *"inside bar'ı takip eden mumun gerçekleşmiş aralığı, ortalamadan büyük mü?"*
+
+**Ve klasik karşılığı var:** bu, **NR7 / NR4** kalıbının aynısı (Toby Crabel, *Street Smarts*) — akademik ve pratik literatürde incelenmiş, ve oynaklık kümelenmesi gerçek bir olgu.
+
+---
+
+## 14. Kurumsal seviyeler (yuvarlak sayılar)
+
+**Videonun listesi:**
+
+| Seviye | Örnek |
+|---|---|
+| **Büyük rakam (00)** | 1.2000 |
+| **Orta rakam (50)** | 1.2050 |
+| **80** | 1.2080 |
+| **20** | 1.2020 |
+| **30 ve 70** | 1.2030, 1.2070 |
+
+**Emir katmanlama kuralı:** emirler tek fiyata konmuyor. Örnek — 50 seviyesinde boğa bekleniyorsa bir order block **60'ta** oluşabilir, ama bütün olarak **50'de ortalama** alınıyor.
+
+**Ve seviyeye yaklaşma kuralı:** *"Piyasa fiyatı seviyenin üstündeyse **muhafazakâr ol**, tam o seviyenin vurulmasını bekleme."* Gümüş örneğinde 15.56 yerine 15.60, hatta 15.50 kullanılıyor.
+
+**Ne işe yarar.** **Sıfır seçim noktalı** bir seviye kaynağı — ve doğal karşılaştırma grubuyla ölçülebilir: yuvarlak sayılar vs rastgele seviyeler.
+
+---
+
+## 15. Seviye işaretleme kuralı — bölge değil, fiyat
+
+Video bunu iki kez vurguluyor:
+
+> **"Bunlar bölge değil, belirli fiyat seviyeleri — düşüş mumlarının açılışları ve tepeleri."**
+
+**Prosedür (boğa için):**
+1. Fiyat daha yüksek tepeler yaparken **her düşüş mumunu** not et
+2. Mumun **tepesini** ve **açılışını** ayrı ayrı işaretle
+3. Aynısını aylık → haftalık → günlük → 4 saatlik sırasıyla yap
+4. Üst zaman dilimi seviyelerini alt grafiklere **taşı**
+
+**Mum seçim kuralları:**
+- Ardışık mumlar varsa **gövdeleri birleştir**
+- **Fitil değil gövde** kullanılır
+- **Bir mumun gövdesi çok küçükse ve öncekinin içine kapsanmışsa (encapsulated), o mumu kullanma** — daha kalın gövdeli olanı kullan
+
+**Ne işe yarar.** "Bölge" belirsizdir, "fiyat" değildir. Bu kural, order block'un ölçülebilirliğini doğrudan artırıyor.
+
+---
+
+## Şubat'ın tam swing modeli — yedi kapı
+
+Ayın kapanış videosu, sekiz videoyu tek prosedüre bağlıyor. **Her kapı "hayır" derse durulur.**
+
+### Kapılar
+
+| # | Kapı | Boğa koşulu | Ölçülebilir mi |
+|---|---|---|---|
+| **1** | **Mevsimsel eğilim** | Alım için bir eğilim var mı? | **Hayır** — ve zorunlu kapı |
+| **2** | **Ana piyasa analizi** | Grup A'dan (emtia/hisse) **ve** Grup B'den (döviz/faiz) birer tanesi trend ediyor mu? | **Evet** |
+| **3** | **COT** | Ticariler **12 aylık orta çizginin üstünde** mi? | **Evet** |
+| **4** | **Korelasyon (SMT)** | Dolar endeksi ters yönü destekliyor mu? | **Evet** |
+| **5** | **Emtia filtresi** | Emtialar yükseliyor, tepeleri kırıyor, dipleri reddediyor mu? | **Evet** |
+| **6** | **Açık pozisyon** | **%10–15+ düşmüş** mü? | **Evet** |
+| **7** | **Top-down analiz** | Aylık → haftalık → günlük → 4 saatlik PD array'ler | **Kısmen** |
+
+**Ayı versiyonu:** aynı kapılar, ters koşullarla.
+
+### Kapı 2'nin "hayır" cevabı — ve bu iyi
+
+> *"Swing için koşullar olgun değilse **'artık işlem yapamam' demiyorum** — daha alt zaman dilimine iniyorum."*
+
+Bu, filtre yığınının işlem sayısını öldürme problemine verilen tek cevap: **kurulum yoksa ölçek değiştir.**
+
+### Giriş ve yönetim
+
+**8. Giriş:** PD array türüne göre stop ya da limit (madde 9)
+**9. Stop:** yapının ötesi
+**10. Kâr alma:** her zaman diliminin karşı array'inde **kademeli** — 4 saatlikte bir kısım, günlükte bir kısım, haftalıkta bir kısım
+**11. Aylık/haftalık hedefe yaklaşırken pozisyonun en küçük kısmıyla ol**
+**12. Kurulum başarısız olursa:** bir sonraki array, **%50 boyutla**
+
+### Bu modelin ölçülebilirlik durumu
+
+**Kapı 2–7 tamamen mekanik.** Kapı 1 (mevsimsellik) doğrulanamaz — **ve zorunlu ilk kapı konumunda.**
+
+**Videonun kendi tavizi bu sorunu çözüyor:**
+> *"Bu bölümü şablondan çıkarmak ve mevsimsel eğilim dışındaki her şeye bakmak istersen, **buyur.**"*
+
+**Kapı 1'i çıkarınca, geriye altı kapılı tamamen kodlanabilir bir model kalıyor** — ve o model, altı ayın en eksiksiz çıktısı.
+
+### Ölçüm önerisi
+
+Kapıları **tek tek ekleyerek** ölç, hepsini birden değil:
+
+| Aşama | Ne eklenir |
+|---|---|
+| Taban | Top-down PD array girişi (kapı 7), filtresiz |
+| +1 | COT orta çizgisi (kapı 3) |
+| +2 | Açık pozisyon (kapı 6) |
+| +3 | SMT (kapı 4) |
+| +4 | Ana piyasa trend testi (kapı 2) |
+| +5 | Oynaklık daralması (V7 ölçüt 6) |
+
+Her aşamada işlem sayısı ve ort. R kaydedilir. **Hangi kapının gerçekten katkı yaptığı ancak böyle görülür** — ve senin Aşama 1 RET'inin sebebi de tam olarak filtrelerin işlem sayısını öldürmesiydi.

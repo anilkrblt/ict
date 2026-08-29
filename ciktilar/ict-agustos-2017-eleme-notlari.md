@@ -1480,3 +1480,476 @@ Sabit saat pencereleri kendi başlarına. Açık pozisyon eşiği kendi başına
 Bir kısmı sıfır çıkacak. Bir kısmı zaten literatürde var ve okumakla başlamak gerekiyor. Bir kısmı senin `#014`, `#018`, `#029` ve `#013` bulgularınla doğrudan aynı sorunun farklı yüzü.
 
 **Ve hangisinin hangisi olduğu, ancak ölçüldükten sonra bilinir — ki bu belgenin on iki ay boyunca yaptığı tek şey, o ölçümün hangi soruları soracağını yazmaktı.**
+
+---
+
+# BÖLÜM IV — Kesinlikle bilmen gerekenler
+
+Ağustos, on iki ayın **tek prosedüre indirgenmiş hali.** Sözlük dört zaman dilimi katmanına göre düzenlendi. Sonda, on iki ayın tamamının çekirdeği.
+
+---
+
+# A. AYLIK KATMAN — dokuz adım
+
+## A0. Ne zaman yapılır
+
+> *"Her ayın **son işlem gününde**, piyasa kapanır kapanmaz. Ayda **bir kez.**"*
+
+## A1. Sıra — ve neden bu sıra
+
+**Ayın açılış ilkesi:**
+> **"Zaman ve fiyat — fiyat ve zaman değil. ÖNCE ZAMAN, SONRA FİYAT."**
+
+| # | Adım | Ne yapılır |
+|---|---|---|
+| **1** | **Mevsimsel eğilimler** | İçinde bulunulan ve gelecek ayın eğilimleri. Kaynak: **Steve Moore** |
+| **2** | **Çeyreklik kayma** | **9–18 aylık** trend, aylık grafikte **18 mum geriye** |
+| **3** | **Küresel faiz oranları** | **investing.com/central-banks** — yüksek faizli ülkeyi düşük faizliyle eşleştir |
+| **4** | **Piyasa profili** | Üç soru (aşağıda) |
+| **5** | **Piyasalar arası analiz** | Pozitif ve negatif korele piyasalar |
+| **6** | **Piyasa yapısı + SMT** | Tepe/dip hiyerarşisi, dolar endeksi ya da korele parite SMT'si |
+| **7** | **PD array matrisi** | Aralığı prim/iskonto olarak böl |
+| **8** | **Anahtar seviyeler** | Yuvarlama kuralı (aşağıda) |
+| **9** | **Aylık yön eğilimi** | Ve haftalığa aktarım |
+
+**Mevsimselliğin neden birinci sırada olduğu:**
+> *"Mevsimsel eğilimler, **fiyatın nerede olduğunu bilmeme gerek kalmadan** en iyi potansiyel büyük hareket edenleri planlamama yardım ediyor."*
+
+**Ve faiz için en güçlü ifade:**
+> *"**Faiz oranları tüm varlık sınıflarında bir numaralı sürücüdür.** Faizleri anlamıyorsan, şimdiye kadar verdiğim hiçbir piyasa analizi kavramından bir şey elde edemeyeceksin."*
+
+## A2. 9–18 aylık trend ve tersine dönme varsayılanı
+
+**Yöntem:** *"Hareketli ortalamalarla ilgisi yok — sadece aylık grafikte **18 mum geriye** giden gerçek mumlara bakıyorum."*
+
+**Varsayılan kural — ve bu mekanik:**
+> *"**9–18 aylık trend net değilse ya da konsolidasyondaysa**, benim kişisel yaklaşımım **son üç-dört ayın yönünün TERSİNE dönmesini** beklemek."*
+
+**Neden ölçülebilir.** Belirsizlik durumunda bile bir **varsayılan** veriyor, ve o varsayılan tamamen mekanik: son 3-4 ayın yönünün tersi. Karşılaştırma grubu doğal (devam varsayımı).
+
+## A3. Piyasa profili — üç soru, bu sırayla
+
+| Soru | Evet ise | Hayır ise |
+|---|---|---|
+| **1. Konsolidasyonda mıyız?** | Kırılım öncesi genişleme kanıtı ara | Trend uca ulaşıyor olabilir → geri çekilme muhtemel |
+| **2. Trendde miyiz?** | **Devam işlemleri** ara, tepe/dip seçme | Konsolidasyona döner, kırılım işaretleri ara |
+| **3. Geri çekilmede miyiz?** | Geri çekilme sonrası devam ara | Konsolidasyon mu trend mi belirle |
+
+**Ve konsolidasyonla başlamanın gerekçesi:**
+> *"Önce trendde mi diye sormuyorum — **konsolidasyonda mıyız diye bakıyorum, çünkü asıl hikâyeyi o anlatıyor. Konsolidasyon bir sonraki hareketin başlangıcıdır.**"*
+
+**Dikkat.** Üç soru **hiçbir tanım içermiyor** — "konsolidasyon", "trend", "geri çekilme" için eşik yok. Kendi tanımını koy (Mart V5'in 60 gün / gövde tanımı uygun).
+
+## A4. Yuvarlama kuralı — ayın tek mekanik fiyat kuralı
+
+| Array'in yeri | Yuvarlama |
+|---|---|
+| **Prim array** (fiyatın üstünde) | **AŞAĞI yuvarla** — en yakın **0 ya da 5** seviyesine |
+| **İskonto array** (fiyatın altında) | **YUKARI yuvarla** — en yakın **0 ya da 5** seviyesine |
+
+> *"**Ona doğru asla yukarı yuvarlamak istemem — alçakta asılı meyveyi istiyorum.**"*
+
+**Ne işe yarar.** Girişi ve çıkışı **hedefin biraz berisine** koyuyor — yani doluma öncelik veriyor.
+
+**Ve ölçülebilir bir bedeli var:** her seferinde birkaç pip feda ediliyor. Ölçerken ikisini yan yana koy — *"yuvarlanmış giriş vs tam seviye: dolum oranı ve ort. R nasıl değişiyor?"*
+
+## A5. Enflasyon / deflasyon kontrolü
+
+> *"Enflasyona bakmanın en kolay yolu **emtia fiyatlarını takip etmek.** Emtiaların çoğunluğu daha düşük fiyat yapıyorsa **deflasyonist**; yükseliyorsa **enflasyonist** koşuldayız."*
+
+## A6. Öngörü ufku ve dürüstlük beyanı
+
+> *"**Üç aylık fiyat hareketini öngörmeye çalışıyorum**, dört aya kadar. **Doğru olmayabilirim.** Ama aylık mumun **sadece yarısını** doğru alabilirsem, bu çoğu zaman o ay kârlı olmam için yeterli. **Kârlı olmak için haklı olmak zorunda değilsin.**"*
+>
+> *"**Her zaman haklı değilim. Her zaman haklı olamam. İnsanım ve yanlış şeyler yapacağım.**"*
+
+---
+
+# B. HAFTALIK KATMAN — üç yeni adım
+
+Aylığın dokuz adımının **çoğu birebir tekrarlanıyor.** Üç adım yeni:
+
+## B1. Göreli güç
+
+| Varlık | Yöntem |
+|---|---|
+| **Hisse** | IBD'ye göre **ilk 30 endüstri grubundaki** güçlü hisseler |
+| **Emtia** | Kendi vadeli grubunda **daha yüksek dip** yapan piyasalar |
+| **Döviz** | Dolar endeksi zayıfken **daha düşük dip yapmayı başaramayan** dövizler |
+
+**Neden burada:** *"Aylıktan **net bir tablo alamamış olabilirim.** Aylık grafikler bana iyi konuşmuyorsa, gereksiz hayal kırıklığından kaçınmak için göreli güç analizi yaparım."*
+
+## B2. COT — "ICT hedging program"
+
+**Yöntem — dört adım:**
+1. **Son 12 aya** bak
+2. **Yalnızca ticari hedger'ların** net pozisyonunun en yüksek ve en düşük okumasını bul
+3. O aralığı **görsel olarak ikiye böl**
+4. **Orta noktanın üstündeyse boğa, altındaysa ayı**
+
+**Ve günlük ölçekte bir alternatif (V3):**
+> *"Eğer o aralık **çok darsa** ya da 12 aya bakarak ayırt edemiyorsam **altı aya inerim**, ve bu bana **çeyrekten çeyreğe** bir etki verir."*
+
+**Dinamik pencere:** *"Bugün neredeysen oradan **12 ay geriye** git — her zaman fiyata şu an nerede bakıyorsan oradan."*
+
+**Ve sonuç kuralı:** *"Orta noktanın **altındaysam**, **iskonto array'lere** odaklanacağım ve piyasanın yukarı genişleyeceği senaryolar arayacağım."*
+
+**Ek katmanlar:** **iki yıllık ve dört yıllık uçlar**; ve **grup içi görece büyüklük.**
+
+**Mantık:**
+> *"Ticariler tepe ve dipleri yaparlar. Uçlarda **büyük fonlar hep kıçlarına tekmeyi yerler**, ama aradaki bölümde haklıdırlar. **Biz ticarilerin uçlarını alıp, ortadaki bölümde büyük fonların yönünde işlem yaparız.**"*
+
+**Özgünlük iddiası — ve düzeltme.** Video *"bunu başka hiçbir yerde bulamazsın"* diyor. **Ama bu, Larry Williams'ın COT Index'idir** — bir aralığı normalize edip eşiğe göre okumak. Ve Haziran'da video bunu **kendisi kabul etmişti:** *"burada öğreteceğim her şey Larry Williams'tan öğrendiğim şey."* Ağustos'ta özgünlük iddiası geri geliyor.
+
+## B3. Piyasa duyarlılığı — üç kaynak
+
+**a) Manşetler.** IBD, Barron's, WSJ, Bloomberg.
+> *"**Büyük hikâyeyi soldurmayı (fade) seviyorum.** **Büyük tanımlayıcı sıfatlar** içeren manşetler — duygusal olarak yüklü bir şey. **Ne kadar duygusal yüklü ve ne kadar sık tekrarlanırsa**, o kadar bir duyarlılık fikri inşa eder."*
+
+**b) Forumlar.** *"Perakende düşüncesi için forumları tarıyorum... **Teknikler hizalandığında ve duyarlılık beklediğimizin %100 tersini söylediğinde inanılmaz oluyor.**"*
+
+**c) Williams %R** — haftalık grafikte.
+
+**Dikkat — üçlü sayım sorunu.** %R'ın kendisi zaten bir duyarlılık vekili. Manşet + forum + %R'ı "üç bağımsız teyit" saymak, **aynı değişkenin üç okunuşunu** teyit saymaktır.
+
+---
+
+# C. GÜNLÜK KATMAN
+
+## C1. Açık pozisyon — on iki ayın en tanımlı kuralı
+
+| Koşul | Sonuç |
+|---|---|
+| Fiyat **üst zaman dilimi İSKONTO array'inde** + açık pozisyon **~%15 veya daha fazla DÜŞÜYOR** | **Son derece BOĞA** |
+| Fiyat **üst zaman dilimi PRİM array'inde** + açık pozisyon **~%15 veya daha fazla ARTIYOR** | **Son derece AYI** |
+
+**Ve eylemsizlik kuralı — kaydedilmeli:**
+> *"**Yukarıdaki iki koşulun arasındaki durumlarda, açık pozisyon analizimde DİKKATE ALINMAZ. Ya bu iki kriterden birini karşılamalı ya da ona hiç başvurmayacağım.**"*
+
+**Zaman dilimi sınırı:** *"Günlüğe inene kadar açık pozisyonla gerçekten ilgilenmiyorum."*
+
+**Neden bu on iki ayın en tanımlı kuralı:**
+- **İki koşul da sayısal** (%15, ve array konumu)
+- **Ve arada kalan durum için açık bir "kullanma" talimatı var** — bu, seride başka hiçbir yerde yok
+- Yanlışlanabilir, ve karşılaştırma grubu doğal
+
+## C2. Günlük kurumsal emir akışı
+
+| Aylık/haftalık **AYI** ise | Aylık/haftalık **BOĞA** ise |
+|---|---|
+| Günlük, **yükseliş mumlarında direnç** bulmalı | Günlük, **düşüş mumlarında destek** bulmalı |
+| Ve **düşüş mumlarını kırmalı** | Ve **yükseliş mumlarını kırmalı** |
+
+> *"**Günlük emir akışı, bilinmesi gereken en önemlisi.** Başka hiçbir zaman dilimine bakmıyorsan... **en azından tüm analizine günlük grafikte başla**, çünkü günlük grafiğin kurumsal olarak neyi ima ettiğini bilmiyorsan **Rus ruleti oynuyorsun.**"*
+
+## C3. Haftalık profil — ve bir dürüstlük beyanı
+
+**Haftalık aralığın oluşumu:**
+
+| Boğa | Ayı |
+|---|---|
+| Pazartesi dip oluşabilir | **Salı haftanın tepesini** yapar |
+| Salı 2. yarı + Çarşamba + Perşembe 1. yarı → **haftanın tepesi** | **Perşembe New York açılışı haftanın dibini** yapar |
+| Cuma geri çekilme | Cuma ve Pazartesi konsolidasyon |
+
+> *"**Haftalık aralık tipik olarak Salı ile Perşembe arasında oluşur.**"*
+
+**İki sayı:**
+> *"**Pazartesi'yi arkamda bıraktığımda** haftalık profili belirleyebilme olasılığım **~%60.** Salı'da yanılırsam **%70'e** çıkıyor."*
+
+**Ve açık sınır beyanı — kaydedilmeli:**
+> *"**Haftalık profilleri öngörmek için hiçbir zaman sistematik bir yaklaşım yaratamadım.**"*
+> *"Bu derecede hassasiyet bekleme — **haftalık profilleri her hafta çağırmayı bilmiyorum.**"*
+
+Bu, videonun **kendi adımını eleyen** ifadesi: sistematik yaklaşım yoksa o adım kodlanamaz.
+
+## C4. Pazartesi gece yarısı açılışı — ayın en ucuz ölçümü
+
+**İki referans:**
+1. **Haftalık açılış fiyatı (Pazar)**
+2. **Pazartesi gece yarısı açılış fiyatı** — ve bu **tüm hafta boyunca, her gün** taşınıyor
+
+> *"**Pazar'da başlayan işlemin tüm ilk kısmını göz ardı ediyorum** ve tam olarak **ABD'de Pazartesi başladığında, gece yarısında** o açılış fiyatına bakıyorum."*
+
+**Kullanımı:**
+| Yön | Beklenti |
+|---|---|
+| **Boğa** | Fiyatın o iki fiyatın **ALTINA** inip iskonto array araması |
+| **Ayı** | Fiyatın o iki fiyatın **ÜSTÜNE** çıkması |
+
+**Pratik yöntem:** *"En kolay yolu **saatlik grafik** açmak ve Pazartesi gece yarısında saatliğin açılış fiyatını almak."*
+
+**Neden ucuz.** Tek bir sayı (Pazartesi 00:00 NY açılışı), tek bir soru (fiyat üstünde mi altında mı), ve **her hafta bir gözlem.** Nisan V1'in Pazar açılışı filtresinin daha dar versiyonu, ve ikisi doğrudan karşılaştırılabilir.
+
+## C5. Breaker'lar arası işlem
+
+> *"Günlük zaman diliminde **breaker'ları** her şeyden çok arıyorum, çünkü nerede olduklarını bilmek sana **bir sonraki ara vadeli fiyat salınımının nerede oluşacağını** haber verebilir."*
+>
+> *"Fiyatın **boğa breaker'dan ayı breaker'a** nasıl işlem gördüğüne bak — **o iki referans noktası arasında genellikle çok hareket var. Ortadaki et — işlem fırsatlarının büyük kısmı orada.**"*
+
+**Ve öğrenme önerisi:** *"**Sadece eğitim tekerlekleri amacıyla** oradan başlarsan, çoğu zaman kurumsal emir akışının doğru tarafında işlem yaptığını göreceksin."*
+
+**Neden iyi bir çerçeve.** Breaker, Aralık V5'te tanımlanan **iki koşullu** (stop süpürmesi + yapı kayması) kurulum — ailenin en dar tanımı. İki breaker arasını "işlem alanı" olarak kullanmak, o dar tanımı **aralık tanımına** çeviriyor.
+
+## C6. "Boğaysak her gün almıyoruz" — ölçüm için kritik
+
+> *"Bize çok soruluyor: günlük yön eğilimini nasıl biliyorsun? Doğal varsayım şu: boğaysam **her gün alıyorum** — ve **perakende düşünce tam burada devreye giriyor.**"*
+>
+> *"**Bir piyasada boğaysak bu her gün almamız gerektiği anlamına gelmez.** Bir iskonto array'e, **günün belirli bir saatinde** gelmesi gerekiyor... **Zaman ve fiyat buluşuyor, ve olduğunda — bum — icra ediyoruz.**"*
+
+**Neden kritik.** Ölçüm tasarımı için doğrudan sonucu var: **her gün bir işlem üreten bir kural yanlış kurulmuştur.** Doğru kural, günlerin çoğunda **hiçbir şey** üretmeli.
+
+---
+
+# D. 4 SAATLİK → 5 DAKİKALIK KATMAN
+
+## D1. Zaman dilimi seçimi — ve seçim ölçütü
+
+> *"Ben kişisel olarak dört saatlikten **30 dakikaya ya da 15'e** inmeyi seviyorum, sonra **beş dakikada** rafine ediyorum."*
+> *"Girişleri beş dakikada alabiliyorsam harika, ama genelde kurulumları **en az 15 dakikada** teyit etmeyi arıyorum."*
+
+**Ve seçim ölçütü — ve bu mekanik:**
+> *"Dört saatlikten indiğimizde yaptığımız şey **FAIR VALUE GAP ÜRETEN bir zaman dilimi aramak — anahtar bu.** Bir saatlikte fair value gap görmeyebilirsin ama 15 dakikada var olabilir."*
+
+## D2. True day — 03:00–10:00 New York
+
+> *"**Günlük hacmin büyük kısmı sabah 03:00 ile 10:00 New York saati arasında olacak.** Ya bu pencerenin **önünde** ya da **ilk yarısında** kendimi doğru konumlandırmak istiyorum."*
+>
+> *"**New York açılışından sonra beklentilerimi düşürmeli** ve daha küçük hedeflerle yetinmeliyim."*
+
+**Çıkış penceresi:**
+> *"Gün içi pozisyonlarımın büyük kısmını ya da tamamını **sabah 10:00 – 11:00 New York penceresinde** kapatmaya bakıyorum."*
+
+## D3. Kill zone hedefleri
+
+| Yön | Londra açılışı | Başarısızsa |
+|---|---|---|
+| **Boğa** | **Günün dibini** hedefle | **New York açılışında** yeniden konumlan |
+| **Ayı** | **Günün tepesini** hedefle | **New York açılışında** yeniden konumlan |
+
+## D4. CBDR sapmaları
+
+| Yön | Sapmalar | Örtüşmesi gereken |
+|---|---|---|
+| **Boğa** | **−1, −2, −3** SD | **15–60 dakikalık İSKONTO array** |
+| **Ayı** | **+1, +2, +3** SD | **15–60 dakikalık PRİM array** |
+
+> *"**Sadece bir ya da iki sapma ekleyip 'tamam burada short'a giriyorum' demiyorum** — bir prim array arıyorum. **Harmanlama meselesi.**"*
+
+## D5. Asya aralığı
+
+| Yön | Kabul edilebilir | **Tercih edilen** |
+|---|---|---|
+| **Boğa** | Asya aralığı **tepesinin altında** long | Asya aralığı **DİBİNİN altında** long |
+| **Ayı** | Asya aralığı **dibinin üstünde** short | Asya aralığı **TEPESİNİN üstünde** short |
+
+**Yeniden test kuralı:** *"Boğaysam **Asya aralığı tepesinin destek olarak yeniden test edilmesini** bekliyorum — giriş için ya da ekleme için."*
+
+## D6. Flout — tam tanım, nihayet
+
+Mayıs'ta adı geçmişti; **tanımı burada tam veriliyor.**
+
+> *"Flout, **Central Bank Dealers Range ve Asya aralığının BİRLEŞİMİDİR** — o bütün zaman penceresi, **en yüksek tepe ve en düşük dip**, hem fitiller hem gövdeler cinsinden."*
+
+**Standart sapma:**
+> *"**O aralığı ikiye böl — bu bir standart sapma yapar.**"*
+
+**Sayısal örnek:**
+> *"CBDR açılışından Asya aralığı kapanışına, gece yarısına kadar, en yüksek tepe ve en düşük dip **40 pip** diyelim. **Aralığın yarısı 20. 20 pip flout için standart sapmadır.**"*
+
+**Ve zaman penceresi:** CBDR (14:00–20:00) + Asya aralığı (20:00–00:00) = **14:00 – 00:00 NY**, on saat.
+
+**Ve bir sınır beyanı:**
+> *"Flout **birçok standart sapma** olabilir — **CBDR ya da Asya aralığı için olduğu gibi kural tabanlı bir fikir yok.** Flout, **günlük aralık büyüdükçe eklenmeye devam etmesi gereken** bir şey."*
+
+**Dikkat.** Sınır olmadığı için **her fiyat noktası bir flout sapmasına düşer.** Kendi sınırını koy (ör. en fazla 4 sapma).
+
+## D7. Gün içi profiller
+
+| Durum | Beklenti |
+|---|---|
+| **Ayı**, 4 saatlik **henüz iskonto array'e inmedi** | New York **düşmeye devam eder** |
+| **Boğa**, 4 saatlik **henüz prim array'e çıkmadı** | New York **yükselmeye devam eder** |
+| **4 saatlik prim array'e ULAŞTI** | New York'ta **dönüş** muhtemel |
+| **4 saatlik iskonto array'e İNDİ** | New York'ta **dönüş** muhtemel |
+
+> *"Bu olmadığı sürece, **Londra ve New York yön açısından hemfikir olacak.**"*
+
+**Bu, Mayıs V5-7'nin New York dönüş kuralının 4 saatlik versiyonu** — ve aynı sebeple ölçülebilir: iki ikili soru.
+
+## D8. ADR projeksiyonu ve 10 pip kuralı
+
+**Beş günlük ADR** kullanılıyor.
+
+> *"Boğaysam piyasanın **ADR tepesine** işlem görmesini bekliyorum. Bu tepe kırılırsa, **ADR'nin tepe ve dibine Fibonacci** koyup **%127 ve %162 uzantılarını** hedef olarak kullanıyorum."*
+
+**Ve tek başlarına yeterli değiller:**
+> *"**Kendi başlarına hiçbir şey değiller** — %127'nin **60 dakikalık ya da 15 dakikalık bir prim array** ile hizalanmasını arıyorum."*
+
+**10 pip kuralı — ve bu iyi:**
+> *"Bunları harmanladığında **çoğu zaman günün tepe ve dibinin 10 pip içinde** olacaksın. **Bu yüzden 10 pip önce çıkmak istiyorum**, çünkü projeksiyonlarımda yanılabilirim."*
+>
+> *"Son birkaç pip için tutar mıyım? **Hayır.** **Son 25–30 pip'i masada bırakmayı umursamıyorum** — yeter ki tutarlı aralık genişlemeleri alayım."*
+
+**Ve dürüst çekince:**
+> *"**Projeksiyonlar mutlaklık değildir. Standart sapmalar yardımcıdır, garanti etmezler. Panacea değiller.**"*
+
+**Spread beyanı:** *"Demo ya da canlı hesabımızın **biraz çarpık fiyatlaması** olacağını bilerek... gün içi bakış açısından **interbank fiyatlamasından 10 ila 15 pip'lik bir aralığa** bakabiliriz."*
+
+---
+
+# E. İKİ KURULUM — ve sadece iki
+
+> *"**Teknik bir işlemci olarak sadece bir kuruluma ya da bir örüntüye ihtiyacımız var.** Sana işlem yaptığım **iki kurulumu** öğreteceğim. **Başka bir şey yapmıyorum, başka örüntü aramıyorum.**"*
+>
+> *"**ICT Stinger'ları görebiliyorum, reflection pattern'leri görebiliyorum**... hepsini görebiliyorum **ve geçmelerine izin veriyorum.**"*
+
+**Bu, Kasım V1'deki "üç kurulum" itirafının daha da daraltılmış hali** — ve on iki ayın en dürüst kapsam beyanı.
+
+## E1. Örüntü 1 — Optimal Trade Entry / İÇ aralık likiditesi
+
+**Koşul:** daha yüksek zaman dilimi **boğa.**
+
+| # | Adım |
+|---|---|
+| **1** | Fiyat, üst zaman dilimi **iskonto array'inden** sekiyor |
+| **2** | Bir **impuls salınımı**, salınım dibine yakın bir **fair value gap** yaratıyor |
+| **3** | Piyasa yapısında bir **kısa vadeli dip** oluşuyor ve yükselmeyi başaramıyor |
+| **4** | **Eşit tepeler ya da daha yüksek tepe** oluşuyor |
+| **5** | Fiyat **fair value gap'e VE kısa vadeli dibin altına** düşüyor |
+| **6** | **Satış stopları tetikleniyor**, akıllı para offset birikimle long girişleri o stoplara eşleştiriyor |
+
+**Dört teyidin örtüşmesi:**
+> *"Dip'ten impuls salınımına fib çekiyorsun, **%62 / %70,5 / %79** seviyeleri **fair value gap** ile, **satış stoplarının bulunduğu kısa vadeli dip** ile, ve **boğa order block** ile örtüşüyor — **dört şey lehine.**"*
+
+**Ve bir sınırlama — kaydedilmeli:**
+> *"Birçok kez ralli yapıp geri çekilir ve **arada bir kısa vadeli dip olmaz — o zaman o kadar yüksek olasılıklı değil.**"*
+
+Yani **kısa vadeli dip zorunlu bir bileşen**, ve yokluğu kurulumu geçersiz kılıyor. Bu mekanik.
+
+## E2. Örüntü 2 — Turtle soup / DIŞ aralık likiditesi
+
+| # | Adım |
+|---|---|
+| **1** | Fiyat, **beklenen** üst zaman dilimi iskonto array'inin **ÖNÜNDE** sekiyor — **sahte dip** |
+| **2** | **O sahte dipten SATIN ALINMIYOR** |
+| **3** | Fiyat daha sonra beklenen array'e iniyor ve **satış stoplarını süpürüyor** |
+| **4** | **Orada alınıyor** |
+
+> *"Fiyat gelmesini istediğim iskonto array'in **hemen üstünde durup oyalanırsa — sahte dip, yapay dip — onu almam.** Bekleyeceğim, **erken boğaları öldürmeye inip inmeyeceklerini** göreceğim."*
+
+**Kaynak açıkça veriliyor:**
+> *"**Street Smarts** kitabına baktığında, bu örüntü için ilhamı oradan aldım — **orada böyle anlatılmıyor**, sadece 'işte bir dip, dibin altına iniyor, orada al' diyor, **ve bu bence biraz miyop.**"*
+>
+> *"**Linda Raschke**'nin yaptığı işlere bak — bu örüntüyü **Larry Connors** ile birlikte kitabında öğretiyor."*
+
+**Ne ekliyor.** Orijinal turtle soup "dibin altına in, al" diyor. Bu versiyon **bir ek koşul** koyuyor: **ilk sahte dipten alınmıyor.** Bu, kurulumu daraltıyor ve **yanlışlanabilirliği artırıyor.**
+
+## E3. Örüntü 3 — breaker, ikinci şans
+
+> *"Turtle soup girişini **alamadım** — bu yüzden sana **endişelenme, pişman olma** diyorum. Fiyatın kısa vadeli tepeyi geçmesini bekliyorum ve **o kısa vadeli tepe artık boğa breaker oluyor.** Fiyat breaker'a geri döndüğünde onu giriş olarak kullanıyorum."*
+
+**Gerekçe — ve mekanik:**
+> *"Çünkü **o daha düşük dipteki stop koşusundan sonra fiyatın oraya geri dönmemesi gerekir.** **Zaten oraya indi ve işini yaptı.**"*
+
+**Piramitleme:** *"Dip uçta turtle soup long'da **20 lot** aldıysam, **breaker'da 10 daha** ekleyebilirim."*
+
+**Ayı tarafı** üç örüntünün tam aynası.
+
+## E4. Üç kural cümlesi
+
+> *"**Fiyatta bu üç şeyi görmezsem hiçbir şey yapmam. Hiçbir şey yapmam. Fiyatta göremiyorsam dokunmam, nokta.**"*
+>
+> *"**Bir alım programım var, bir satım programım var, ve bir 'yanılırsam' programım var.**"*
+
+## E5. Tarif reddi — on iki ayın kapanışı
+
+> *"Biliyorum ne istediğini: **ortalama günlük aralık artı CBDR'ın üç standart sapması artı Asya aralığının beşi artı flout'un on dördü.** İşte istediğin bu. **Ben de istedim.** Ama kariyerimin başında öğrendim ki **bunun için bir tarif yok.**"*
+>
+> *"Herkes kavramlarımı takıp otomatikleştirebileceğini sanıyor — **yapamayacaklar. Çok fazla değişken var.**"*
+>
+> *"O eğitimler, **başka birinin benim yapabildiğimi tekrarlayıp tekrarlayamayacağını görmek için** dışarıda duruyor. **Hiç kimse yapamadı. Bu mentorlukta bile yapamadılar.**"*
+
+**Ve ölçüm açısından ne anlama geldiği.** Bu, on iki ayın kapanış pozisyonu: **sistem kasten kodlanamaz bırakılmış.** O yüzden ölçmek istediğinde, **kendi tanımlarını koymak zorundasın** — ve o an ölçtüğün şey videonun iddiası değil, senin kuralın olur.
+
+**Ama bu, ölçmenin imkânsız olduğu anlamına gelmiyor.** Sadece şunu gerektiriyor: her tanımsız bileşen için bir karar maddesi, ve o kararın kaydı. Senin range projende yaptığın şeyin aynısı.
+
+---
+
+# F. ON İKİ AYIN ÇEKİRDEĞİ
+
+Ağustos, on iki ayı tek prosedüre indirgiyor. Bu bölüm o prosedürü, **her adımın hangi aydan geldiğiyle birlikte** veriyor.
+
+## F1. Zaman dilimi katmanları ve ne verdikleri
+
+| Katman | Ne verir | Ana kaynak |
+|---|---|---|
+| **Aylık** | Yön eğilimi, mevsimsellik, faiz, aralık | Ocak, Ağustos V1 |
+| **Haftalık** | Göreli güç, COT, duyarlılık | Şubat, Ağustos V2 |
+| **Günlük** | Emir akışı, açık pozisyon, haftalık profil | Aralık, Ağustos V3 |
+| **4 saatlik** | Kurulum çerçevesi, PD array | Şubat, Mart |
+| **15–5 dakikalık** | Giriş, kill zone, sapmalar | Nisan, Mayıs, Ağustos V4 |
+
+## F2. Her katmanın tek en ölçülebilir kuralı
+
+| Katman | Kural | Ay |
+|---|---|---|
+| **Aylık** | **Son kırılan aylık order block** = yön | Kasım V4 |
+| **Aylık** | **Ardışık ara vadeli tepe/dip** = yön | Ocak V2 |
+| **Haftalık** | **COT 12 aylık orta çizgisi** | Şubat V7, Haziran V1 |
+| **Haftalık** | **10Y ↔ dolar tandem/ayrışma** = rejim | Ocak V6 |
+| **Günlük** | **Açık pozisyon ±%15 + array konumu** | Ağustos V3 |
+| **Günlük** | **Pazartesi–Çarşamba kırılımı** | Mart V1 |
+| **Günlük** | **40/20 günlük trailing stop** | Ocak V18 |
+| **Gün içi** | **CBDR 1–3 SD** | Nisan V3 |
+| **Gün içi** | **New York dönüş kuralı** | Mayıs V5 |
+| **Gün içi** | **08:00–09:00 / 09:30–10:30 açılış aralığı** | Haziran V6, V10 |
+| **Kurulum** | **Breaker** (stop süpürmesi + yapı kayması) | Aralık V5 |
+| **Kurulum** | **Turtle soup, ilk sahte dip atlanarak** | Ağustos V4 |
+
+**On iki maddenin hepsi sıfır ya da bir seçim noktası içeriyor**, ve hepsi tek başına test edilebilir.
+
+## F3. Ve on iki ayın üç ölçütü
+
+Her ayın kapanışında bir ölçüt eklendi. Üçü birlikte, herhangi bir işlem fikrini elemek için yeterli:
+
+**1. Seçim noktası sayısı (Kasım).**
+> *Sıfır seçim noktası olan kural ölçülebilir; beş seçim noktası olan zincir ölçülemez — ne kadar ikna edici görünürse görünsün.*
+
+**2. Belirsizliğin konumu (Aralık).**
+> *Belirsiz bileşen merkezdeyse kural ölçülemez; kenardaysa çekirdek hâlâ test edilebilir.*
+
+**3. Verinin cinsi (Ocak).**
+> *Takvim ve saat tartışılmaz. Bir hesaplama tercihi (40 yıllık ortalama) gösterilmediğinde doğrulanamaz.*
+
+**Ve bu ayın eklediği dördüncüsü:**
+
+**4. Gerçek zamanda bilinen girdi (Aralık V7, Ağustos).**
+> *Bir kural geçmişte her zaman doğru görünüyorsa, muhtemelen gerçek zamanda bilinmeyen bir girdiye dayanıyordur.*
+
+## F4. Kapsam beyanının evrimi — on iki ayın en dürüst çizgisi
+
+| Ay | Kaç kurulum |
+|---|---|
+| **Kasım V1** | *"Sadece **üç** kurulum işlem yapıyorum... aslında **bir taneye** indirebilirim"* |
+| **Şubat V2** | *"Swing trading için yaptığım kurulumlar — **sadece iki tane**"* |
+| **Ağustos V4** | *"Sana işlem yaptığım **iki kurulumu** öğreteceğim. **Başka bir şey yapmıyorum.**"* |
+
+**Yüz on beş videoda öğretilen onlarca kavramın karşısında, kendi ifadesiyle kullanılan kurulum sayısı: iki.**
+
+Ve o ikisi:
+1. **Optimal trade entry / iç aralık likiditesi** — FVG + kısa vadeli dip + order block örtüşmesi
+2. **Turtle soup / dış aralık likiditesi** — ilk sahte dip atlanarak
+
+**Üçüncüsü (breaker) bir yedek giriş**, kendi başına bir kurulum değil.
+
+## F5. Ve yüz on beş videoda hiç geçmeyen cümle
+
+> *"Bunu şu kadar örnekte ölçtük, şu oranda çalıştı."*
+
+**On iki ay, yüz on beş video, sıfır istatistik.**
+
+Tek istisna Temmuz V4'ün on yıllık tahvil kaydı — ve orada bile girişler geriye dönük seçilmiş, çıkışlar tanımsız, örneklem on.
+
+**Ve bu ayın kapanışı, bunun neden böyle olduğunu açıkça söylüyor:**
+> *"Net, kesin, kural tabanlı fikirler eksik — **ve bunu kasıtlı yaptım.**"*
