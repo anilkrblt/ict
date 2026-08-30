@@ -73,7 +73,8 @@ def split_row(line):
 
 
 class Renderer:
-    def __init__(self):
+    def __init__(self, id_prefix=""):
+        self.id_prefix = id_prefix
         self.used_ids = {}
         self.toc = []
 
@@ -107,10 +108,11 @@ class Renderer:
                 lvl = len(m.group(1))
                 text = m.group(2).strip()
                 hid = self.make_id(text)
+                dom_id = "%s--%s" % (self.id_prefix, hid) if self.id_prefix else hid
                 self.toc.append({"id": hid, "level": lvl, "text": text})
-                out.append('<h%d id="%s" class="anchored">%s'
+                out.append('<h%d id="%s" data-section-id="%s" class="anchored">%s'
                            '<a class="anchor" href="#%s" aria-label="Bu bölüme bağlantı">#</a>'
-                           "</h%d>" % (lvl, hid, inline(text), hid, lvl))
+                           "</h%d>" % (lvl, dom_id, hid, inline(text), hid, lvl))
                 i += 1
                 continue
 
@@ -159,7 +161,7 @@ class Renderer:
                             break
                     buf.append(lines[i])
                     i += 1
-                inner = Renderer()
+                inner = Renderer(self.id_prefix)
                 inner.used_ids = self.used_ids
                 html_in = inner.render(buf)
                 self.toc.extend(inner.toc)
@@ -172,7 +174,7 @@ class Renderer:
                 while i < n and lines[i].strip().startswith(">"):
                     buf.append(re.sub(r"^\s*>\s?", "", lines[i]))
                     i += 1
-                inner = Renderer()
+                inner = Renderer(self.id_prefix)
                 inner.used_ids = self.used_ids
                 out.append("<blockquote>%s</blockquote>" % inner.render(buf))
                 continue
@@ -258,6 +260,7 @@ def parse_doc(path):
 
     fname = os.path.basename(path)
     stem = os.path.splitext(fname)[0]
+    doc_slug = slugify(stem)
     label, order = None, (9999, 99)
     m = re.search(r"-(" + "|".join(AYLAR.keys()) + r")-((?:19|20)\d{2})", stem, re.IGNORECASE)
     if m:
@@ -266,15 +269,15 @@ def parse_doc(path):
         label = "%s %d" % (pretty, year)
         order = (year, num)
     if not label:
-        label = (title or stem)[:40]
+        label = title or stem
 
-    r = Renderer()
+    r = Renderer(doc_slug)
     body_html = r.render(body_lines)
 
     words = len(re.findall(r"\w+", raw, flags=re.UNICODE))
     return {
         "file": fname,
-        "slug": slugify(stem),
+        "slug": doc_slug,
         "label": label,
         "title": title or stem,
         "subtitle": subtitle or "",

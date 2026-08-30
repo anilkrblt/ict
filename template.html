@@ -13,22 +13,23 @@
 /* ============ Tema değişkenleri ============ */
 :root{
   --paper:#f7f5f1; --surface:#ffffff; --surface-2:#f1eee8;
-  --ink:#1c1a17; --ink-soft:#4a4640; --ink-faint:#7d776e;
+  --ink:#1c1a17; --ink-soft:#4a4640; --ink-faint:#706a62;
   --line:#e2ddd4; --line-strong:#cfc8bb;
-  --accent:#b0532c; --accent-soft:#f6e7de;
+  --accent:#a24724; --accent-soft:#f6e7de;
   --shadow:0 1px 2px rgba(28,26,23,.05), 0 8px 28px rgba(28,26,23,.07);
   --radius:12px;
   --font-ui:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
   --font-read:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
   --font-mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
   --read-size:19px;
+  --topbar-h:64px;
 }
 :root[data-theme="dark"],
 :root[data-theme="auto"]{ color-scheme: light; }
 @media (prefers-color-scheme: dark){
   :root[data-theme="auto"]{
     --paper:#131519; --surface:#191c21; --surface-2:#20242a;
-    --ink:#e7e3db; --ink-soft:#b3ada2; --ink-faint:#847d72;
+    --ink:#e7e3db; --ink-soft:#b3ada2; --ink-faint:#8d867b;
     --line:#2a2f36; --line-strong:#39404a;
     --accent:#e08a5c; --accent-soft:#33251c;
     --shadow:0 1px 2px rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.35);
@@ -37,7 +38,7 @@
 }
 :root[data-theme="dark"]{
   --paper:#131519; --surface:#191c21; --surface-2:#20242a;
-  --ink:#e7e3db; --ink-soft:#b3ada2; --ink-faint:#847d72;
+  --ink:#e7e3db; --ink-soft:#b3ada2; --ink-faint:#8d867b;
   --line:#2a2f36; --line-strong:#39404a;
   --accent:#e08a5c; --accent-soft:#33251c;
   --shadow:0 1px 2px rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.35);
@@ -46,7 +47,7 @@
 
 /* ============ Temel ============ */
 *,*::before,*::after{ box-sizing:border-box; }
-html{ scroll-behavior:smooth; scroll-padding-top:96px; }
+html{ scroll-behavior:smooth; scroll-padding-top:calc(var(--topbar-h) + 20px); }
 body{
   margin:0; background:var(--paper); color:var(--ink);
   font-family:var(--font-ui); font-size:16px; line-height:1.6;
@@ -55,6 +56,16 @@ body{
 a{ color:var(--accent); }
 button{ font:inherit; color:inherit; }
 ::selection{ background:var(--accent-soft); }
+a:focus-visible,button:focus-visible,input:focus-visible,[tabindex]:focus-visible{
+  outline:3px solid var(--accent); outline-offset:3px;
+}
+.skip-link{
+  position:fixed; top:8px; left:12px; z-index:1000;
+  padding:9px 13px; border-radius:8px; background:var(--ink); color:var(--paper);
+  font-weight:650; text-decoration:none; transform:translateY(-160%);
+  transition:transform .12s ease;
+}
+.skip-link:focus{ transform:translateY(0); }
 
 /* ============ Üst çubuk ============ */
 .topbar{
@@ -129,7 +140,7 @@ button{ font:inherit; color:inherit; }
 }
 .search input:focus{ border-color:var(--accent); box-shadow:0 0 0 3px var(--accent-soft); }
 .search .ico{ position:absolute; left:10px; top:50%; transform:translateY(-50%);
-  color:var(--ink-faint); font-size:13px; pointer-events:none; }
+  color:var(--ink-faint); width:15px; height:15px; pointer-events:none; }
 .search kbd{
   position:absolute; right:8px; top:50%; transform:translateY(-50%);
   font-family:var(--font-mono); font-size:10.5px; color:var(--ink-faint);
@@ -140,8 +151,9 @@ button{ font:inherit; color:inherit; }
 .iconbtn{
   border:1px solid var(--line-strong); background:var(--surface); border-radius:10px;
   width:36px; height:36px; display:grid; place-items:center; cursor:pointer;
-  transition:border-color .15s;
+  transition:border-color .15s; flex:none;
 }
+.iconbtn svg{ width:18px; height:18px; fill:none; stroke:currentColor; stroke-width:1.8; }
 .iconbtn:hover{ border-color:var(--accent); color:var(--accent); }
 .iconbtn.small{ width:auto; padding:0 10px; font-size:13px; }
 #tocToggle{ display:none; }
@@ -155,7 +167,7 @@ button{ font:inherit; color:inherit; }
   display:grid; grid-template-columns:274px minmax(0,1fr) ; gap:34px; align-items:start;
 }
 .sidebar{
-  position:sticky; top:64px; max-height:calc(100vh - 84px);
+  position:sticky; top:var(--topbar-h); max-height:calc(100dvh - var(--topbar-h) - 20px);
   overflow:auto; padding:22px 4px 40px; overscroll-behavior:contain;
 }
 .sidebar h2{
@@ -171,8 +183,7 @@ button{ font:inherit; color:inherit; }
 .toc a.lvl-1{ font-weight:680; color:var(--ink); font-size:12px; text-transform:uppercase;
   letter-spacing:.06em; margin-top:16px; }
 .toc a.lvl-2{ padding-left:12px; }
-.toc a.lvl-3{ padding-left:24px; font-size:12.6px; color:var(--ink-faint); display:none; }
-.toc a.lvl-3.show{ display:block; }
+.toc a.lvl-3{ padding-left:24px; font-size:12.6px; color:var(--ink-faint); display:block; }
 .toc a.active{ background:var(--accent-soft); color:var(--accent); border-left-color:var(--accent); font-weight:640; }
 
 /* ============ İçerik ============ */
@@ -203,7 +214,8 @@ button{ font:inherit; color:inherit; }
 
 .doc-body{ font-family:var(--font-read); font-size:var(--read-size); line-height:1.75; color:var(--ink); }
 .doc-body h1,.doc-body h2,.doc-body h3,.doc-body h4{
-  font-family:var(--font-ui); letter-spacing:-.015em; scroll-margin-top:92px; position:relative;
+  font-family:var(--font-ui); letter-spacing:-.015em;
+  scroll-margin-top:calc(var(--topbar-h) + 20px); position:relative;
 }
 .doc-body h1{
   font-size:15px; text-transform:uppercase; letter-spacing:.1em; font-weight:700;
@@ -243,7 +255,7 @@ button{ font:inherit; color:inherit; }
   opacity:0; text-decoration:none; color:var(--line-strong); font-size:.8em;
   transition:opacity .12s;
 }
-.anchored:hover .anchor{ opacity:1; }
+.anchored:hover .anchor,.anchored:focus-within .anchor,.anchor:focus-visible{ opacity:1; }
 .anchor:hover{ color:var(--accent); }
 
 /* tablolar */
@@ -338,9 +350,9 @@ mark{ background:var(--accent-soft); color:inherit; border-radius:3px; padding:0
   .shell{ grid-template-columns:1fr; gap:0; }
   #tocToggle{ display:grid; }
   .sidebar{
-    position:fixed; inset:57px auto 0 0; width:290px; z-index:55;
+    position:fixed; inset:var(--topbar-h) auto 0 0; width:290px; z-index:55;
     background:var(--surface); border-right:1px solid var(--line);
-    max-height:none; height:calc(100vh - 57px); padding:18px 10px 40px;
+    max-height:none; height:calc(100dvh - var(--topbar-h)); padding:18px 10px 40px;
     transform:translateX(-102%); transition:transform .22s ease; box-shadow:var(--shadow);
   }
   .sidebar.open{ transform:none; }
@@ -348,14 +360,25 @@ mark{ background:var(--accent-soft); color:inherit; border-radius:3px; padding:0
   .scrim.open{ display:block; }
   .brand small{ display:none; }
 }
-@media (max-width:760px){
+@media (max-width:800px){
   .topbar-inner{ flex-wrap:wrap; padding:9px 14px; }
+  .brand,.spacer{ display:none; }
+  .picker{ flex:1 1 150px; min-width:0; }
+  .picker-btn{ width:100%; }
+  .picker-btn .pb-text{ min-width:0; }
+  .picker-btn .pb-label,.picker-btn .pb-sub{
+    display:block; max-width:100%; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+  }
   .search{ order:9; flex:1 1 100%; }
+  .search input{ min-height:44px; }
   .picker-btn{ min-width:0; }
   .brand{ font-size:14px; }
   .shell{ padding:0 14px; }
-  :root{ --read-size:17.5px; }
   .doc-body h2{ font-size:23px; }
+  .iconbtn{ width:44px; height:44px; }
+  .iconbtn.small{ min-width:44px; min-height:44px; }
+  .pm-item{ min-height:44px; }
+  .anchor{ position:static; display:inline-block; transform:none; margin-left:8px; }
   /* Dar ekranda kutular kenar boşluğu yemesin */
   .block-ders{ padding:16px 14px; }
   .block-eleme{ padding-left:14px; }
@@ -365,29 +388,45 @@ mark{ background:var(--accent-soft); color:inherit; border-radius:3px; padding:0
   .table-wrap{ margin:18px 0; }
 }
 
+@media (prefers-reduced-motion:reduce){
+  html{ scroll-behavior:auto; }
+  *,*::before,*::after{ animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; }
+}
+
 @media print{
+  :root,:root[data-theme="auto"],:root[data-theme="dark"],:root[data-theme="light"]{
+    --paper:#ffffff; --surface:#ffffff; --surface-2:#f4f4f4;
+    --ink:#111111; --ink-soft:#333333; --ink-faint:#555555;
+    --line:#d7d7d7; --line-strong:#b8b8b8; --accent:#7a351b; --accent-soft:#f3e8e2;
+    color-scheme:light;
+  }
   .topbar,.sidebar,.docnav,.scrim,.results{ display:none !important; }
   .shell{ display:block; padding:0; } .content{ padding:0; }
-  .doc-body{ font-size:11.5pt; } body{ background:#fff; }
+  .doc-body{ font-size:11.5pt; } body{ background:#fff; color:#111; }
+  .doc-body h1,.doc-body h2,.doc-body h3,.doc-body h4{ break-after:avoid-page; }
+  .table-wrap{ overflow:visible; }
+  tr,blockquote{ break-inside:avoid; }
   .table-wrap,.doc-body blockquote{ box-shadow:none; }
 }
 </style>
 </head>
 <body>
 
+<a class="skip-link" href="#mainContent">Ana içeriğe geç</a>
+
 <header class="topbar">
   <div class="topbar-inner">
-    <div class="brand"><span class="dot"></span>ICT Eleme Notları <small>okuyucu</small></div>
+    <div class="brand"><span class="dot" aria-hidden="true"></span>ICT Eleme Notları <small>okuyucu</small></div>
 
     <div class="picker">
-      <button class="picker-btn" id="pickerBtn" aria-haspopup="listbox" aria-expanded="false">
+      <button class="picker-btn" id="pickerBtn" type="button" aria-expanded="false" aria-controls="pickerMenu">
         <span class="pb-text">
           <span class="pb-label" id="pbLabel">—</span>
           <span class="pb-sub" id="pbSub"></span>
         </span>
-        <span class="chev">▼</span>
+        <span class="chev" aria-hidden="true">▼</span>
       </button>
-      <div class="picker-menu" id="pickerMenu" role="listbox">
+      <div class="picker-menu" id="pickerMenu">
         <div class="pm-head">Dokümanlar</div>
         <div id="pickerItems"></div>
       </div>
@@ -396,14 +435,14 @@ mark{ background:var(--accent-soft); color:inherit; border-radius:3px; padding:0
     <div class="spacer"></div>
 
     <div class="search">
-      <input id="q" type="search" placeholder="Tüm dokümanlarda ara…" autocomplete="off" spellcheck="false">
-      <span class="ico">⌕</span>
-      <kbd>/</kbd>
+      <input id="q" type="search" aria-label="Tüm dokümanlarda ara" placeholder="Tüm dokümanlarda ara…" autocomplete="off" spellcheck="false">
+      <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"></circle><path d="m16 16 4.2 4.2"></path></svg>
+      <kbd aria-hidden="true">/</kbd>
     </div>
 
-    <button class="iconbtn small" id="fontBtn" title="Yazı boyutu">A<span style="font-size:1.25em">A</span></button>
-    <button class="iconbtn" id="themeBtn" title="Tema değiştir">◐</button>
-    <button class="iconbtn" id="tocToggle" title="İçindekiler">☰</button>
+    <button class="iconbtn small" id="fontBtn" type="button" aria-label="Yazı boyutunu değiştir"><span aria-hidden="true">A<span style="font-size:1.25em">A</span></span></button>
+    <button class="iconbtn" id="themeBtn" type="button" aria-label="Temayı değiştir"></button>
+    <button class="iconbtn" id="tocToggle" type="button" aria-label="İçindekileri aç" aria-controls="sidebar" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"></path></svg></button>
   </div>
   <div class="progress"><i id="progressBar"></i></div>
 </header>
@@ -412,11 +451,11 @@ mark{ background:var(--accent-soft); color:inherit; border-radius:3px; padding:0
 
 <div class="shell">
   <aside class="sidebar" id="sidebar">
-    <h2>İçindekiler</h2>
-    <nav class="toc" id="toc"></nav>
+    <h2 id="tocTitle">İçindekiler</h2>
+    <nav class="toc" id="toc" aria-labelledby="tocTitle"></nav>
   </aside>
 
-  <main class="content">
+  <main class="content" id="mainContent" tabindex="-1">
     <div class="results" id="results" hidden></div>
     <div id="docs">
 <!--__SECTIONS__-->
@@ -434,6 +473,8 @@ const $ = s => document.querySelector(s);
 const $$ = s => Array.from(document.querySelectorAll(s));
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const plain = s => String(s).replace(/[`*]/g, '');
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+const scrollMode = () => prefersReducedMotion.matches ? 'auto' : 'smooth';
 
 /* ---------- Türkçe duyarsız arama için katlama ---------- */
 const FOLD = {'ı':'i','İ':'i','I':'i','ş':'s','Ş':'s','ğ':'g','Ğ':'g','ü':'u','Ü':'u','ö':'o','Ö':'o','ç':'c','Ç':'c','â':'a','î':'i','û':'u'};
@@ -449,10 +490,17 @@ const articles = $$('.doc');
 
 /* ---------- Tema ---------- */
 const themeBtn = $('#themeBtn');
+const THEME_ICONS = {
+  auto:'<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"></circle><path d="M12 4a8 8 0 0 1 0 16Z"></path></svg>',
+  light:'<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.5"></circle><path d="M12 2v2.2M12 19.8V22M4.9 4.9l1.6 1.6M17.5 17.5l1.6 1.6M2 12h2.2M19.8 12H22M4.9 19.1l1.6-1.6M17.5 6.5l1.6-1.6"></path></svg>',
+  dark:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 15.2A8.2 8.2 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2Z"></path></svg>'
+};
 function applyTheme(t){
   document.documentElement.setAttribute('data-theme', t);
-  themeBtn.textContent = t === 'dark' ? '☾' : t === 'light' ? '☀' : '◐';
-  themeBtn.title = 'Tema: ' + ({auto:'sistem', light:'açık', dark:'koyu'})[t];
+  const label = ({auto:'sistem', light:'açık', dark:'koyu'})[t];
+  themeBtn.innerHTML = THEME_ICONS[t];
+  themeBtn.title = 'Tema: ' + label;
+  themeBtn.setAttribute('aria-label', 'Tema: ' + label + '; değiştirmek için basın');
 }
 applyTheme(store.get('ict.theme', 'auto'));
 themeBtn.onclick = () => {
@@ -466,6 +514,7 @@ const SIZES = ['17px','19px','21px','23px'];
 function applySize(i){
   document.documentElement.style.setProperty('--read-size', SIZES[i]);
   store.set('ict.size', i);
+  $('#fontBtn').setAttribute('aria-label', 'Yazı boyutu: ' + SIZES[i] + '; değiştirmek için basın');
 }
 let sizeIdx = parseInt(store.get('ict.size', '1'), 10) || 0;
 applySize(sizeIdx);
@@ -527,12 +576,22 @@ function showDoc(i, push){
 }
 
 function goTo(id){
-  const el = document.getElementById(id);
+  const art = articles[current];
+  const el = art ? (
+    Array.from(art.querySelectorAll('[data-section-id]')).find(node => node.dataset.sectionId === id) ||
+    art.querySelector('#' + CSS.escape(id))
+  ) : null;
   if(!el) return;
-  el.scrollIntoView({ behavior:'smooth', block:'start' });
+  el.scrollIntoView({ behavior:scrollMode(), block:'start' });
   el.classList.remove('flash'); void el.offsetWidth; el.classList.add('flash');
+  if(!el.hasAttribute('tabindex')) el.setAttribute('tabindex','-1');
+  el.focus({ preventScroll:true });
   history.replaceState(null, '', '#' + DOCS[current].slug + '/' + id);
 }
+
+articles.forEach(art => art.querySelectorAll('.anchor').forEach(a => {
+  a.addEventListener('click', e => { e.preventDefault(); goTo(a.getAttribute('href').slice(1)); });
+}));
 
 /* ---------- Kaydırma: aktif başlık + ilerleme ---------- */
 let ticking = false;
@@ -546,7 +605,8 @@ function updateActive(){
   const links = $$('#toc a');
   links.forEach(a => a.classList.remove('active'));
   if(active){
-    const link = links.find(a => a.dataset.id === active.id);
+    const activeId = active.dataset.sectionId || active.id;
+    const link = links.find(a => a.dataset.id === activeId);
     if(link){
       link.classList.add('active');
       const key = link.classList.contains('lvl-3') ? link.dataset.parent : link.dataset.id;
@@ -572,7 +632,7 @@ articles.forEach((art, di) => {
     const text = el.textContent.replace(/\s+/g,' ').trim();
     if(text.length < 3) return;
     if(!el.id) el.id = 'b' + di + '-' + k;
-    INDEX.push({ doc:di, id:el.id, head:head ? head.textContent.replace(/#$/,'').trim() : '', text, fold:fold(text) });
+    INDEX.push({ doc:di, id:el.dataset.sectionId || el.id, head:head ? head.textContent.replace(/#$/,'').trim() : '', text, fold:fold(text) });
   });
 });
 
@@ -657,7 +717,7 @@ document.addEventListener('keydown', e => {
   if(!typing && (e.key === '/' || ((e.ctrlKey || e.metaKey) && e.key === 'k'))){
     e.preventDefault(); $('#q').focus(); $('#q').select();
   }
-  if(!typing && e.key === 'Escape'){ closePicker(); closeDrawer(); }
+  if(!typing && e.key === 'Escape'){ closePicker(); closeDrawer(true); }
   if(!typing && (e.key === 'j' || e.key === 'k')){
     const d = e.key === 'j' ? 1 : -1;
     if(DOCS[current + d]) showDoc(current + d, true);
@@ -665,9 +725,42 @@ document.addEventListener('keydown', e => {
 });
 
 /* ---------- Mobil çekmece ---------- */
-function closeDrawer(){ $('#sidebar').classList.remove('open'); $('#scrim').classList.remove('open'); }
-$('#tocToggle').onclick = () => { $('#sidebar').classList.toggle('open'); $('#scrim').classList.toggle('open'); };
-$('#scrim').onclick = closeDrawer;
+const drawerMedia = window.matchMedia('(max-width: 1080px)');
+const sidebarEl = $('#sidebar'), tocToggle = $('#tocToggle');
+function syncDrawerA11y(){
+  const hidden = drawerMedia.matches && !sidebarEl.classList.contains('open');
+  sidebarEl.toggleAttribute('inert', hidden);
+  if(hidden) sidebarEl.setAttribute('aria-hidden','true');
+  else sidebarEl.removeAttribute('aria-hidden');
+}
+function closeDrawer(returnFocus = false){
+  const focusWasInside = sidebarEl.contains(document.activeElement);
+  sidebarEl.classList.remove('open'); $('#scrim').classList.remove('open');
+  tocToggle.setAttribute('aria-expanded','false');
+  tocToggle.setAttribute('aria-label','İçindekileri aç');
+  syncDrawerA11y();
+  if(returnFocus && focusWasInside) tocToggle.focus();
+}
+tocToggle.onclick = () => {
+  const open = !sidebarEl.classList.contains('open');
+  sidebarEl.classList.toggle('open', open); $('#scrim').classList.toggle('open', open);
+  tocToggle.setAttribute('aria-expanded', String(open));
+  tocToggle.setAttribute('aria-label', open ? 'İçindekileri kapat' : 'İçindekileri aç');
+  syncDrawerA11y();
+};
+$('#scrim').onclick = () => closeDrawer(true);
+drawerMedia.addEventListener('change', () => {
+  if(!drawerMedia.matches) closeDrawer(false);
+  else syncDrawerA11y();
+});
+syncDrawerA11y();
+
+const topbar = $('.topbar');
+function syncTopbarHeight(){
+  document.documentElement.style.setProperty('--topbar-h', Math.ceil(topbar.getBoundingClientRect().height) + 'px');
+}
+syncTopbarHeight();
+if('ResizeObserver' in window) new ResizeObserver(syncTopbarHeight).observe(topbar);
 
 /* ---------- Başlangıç ---------- */
 (function init(){
