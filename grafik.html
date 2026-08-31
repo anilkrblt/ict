@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f7f5f1" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#131519" media="(prefers-color-scheme: dark)">
+<meta name="description" content="ICT eleme notlarındaki tanımların grafik üstünde çalışan kod karşılığı.">
+<title>ICT Grafik Laboratuvarı</title>
+<style>
+:root{
+  --paper:#f7f5f1; --surface:#ffffff; --surface-2:#f1eee8;
+  --ink:#1c1a17; --ink-soft:#4a4640; --ink-faint:#706a62;
+  --line:#e2ddd4; --line-strong:#cfc8bb;
+  --accent:#a24724; --accent-soft:#f6e7de;
+  --boga:#2e7d5b; --ayi:#b5452f;
+  --gz-zemin:#ffffff; --gz-izgara:#efece7; --gz-metin:#706a62;
+  --gz-metin-guclu:#1c1a17; --gz-yukari:#2e7d5b; --gz-asagi:#b5452f; --gz-capraz:#9a948b;
+  --radius:10px;
+  --font-ui:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --font-mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+}
+:root[data-theme="auto"],:root[data-theme="light"]{ color-scheme:light; }
+@media (prefers-color-scheme: dark){
+  :root[data-theme="auto"]{
+    --paper:#131519; --surface:#191c21; --surface-2:#20242a;
+    --ink:#e7e3db; --ink-soft:#b3ada2; --ink-faint:#8d867b;
+    --line:#2a2f36; --line-strong:#39404a;
+    --accent:#e08a5c; --accent-soft:#33251c;
+    --boga:#4fae83; --ayi:#e0765a;
+    --gz-zemin:#191c21; --gz-izgara:#242931; --gz-metin:#8d867b;
+    --gz-metin-guclu:#e7e3db; --gz-yukari:#4fae83; --gz-asagi:#e0765a; --gz-capraz:#6f6a63;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#131519; --surface:#191c21; --surface-2:#20242a;
+  --ink:#e7e3db; --ink-soft:#b3ada2; --ink-faint:#8d867b;
+  --line:#2a2f36; --line-strong:#39404a;
+  --accent:#e08a5c; --accent-soft:#33251c;
+  --boga:#4fae83; --ayi:#e0765a;
+  --gz-zemin:#191c21; --gz-izgara:#242931; --gz-metin:#8d867b;
+  --gz-metin-guclu:#e7e3db; --gz-yukari:#4fae83; --gz-asagi:#e0765a; --gz-capraz:#6f6a63;
+  color-scheme:dark;
+}
+
+*,*::before,*::after{ box-sizing:border-box; }
+html,body{ height:100%; }
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:var(--font-ui); font-size:14px; line-height:1.5;
+  -webkit-font-smoothing:antialiased; overflow:hidden;
+}
+button,input,select{ font:inherit; color:inherit; }
+[hidden]{ display:none !important; }
+button{ cursor:pointer; }
+a{ color:var(--accent); }
+:focus-visible{ outline:2px solid var(--accent); outline-offset:2px; }
+
+/* ---------- düzen ---------- */
+.uygulama{ display:flex; flex-direction:column; height:100dvh; }
+.ust{
+  display:flex; align-items:center; gap:14px; flex-wrap:wrap;
+  padding:8px 14px; border-bottom:1px solid var(--line); background:var(--surface);
+}
+.marka{ font-weight:700; letter-spacing:-.01em; white-space:nowrap; }
+.marka small{ display:block; font-weight:400; font-size:11px; color:var(--ink-faint); letter-spacing:0; }
+.kontroller{ display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.alan{ display:flex; align-items:center; gap:5px; }
+.alan label{ font-size:11px; color:var(--ink-faint); }
+input[type=text],input[type=number],select{
+  background:var(--paper); border:1px solid var(--line-strong); border-radius:7px;
+  padding:5px 7px; font-size:12.5px; min-width:0;
+}
+input[type=text]{ width:110px; } input[type=number]{ width:78px; }
+.dugme{
+  background:var(--ink); color:var(--paper); border:0; border-radius:7px;
+  padding:6px 12px; font-size:12.5px; font-weight:600;
+}
+.dugme.ikincil{ background:transparent; color:var(--ink-soft); border:1px solid var(--line-strong); font-weight:500; }
+.dugme:disabled{ opacity:.5; cursor:default; }
+.ust .sag{ margin-left:auto; display:flex; align-items:center; gap:10px; }
+.durum{ font-size:11.5px; color:var(--ink-faint); font-family:var(--font-mono); }
+.durum.hata{ color:var(--ayi); }
+
+main{ flex:1; display:grid; grid-template-columns:288px 1fr 320px; min-height:0; }
+.sol,.sagpanel{ overflow-y:auto; background:var(--surface); }
+.sol{ border-right:1px solid var(--line); }
+.sagpanel{ border-left:1px solid var(--line); }
+.orta{ display:flex; flex-direction:column; min-width:0; background:var(--gz-zemin); }
+#tuval{ flex:1; width:100%; display:block; min-height:0; cursor:crosshair; }
+
+.panel-baslik{
+  position:sticky; top:0; z-index:2; background:var(--surface);
+  padding:9px 12px 7px; border-bottom:1px solid var(--line);
+  font-size:11px; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:var(--ink-faint);
+  display:flex; align-items:center; gap:8px;
+}
+.panel-baslik .sayac{ margin-left:auto; font-weight:600; letter-spacing:0; text-transform:none; }
+
+/* ---------- dedektör listesi ---------- */
+.grup-ad{
+  padding:11px 12px 4px; font-size:10.5px; font-weight:700;
+  letter-spacing:.08em; text-transform:uppercase; color:var(--ink-faint);
+}
+.kart{ border-bottom:1px solid var(--line); }
+.kart-ust{ display:flex; align-items:flex-start; gap:8px; padding:8px 12px; }
+.kart-ust:hover{ background:var(--surface-2); }
+.kart input[type=checkbox]{ margin-top:3px; accent-color:var(--accent); width:15px; height:15px; }
+.kart-ad{ flex:1; min-width:0; cursor:pointer; }
+.kart-ad b{ display:block; font-size:13px; font-weight:600; }
+.kart-ad .kaynak{ font-size:10.5px; color:var(--ink-faint); font-family:var(--font-mono); }
+.rozet{
+  font-size:9.5px; font-weight:700; padding:1px 5px; border-radius:20px;
+  background:var(--surface-2); color:var(--ink-faint); white-space:nowrap; border:1px solid var(--line);
+}
+.rozet.sn0{ color:var(--boga); border-color:color-mix(in srgb,var(--boga) 35%,transparent); }
+.rozet.sn2{ color:var(--ayi); border-color:color-mix(in srgb,var(--ayi) 35%,transparent); }
+.kart-ac{ background:none; border:0; color:var(--ink-faint); font-size:15px; line-height:1; padding:2px 4px; }
+.kart-govde{ padding:0 12px 12px 35px; font-size:12px; color:var(--ink-soft); }
+.kart-govde p{ margin:0 0 8px; }
+.kart-govde .uyari{
+  border-left:2px solid var(--accent); background:var(--accent-soft);
+  padding:7px 9px; border-radius:0 6px 6px 0; color:var(--ink); font-size:11.5px;
+}
+.kart-govde .belge-link{ font-size:11.5px; }
+.parametreler{ display:grid; gap:7px; margin:9px 0 0; }
+.par{ display:flex; align-items:center; gap:7px; font-size:11.5px; }
+.par label{ flex:1; color:var(--ink-faint); }
+.par input[type=number]{ width:66px; padding:3px 5px; font-size:11.5px; }
+.par select{ padding:3px 5px; font-size:11.5px; max-width:130px; }
+.par input[type=checkbox]{ accent-color:var(--accent); }
+
+/* ---------- bulgu listesi ---------- */
+.bulgu{
+  display:block; width:100%; text-align:left; background:none; border:0;
+  border-bottom:1px solid var(--line); padding:8px 12px; font:inherit;
+}
+.bulgu:hover{ background:var(--surface-2); }
+.bulgu.secili{ background:var(--accent-soft); box-shadow:inset 3px 0 0 var(--accent); }
+.bulgu-ust{ display:flex; align-items:center; gap:6px; }
+.nokta{ width:7px; height:7px; border-radius:50%; flex:none; }
+.nokta.boga{ background:var(--boga); } .nokta.ayi{ background:var(--ayi); } .nokta.notr{ background:var(--ink-faint); }
+.bulgu-ad{ font-size:12.5px; font-weight:600; flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.bulgu-ix{ font-size:10.5px; color:var(--ink-faint); font-family:var(--font-mono); }
+.bulgu-durum{ font-size:11px; color:var(--ink-faint); margin-left:13px; }
+.bulgu-durum.tukendi{ text-decoration:line-through; opacity:.65; }
+.detay{ margin:7px 0 2px 13px; display:grid; grid-template-columns:auto 1fr; gap:2px 10px; font-size:11.5px; }
+.detay dt{ color:var(--ink-faint); white-space:nowrap; }
+.detay dd{ margin:0; font-family:var(--font-mono); font-size:11px; text-align:right; }
+.bos{ padding:20px 14px; font-size:12.5px; color:var(--ink-faint); }
+
+/* ---------- okuma çubuğu ---------- */
+.okuma{
+  display:flex; gap:14px; align-items:center; flex-wrap:wrap;
+  padding:6px 12px; border-bottom:1px solid var(--line);
+  font-family:var(--font-mono); font-size:11.5px; color:var(--ink-soft);
+  background:var(--surface); min-height:31px;
+}
+.okuma b{ color:var(--ink); font-weight:600; }
+.okuma .ny{ color:var(--accent); }
+.altbar{
+  padding:5px 12px; border-top:1px solid var(--line); background:var(--surface);
+  font-size:11px; color:var(--ink-faint); display:flex; gap:14px; flex-wrap:wrap;
+}
+.suz{ display:flex; align-items:center; gap:5px; font-size:11px; color:var(--ink-faint); }
+
+@media (max-width:1100px){
+  body{ overflow:auto; }
+  main{ grid-template-columns:1fr; }
+  .sol,.sagpanel{ max-height:44vh; border:0; border-top:1px solid var(--line); }
+  .orta{ height:62vh; }
+}
+</style>
+</head>
+<body>
+<div class="uygulama">
+  <header class="ust">
+    <div class="marka">ICT Grafik Laboratuvarı
+      <small>eleme notlarındaki tanımların kod karşılığı</small></div>
+
+    <div class="kontroller">
+      <div class="alan">
+        <label for="kaynak">Kaynak</label>
+        <select id="kaynak">
+          <option value="binance">Binance</option>
+          <option value="csv">CSV dosyası</option>
+          <option value="ornek">Örnek (sentetik)</option>
+        </select>
+      </div>
+      <div class="alan" id="sembolAlan">
+        <label for="sembol">Sembol</label>
+        <input type="text" id="sembol" value="BTCUSDT" spellcheck="false">
+      </div>
+      <div class="alan">
+        <label for="aralik">Aralık</label>
+        <select id="aralik"></select>
+      </div>
+      <div class="alan">
+        <label for="adet">Mum</label>
+        <input type="number" id="adet" value="500" min="60" max="1000" step="50">
+      </div>
+      <div class="alan" id="dosyaAlan" hidden>
+        <input type="file" id="dosya" accept=".csv,.txt" style="font-size:11.5px;max-width:170px">
+        <label for="kayma" title="Broker saati New York saatine göre kayıyorsa düzelt (§15.2)">saat kayması</label>
+        <input type="number" id="kayma" value="0" min="-12" max="12" step="0.5" style="width:56px">
+      </div>
+      <button class="dugme" id="yukle">Yükle</button>
+      <div class="alan">
+        <label for="pip" title="0 = kapalı; mesafeler fiyat olarak gösterilir">pip</label>
+        <input type="number" id="pip" value="0" min="0" step="0.0001">
+      </div>
+    </div>
+
+    <div class="sag">
+      <span class="durum" id="durum">hazır</span>
+      <a class="dugme ikincil" href="index.html#islem-claude" title="Eleme notları okuyucusu">Notlar</a>
+      <button class="dugme ikincil" id="tema" title="Tema">◐</button>
+    </div>
+  </header>
+
+  <main>
+    <aside class="sol">
+      <div class="panel-baslik">Öğretiler <span class="sayac" id="seciliSayac"></span></div>
+      <div id="katmanListe"></div>
+    </aside>
+
+    <section class="orta">
+      <div class="okuma" id="okuma"><span>Grafiğin üstüne gel — mum, saat ve o noktadaki katmanlar burada.</span></div>
+      <canvas id="tuval"></canvas>
+      <div class="altbar">
+        <span>Tekerlek: yakınlaştır</span><span>Sürükle: kaydır</span><span>Çift tık: tümünü göster</span>
+        <span id="ozet" style="margin-left:auto"></span>
+      </div>
+    </section>
+
+    <aside class="sagpanel">
+      <div class="panel-baslik">Bulgular <span class="sayac" id="bulguSayac"></span></div>
+      <div style="padding:7px 12px;border-bottom:1px solid var(--line);display:flex;gap:12px;flex-wrap:wrap">
+        <label class="suz" title="Tükenmiş, kırılmış ve test edilmiş array’ler grafikten de kalkar (§13.6 tükenme kuralı)"><input type="checkbox" id="suzAktif"> yalnız tükenmemişler</label>
+        <label class="suz"><input type="checkbox" id="etiketAc" checked> etiketler</label>
+      </div>
+      <div id="bulguListe"></div>
+    </aside>
+  </main>
+</div>
+
+<script src="grafik/veri.js"></script>
+<script src="grafik/cizim.js"></script>
+<script src="grafik/dedektorler.js"></script>
+<script src="grafik/dedektorler-akis.js"></script>
+<script src="grafik/uygulama.js"></script>
+</body>
+</html>
