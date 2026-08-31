@@ -107,6 +107,30 @@ class Renderer:
             if m:
                 lvl = len(m.group(1))
                 text = m.group(2).strip()
+                if lvl == 3 and text == "Bölüm sonu — kendini sınama":
+                    j = i + 1
+                    while j < n and not lines[j].strip():
+                        j += 1
+                    items = []
+                    while j < n:
+                        mi = re.match(r"^[-*+]\s+(.*)$", lines[j].strip())
+                        if not mi:
+                            break
+                        parts = [mi.group(1)]
+                        j += 1
+                        while j < n and lines[j].strip() and lines[j][:1] in (" ", "\t"):
+                            parts.append(lines[j].strip())
+                            j += 1
+                        items.append(" ".join(parts))
+                    if items:
+                        out.append(
+                            '<details class="chapter-check">'
+                            '<summary><span>Bölüm sonu — kendini sınama</span>'
+                            '<small>%d madde</small></summary><ul>%s</ul></details>'
+                            % (len(items), "".join("<li>%s</li>" % inline(item) for item in items))
+                        )
+                        i = j
+                        continue
                 hid = self.make_id(text)
                 dom_id = "%s--%s" % (self.id_prefix, hid) if self.id_prefix else hid
                 self.toc.append({"id": hid, "level": lvl, "text": text})
@@ -128,7 +152,8 @@ class Renderer:
                 while i < n and lines[i].strip().startswith("|"):
                     body.append(split_row(lines[i]))
                     i += 1
-                t = ['<div class="table-wrap"><table><thead><tr>']
+                t = ['<div class="table-wrap" role="region" tabindex="0" '
+                     'aria-label="Tablo; dar ekranda yatay kaydırılabilir"><table><thead><tr>']
                 for idx, c in enumerate(head):
                     a = aligns[idx] if idx < len(aligns) else "left"
                     t.append('<th style="text-align:%s">%s</th>' % (a, inline(c)))

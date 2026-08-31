@@ -1,39 +1,21 @@
 # ICT Charter Content — 13 Price Action Modeli
-## 34 video · Türkçe eğitim rehberi · Kavramlar, kurallar, işlem planları ve doğrulama protokolü
+## 34 videodan bütünlüklü bir Türkçe eğitim · Kavramlar, modeller ve işlem disiplini
 
-Bu belge, `ict-charter-content-transkriptler.txt` içindeki **34 videonun tamamını** Türkçe bir öğrenme rotasına dönüştürür. Aynı modelin tanıtım, ek ders, örnek ve trade-plan videoları tek bölümde birleştirildi. Böylece kaynak sırası korunurken tekrarlar ayıklandı; metin baştan sona okunabilir ve daha sonra kontrol listesi olarak kullanılabilir hâle geldi.
+Bu rehber, `ict-charter-content-transkriptler.txt` içindeki **34 videoyu** art arda dizilmiş özetler olarak değil, tek bir öğrenme yolculuğu olarak ele alır. Aynı modelin tanıtım, ek ders, örnek ve işlem planı videoları bir araya getirildi. Böylece bir modeli anlamak için videolar arasında ileri geri gitmek gerekmez; fikri, grafikteki gelişimi, uygulama kuralları ve sınırları aynı bölümde okunabilir.
 
-Belgenin amacı bir sinyal listesi vermek değil, her modelin mantığını dört soruyla öğretmektir: **Fiyatın nereye çekildiği düşünülüyor? Kurulum nerede aranıyor? Giriş neyle tetikleniyor? Fikir hangi koşulda geçersiz oluyor?**
-
-Otomatik transkriptte bozulan terimler bağlama göre düzeltildi. `IPA`, `IPTO` ve `iPod data range` ifadeleri **IPDA veri aralığı**; `coot` ifadesi **COT**; `opal trade entry` ifadesi **OTE**; `Juda/Judith swing` ifadesi **Judas Swing**; `fair value got` ifadesi **Fair Value Gap** olarak okunmalıdır.
+Kitap boyunca aynı dört sorunun peşinden gideceğiz: **Fiyatın nereye çekildiği düşünülüyor? Kurulum nerede aranıyor? Giriş neyle tetikleniyor? Fikir hangi koşulda geçersiz oluyor?** Amaç hazır sinyaller vermek değil, grafiğe baktığında kendi karar zincirini kurabilmeni sağlamaktır.
 
 > **Önemli:** Buradaki yüzde, pip ve getiri hedefleri kaynak videoların eğitim iddialarıdır; vaat veya kişisel yatırım tavsiyesi değildir. Kaldıraç kazancı da kaybı da büyütür. Strateji, maliyetler dâhil geçmiş veri ve ileriye dönük demo işlemlerle doğrulanmadan gerçek sermayeye uygulanmamalıdır.
 
-## Bu belge nasıl çalışılmalı?
+## Bu kitap nasıl okunmalı?
 
-İlk okumada yalnız **Bölüm I** ile ilgilen. Terimleri öğrenmeden model kuralları birbirine benzer görünür. İkinci okumada kendi zaman ufkuna uyan **tek bir model** seç. Üçüncü okumada o modelin kontrol listesini, grafiği açmadan önce doldur. Son olarak **Bölüm IV** içindeki test ve risk protokolünü tamamlamadan canlı işlem düşünme.
+İlk okumada yalnız **Bölüm I** ile ilgilen. Terimleri öğrenmeden model kuralları birbirine benzer görünür. Ardından kendi zaman ufkuna uyan **tek bir model** seç ve o bölümü baştan sona oku. Bölüm sonundaki kontrol listesini ilk geçişte açmak zorunda değilsin; o liste, anlatıyı öğrendikten sonra uygulama sırasında kullanacağın bir başvuru katmanıdır. Son olarak **Bölüm IV** içindeki test ve risk protokolünü tamamlamadan canlı işlem düşünme.
 
 Bir modeli öğrenmek, bütün ICT araçlarını aynı grafiğe doldurmak değildir. Serinin tekrar tekrar verdiği ana mesaj şudur: Kısa bir plan, az sayıda değişken ve aynı koşulları tekrar tekrar gözlemlemek; yüz sayfalık, her ihtimali açıklayan bir plandan daha kullanışlıdır.
 
-## Kaynak haritası
-
-| Videolar | Model | Ana konu | Kaynak satırları |
-|---|---|---|---:|
-| 1–3 | Model 1 | Intraday scalp · önceki günlük tepe/dip | 1–1545 |
-| 4–5 | Model 2 | Kısa vadeli haftalık range | 1546–2713 |
-| 6–7 | Model 3 | Swing trade · günlük likidite | 2714–4082 |
-| 8–10 | Model 4 | Pozisyon trade · çeyrek/mevsimsellik | 4083–5326 |
-| 11–14 | Model 5 | Seans içi volatilite genişlemesi | 5327–7079 |
-| 15–20 | Model 6 | Evrensel buy-side model ve fraktallar | 7080–9233 |
-| 21–23 | Model 7 | Evrensel sell-side model ve fraktallar | 9234–11187 |
-| 24–25 | Model 8 | Haftalık 25 pip / aylık %6 hedefi | 11188–12272 |
-| 26–27 | Model 9 | One Shot One Kill | 12273–13224 |
-| 28–29 | Model 10 | External’dan external’a swing | 13225–13988 |
-| 30–31 | Model 11 | 30 pip gün içi model | 13989–15074 |
-| 32–33 | Model 12 | 20 pip scalp | 15075–16120 |
-| 34 | Model 13 | 2022 modeli · index futures | 16121–16670 |
-
 # BÖLÜM I — Önce dili öğren
+
+Bir modeli ezberlemeden önce bütün modellerin konuştuğu ortak dili kurmak gerekir. Bu bölümdeki kavramlar, ileride karşılaşacağımız on üç farklı planın yapı taşlarıdır. Her terimi ayrı bir sinyal gibi değil, aynı fiyat hikâyesinde farklı görev üstlenen bir parça gibi düşün.
 
 ## Bütün modellerin ortak mimarisi
 
@@ -45,35 +27,35 @@ Her model üç katmanda kurulur:
 
 Bu ayrım önemlidir. Bir FVG görmek tek başına işlem değildir. FVG yalnız üçüncü katmandaki bir araçtır; üstte sahne ve kurulum yoksa bağlamdan kopuktur.
 
-Trade planlarının ortak iş akışı da beş adımdır:
+Bu üç katman yerli yerine oturduğunda işlem planı doğal bir sırayla ilerler: önce hazırlığını yapar ve fırsatı keşfedersin; ardından giriş, stop ve hedefi birlikte planlar, emri uygular ve yalnız önceden yazdığın kurallarla yönetirsin. İlerleyen bölümlerde değişen şey bu iskelet değil, her modelin sahneyi ve tetikleyiciyi nasıl tanımladığıdır.
 
-1. Hazırlık.
-2. Fırsatı keşfetme.
-3. İşlemi planlama.
-4. Emri yürütme.
-5. İşlemi yönetme.
+## Kavramları bir fiyat hikâyesi içinde kurmak
 
-## Temel sözlük
+Terimleri alfabetik bir sözlük gibi ezberlemek yerine, fiyatın yolculuğunu izleyen üç soruyla öğrenmek daha kolaydır: **Fiyat nereye gidiyor, hareketin niteliği ne söylüyor ve doğru zaman ne zaman oluşuyor?** Şimdi kavramları bu sırayla birbirine bağlayalım.
 
-### Draw on liquidity — fiyatın çekildiği hedef
+### Fiyatın gideceği yeri bulmak
+
+Her işlem fikri önce bir varış noktasıyla başlar. Aralık, denge ve likidite kavramları bu varış noktasını seçmek için aynı haritanın farklı katmanlarını oluşturur.
+
+**Likidite hedefi (draw on liquidity).**
 
 Model önce “long mu short mu?” diye sormaz. Önce **fiyatın sıradaki mantıklı hedefi neresi?** diye sorar. Eski bir tepenin üstündeki alış stopları, eski bir dibin altındaki satış stopları veya tamamlanmamış bir fiyat dengesizliği bu hedef olarak seçilir. Bu hedefe `draw on liquidity` denir.
 
 Bu bir gözlem değil, test edilmesi gereken bir tahmindir. Hedefi işlemden önce tek bir fiyat seviyesiyle yazamıyorsan yönsel anlatı henüz yeterince net değildir.
 
-### Dealing range, equilibrium, premium ve discount
+**Fiyat aralığı, denge, prim ve iskonto (dealing range, equilibrium, premium, discount).**
 
 Bir anlamlı swing low ile swing high arasındaki alan **dealing range**’dir. Aralığın yüzde 50 noktası **equilibrium** olur. Üst yarı **premium**, alt yarı **discount** kabul edilir.
 
 Kaynak mantığına göre yükseliş beklentisinde discount’tan alıp premium hedeflenir; düşüş beklentisinde premiumdan satıp discount hedeflenir. “Ucuz” ve “pahalı” sözcükleri mutlak değer taşımaz; yalnız seçilen aralığa göredir. Aralığın iki ankrajı değişirse premium/discount sınıflaması da değişir. Bu nedenle ankrajlar işlemden önce sabitlenmelidir.
 
-### IPDA veri aralığı
+**IPDA veri aralığı.**
 
 Kısa ve orta vadeli modellerde son **20 işlem gününün** en yüksek ve en düşük fiyatı işaretlenir; pazar mumları sayılmaz. Bu pencere içinde işe yarar hedef bulunamazsa bazı modeller 40, sonra 60 işlem gününe genişler. Model 9 ise günlük değil, **20 haftalık** bakış kullanır.
 
 IPDA burada fiyatı açıklayan kanıtlanmış bir motor olarak değil, eski tepe, dip ve dengesizlikleri sistemli taramak için kullanılan bir bakış penceresi olarak ele alınmalıdır.
 
-### Internal ve external range liquidity
+**İç ve dış aralık likiditesi (internal/external range liquidity).**
 
 **External Range Liquidity**, tanımlı dealing range’in dışındaki eski veya eşit tepeler/diplerdir. Kaynak, bunların ötesindeki stop emirlerini hedef varsayar.
 
@@ -87,7 +69,11 @@ Bu ayrım giriş-hedef eşleşmesini kurar:
 | External | Internal | Baskın sonrası range içine dönüş |
 | External | Karşı external | Model 10 swing yapısı |
 
-### Fair Value Gap — FVG
+### Fiyatın döndüğünü veya devam ettiğini görmek
+
+Hedefi belirlemek yalnızca yönü tarif eder; giriş için fiyatın o hedefe nasıl ilerlediğini de okumak gerekir. Süpürme, güçlü hareket, yapı değişimi ve geride kalan dengesizlik birlikte bir olay zinciri kurar.
+
+**Adil Değer Boşluğu (Fair Value Gap — FVG).**
 
 FVG, üç mumlu yapıda birinci ve üçüncü mumun fitilleri arasında işlem görmemiş alan kalmasıdır. Bullish FVG’de birinci mumun tepesi ile üçüncü mumun dibi; bearish FVG’de üçüncü mumun tepesi ile birinci mumun dibi arasında boşluk bulunur. Kaynak bunu fiyatın hızlı teslim edildiği bir dengesizlik olarak yorumlar.
 
@@ -95,7 +81,7 @@ FVG’nin orta noktası **Consequent Encroachment** olarak adlandırılır. Fiya
 
 Her FVG giriş değildir. Yön, premium/discount konumu, seans, displacement ve hedefe kalan alanla birlikte değerlendirilir.
 
-### Order Block, breaker ve rejection block
+**Order Block, breaker ve rejection block.**
 
 **Order Block**, yönlü hareketten önceki karşı renkli mum veya mum kümesi olarak kullanılır. Bullish senaryoda yükselişi başlatan son down-close mum; bearish senaryoda düşüşü başlatan son up-close mum referans alınır. Mum gövdesinin orta noktası **mean threshold**’dur.
 
@@ -103,7 +89,7 @@ Her FVG giriş değildir. Yön, premium/discount konumu, seans, displacement ve 
 
 Bu isimler gerçek kurumsal emirlerin görüldüğü anlamına gelmez. Grafikten türetilen fiyat bölgeleridir; işe yarayıp yaramadıkları ayrı ölçülmelidir.
 
-### Liquidity raid, displacement ve Market Structure Shift
+**Likidite süpürmesi, güçlü yer değiştirme ve piyasa yapısı değişimi (raid, displacement, MSS).**
 
 **Liquidity raid**, fiyatın eski/eşit tepe veya dibin ötesine geçerek oradaki varsayılan stopları almasıdır. Baskın tek başına dönüş sinyali değildir.
 
@@ -111,25 +97,29 @@ Bu isimler gerçek kurumsal emirlerin görüldüğü anlamına gelmez. Grafikten
 
 Model 13’ün özü bu sıradır: önce raid, sonra displacement ile yapı değişimi, sonra oluşan FVG’ye dönüş.
 
-### OTE — Optimal Trade Entry
+**Optimal giriş bölgesi (OTE — Optimal Trade Entry).**
 
 OTE, bir impulse swing’e Fibonacci çekilmesi uygulanarak bulunan derin retracement alanıdır. Kaynak genel olarak yüzde 62–79 bandını, çoğu örnekte yüzde 70,5 çevresini kullanır. Ancak bazı trade planları özellikle **yüzde 62 seviyesini** emir fiyatı yapar. Bu iki kullanım karıştırılmamalıdır.
 
 Model 1’de özel yürütme kuralı long için yüzde 62’nin 5 pip üstü, short için yüzde 62’nin 5 pip altıdır. Dealing range çiziminde fitiller; OTE’nin “çekirdek hacim” ölçümünde bazı örneklerde mum gövdeleri kullanılır.
 
-### Kill Zone ve saat dilimi
+### Doğru zamanı ve büyük bağlamı seçmek
+
+Aynı fiyat yapısı günün her saatinde ve her piyasa koşulunda aynı anlamı taşımaz. Seans pencereleri girişin zamanını; COT, mevsimsellik ve piyasa ilişkileri ise daha geniş bağlamı seçmeye yardım eder.
+
+**Kill Zone ve saat dilimi.**
 
 Kill Zone, setup’ın aranacağı New York yerel saat penceresidir. Saatler sabit Türkiye saatine çevrilmemelidir; ABD ile Türkiye’nin yaz saati uygulamaları aynı değildir. Grafiği **America/New_York** saat dilimine getir veya her işlem gününde dönüşümü doğrula.
 
 Transkriptte broker grafik saatiyle verilen `04:00` ve `06:00` gibi etiketler doğrudan New York saati değildir. Metindeki açıklamaya göre bazı örneklerde 04:00 grafiği New York gece yarısına, 06:00 ise yaklaşık 02:00 New York’a karşılık gelir.
 
-### Judas Swing ve Power of Three
+**Judas Swing ve Power of Three.**
 
 **Power of Three**, bir range’in accumulation, manipulation ve distribution sırasıyla geliştiği anlatısıdır. **Judas Swing**, beklenen ana yönün tersine yapılan ilk yanıltıcı hareket olarak kullanılır. Bullish günde önce aşağı, bearish günde önce yukarı hareket beklenebilir.
 
 Bu anlatı, sonucu gördükten sonra her grafiğe yapıştırılmamalıdır. Manipulation sayılacak hareketin seviyesi, saati ve invalidasyonu işlemden önce yazılmalıdır.
 
-### COT, SMT, mevsimsellik ve çeyreklik kayma
+**COT, SMT, mevsimsellik ve çeyreklik kayma.**
 
 **COT**, vadeli işlem piyasasındaki haftalık pozisyon raporudur. Modeller 3 ve 4 commercial kategorisinin son 12 veya 6 aylık net pozisyon aralığını farklı biçimde yorumlar. Bu yorum, standart COT okuması değil, seriye özgü bir dönüşümdür.
 
@@ -137,7 +127,7 @@ Bu anlatı, sonucu gördükten sonra her grafiğe yapıştırılmamalıdır. Man
 
 **Mevsimsellik**, geçmiş yılların ortalama takvim eğilimidir; giriş sinyali değil, aday piyasa seçme filtresidir. **Quarterly shift**, yaklaşık üç aylık aralıklarla önemli swing oluşabileceği varsayımıdır. İkisi de kesin zamanlama sağlamaz.
 
-### Range projection ve “standard deviation”
+**Aralık projeksiyonu ve “standard deviation”.**
 
 Model 5 ve bazı trade planlarında “standard deviation” denilen şey istatistiksel standart sapma değildir. CBDR, Asian Range veya FLOUT high-low mesafesinin belirli katlarla yukarı/aşağı projeksiyonudur. Bu ayrım önemlidir: burada olasılık dağılımı hesaplanmıyor, geometrik range uzatması yapılıyor.
 
@@ -159,18 +149,19 @@ Model 5 ve bazı trade planlarında “standard deviation” denilen şey istati
 | 12 | Tek seans | Günlük expansion | OB retesti → FVG dönüşü | 20 pip |
 | 13 | Tek seans | Intraday likidite | Raid → MSS → FVG | Karşı PD Array |
 
-# BÖLÜM II — Modeller 1–5
+# BÖLÜM II — Zaman ufkunu büyütmek: Modeller 1–5
 
-## Model 1 — Önceki günlük tepe/dip ile intraday scalp
+İlk beş model aynı temel dili farklı uzaklıklarda kullanır. Önce New York seansındaki kısa bir hareketle başlayacağız; sonra haftaya, aya ve çeyreğe doğru uzaklaşacağız. Model 5’te yeniden gün içine döndüğümüzde ise aynı likidite fikrinin seans projeksiyonlarıyla nasıl birleştiğini göreceğiz.
+
+## Model 1 — Önceki günlük tepe/dip ile gün içi kısa işlem
 
 ::: ders
-**DERS**
 
-### Kimin için ve neyi hedefler?
+### Modelin özü
 
-Model 1, pozisyonu gece taşımak istemeyen, kararını hızlı verebilen ve uzun vadeli bir hareket beklemek yerine kısa bir New York seansı hareketi arayan trader içindir. Temel hedef işlem başına **15–20 pip**tir. Daha geniş örneklerde 25–30 piplik haftalık bir fırsat da anlatılır; fakat planın özü sık işlem değil, kısa ve seçkin bir fırsattır.
+Model 1, pozisyonu geceye taşımadan New York seansındaki kısa hareketleri çalışmak isteyenler içindir. Aradığımız bölüm çoğunlukla **15–20 pip**tir. Bu nedenle amaç gün boyu işlem kovalamak değil, seans içindeki tek temiz fırsatı seçmektir. Bazı geniş örneklerde 25–30 piplik haftalık fırsatlar da anlatılır; fakat modelin karakteri değişmez.
 
-Sahne günlük grafikteki likidite çekimidir. Kurulum, eski bir günlük tepe veya dibin hedefte olmasıdır. Giriş deseni ise New York Kill Zone içindeki 5 dakikalık OTE’dir.
+Hikâye günlük grafikte başlar. Önce fiyatın ulaşmasını beklediğimiz eski tepeyi veya dibi belirleriz. Ardından New York seansında beş dakikalık grafiğe iner ve yalnız bu hedefle aynı yöndeki OTE geri çekilmesini izleriz.
 
 ### Hazırlık ve yön
 
@@ -184,7 +175,7 @@ Bullish programda fiyat discount veya en fazla equilibrium tarafındayken, 20 g�
 
 Buradaki “previous day high/low” yalnız dünün seviyesi değildir. Son 20 gün içindeki, o günün fiyatına göre mantıklı sıradaki eski günlük tepe veya dip de kullanılabilir. Pencerede uygun hedef kalmadıysa 40 güne genişlenebilir.
 
-### Giriş prosedürü
+### İşlem nasıl gelişir?
 
 Bullish işlem:
 
@@ -215,7 +206,7 @@ Kademeli çıkış mantığı şöyledir:
 
 İlk kâr alınmadan stop aceleyle başa başa çekilmez. Anchor hedefi görüldükten sonra 5–10 pip kâr kilitlenebilir. Nihai trade-plan sürümünde ortak yüzde 25/50/75 kuralı da kullanılır: beklenen hedefin yüzde 25’i gerçekleşince başlangıç riski yüzde 25, hedefin yüzde 50’sinde yüzde 50 azaltılır; yüzde 75 ilerlemede stop en az başa başa gelir.
 
-### Model 1 kontrol listesi
+### Bölüm sonu — kendini sınama
 
 - Ekonomik takvim işaretli mi?
 - 20 günlük dealing range ve equilibrium sabit mi?
@@ -230,31 +221,32 @@ Kademeli çıkış mantığı şöyledir:
 :::
 
 ::: eleme
-**UYGULANABİLİRLİK KONTROLÜ**
+**Bu modelin zor tarafı**
 
 Modelin en mekanik kısmı gün, saat, yüzde 62 seviyesi, 5 pip tampon ve yeniden giriş yasağıdır. En belirsiz kısmı ise günlük yön ile “sıradaki mantıklı” tepe/dip seçimidir. Testten önce swing ve hedef önceliği için sabit tanım gerekir.
 
 15–20 pip hedefte spread, komisyon ve kayma önemli bir R maliyetidir. Forex için söylenen 5 pip tampon başka enstrümana kopyalanmamalıdır. Başlangıçta bu modeli yalnız demo ortamında ve tek paritede çalışmak, çok sayıda piyasada fırsat kovalamaktan daha sağlıklıdır.
 :::
 
-## Model 2 — Haftalık range’in salı–perşembe bölümü
+İlk model aynı gün içinde açılıp kapanıyordu. Şimdi aynı likidite mantığını birkaç günlük bir haftalık harekete yayacağız; bu değişim, yalnız hedefi değil sabır süresini ve zaman çıkışını da büyütecek.
+
+## Model 2 — Haftalık aralığın salı–perşembe bölümü
 
 ::: ders
-**DERS**
 
-### Kimin için ve neyi hedefler?
+### Modelin özü
 
 Model 2, haftalık genişlemenin tamamını değil, çoğunlukla salı veya çarşambadan perşembe New York açılışına kadar olan bölümünü hedefler. Amaç işlem başına **50–100 pip**tir. Pazartesi yön ve profil bilgisi toplamak için kullanılır; ana giriş salı, kurulum gelmezse çarşambadır.
 
 Sahne haftalık yön, kurulum range expansion, giriş deseni 15 dakikalık OTE ve uygun PD Array’dir.
 
-### Haftalık bias
+### Haftalık yönü kurmak
 
 Bullish haftada haftalık grafiğin üstündeki FVG, eski tepe veya buy-side liquidity hedeflenir. Bearish haftada alttaki FVG, eski dip veya sell-side liquidity hedeflenir. Son 20 işlem gününde uygun hedef yoksa 40, sonra 60 güne geçilir. Altmış günlük pencerede de temiz hedef yoksa piyasa değiştirilir veya işlem yapılmaz.
 
 Ekonomik takvim haftalık profile bağlanır. Örneğin salı London saatinde güçlü veri varsa, bullish anlatıda Tuesday-low-of-week veya Wednesday-low-of-week profili düşünülür. Haber yön sinyali değil, önceden kurulmuş anlatıyı hareket ettirebilecek zaman filtresidir.
 
-### Ana limit giriş
+### Ana giriş yolu
 
 1. Salı gününün European Open referansını doğru New York saatine göre işaretle.
 2. Bullishsen açılışın altında discount PD Array; bearishsen açılışın üstünde premium PD Array ara.
@@ -265,7 +257,7 @@ Ekonomik takvim haftalık profile bağlanır. Örneğin salı London saatinde g�
 
 Salı kurulum oluşmazsa aynı işlem çarşamba European Open ile yeniden hazırlanabilir. Salı zaten büyük bir expansion teslim etmişse çarşamba geç kalmış giriş kovalanmaz.
 
-### Alternatif strength entry
+### Hareket başladıktan sonra giriş
 
 Bu yöntem dip veya tepe tahmin etmek yerine hareket başladıktan sonra emir doldurur.
 
@@ -282,7 +274,7 @@ Alternatif breakout girişinde kaynak stopu **50 pip**tir. Bu nedenle limit giri
 
 Stop olursa aynı gün ve aynı fikirde yeniden giriş yoktur; model “one and done” çalışır. Fiyat önemli üst zaman dilimi hedefini tamamlayıp gerçek Market Structure Shift üretirse intraweek reversal düşünülebilir, fakat yalnız “hedefe geldi” diye ters işlem açılmaz.
 
-### Model 2 kontrol listesi
+### Bölüm sonu — kendini sınama
 
 - Haftalık mumun olası expansion yönü ve somut hedefi net mi?
 - 20/40/60 günlük pencere doğru sırayla tarandı mı?
@@ -297,23 +289,24 @@ Stop olursa aynı gün ve aynı fikirde yeniden giriş yoktur; model “one and 
 :::
 
 ::: eleme
-**UYGULANABİLİRLİK KONTROLÜ**
+**Bu modelin zor tarafı**
 
 Modelin zaman çıkışı, hedefleri ve iki giriş yöntemi açıkça test edilebilir. Belirsizlik yine haftalık bias, PD Array seçimi ve hangi CBDR/Asian/FLOUT ölçümünün kullanılacağı noktalarındadır.
 
 Trade-plan örnekleri **demo hesap** üzerinden anlatılır. Limit girişte 25, breakout girişte 50 pip stop kullanılması aynı parasal risk anlamına gelmez. Pozisyon büyüklüğü stop mesafesine göre yeniden hesaplanmadığında ikinci yöntem riski ikiye katlar.
 :::
 
-## Model 3 — Aylık genişleme içinde swing trade
+Model 2 haftanın orta bölümünü hedefliyordu. Model 3’te merceği bir kez daha uzaklaştırıp aylık genişlemeye bakacağız; bu kez fiyat yapısına COT ve mevsimsellik gibi daha yavaş değişen bağlam filtreleri de katılacak.
+
+## Model 3 — Aylık genişleme içinde salınım işlemi
 
 ::: ders
-**DERS**
 
-### Kimin için ve neyi hedefler?
+### Modelin özü
 
-Model 3, ekran başında sürekli kalamayan ve bir aylık hareketin içindeki birkaç günlük/haftalık swing’i taşımak isteyen trader içindir. Hedef sınıfı **100–300 pip**, beklenen sıklık çoğu piyasada ayda bir veya iki kurulumdur. Aylık mumun bias yönünde kapanması şart değildir; hedefe doğru yeterli expansion üretmesi yeterlidir.
+Model 3, ekran başında sürekli kalamayan ve aylık hareketin içindeki birkaç günlük ya da haftalık salınımı taşımak isteyenler içindir. Aranan hareket **100–300 pip** sınıfındadır ve çoğu piyasada ayda bir veya iki kurulum beklenir. Aylık mumun yön beklentisiyle aynı tarafta kapanması şart değildir; seçilen hedefe doğru yeterli genişleme üretmesi yeterlidir.
 
-Sahne 12 aylık commercial COT Hedging Program, kurulum günlük likidite havuzu, giriş deseni OTE’dir.
+Bu kez hikâye daha yavaş kurulur. On iki aylık commercial COT görünümü sahneyi, günlük likidite havuzu kurulumu, OTE ise giriş anını belirler.
 
 ### COT ile sahneyi kurmak
 
@@ -325,7 +318,7 @@ Sahne 12 aylık commercial COT Hedging Program, kurulum günlük likidite havuzu
 
 Bu yorum standart COT analizi değildir. Ayrıca FX paritesi ile vadeli kontratın yönü ters olabilir. Örneğin Canadian Dollar futures bearish okunuyorsa USDCAD bullish yorumlanabilir.
 
-### Setup ve giriş
+### Kurulumdan girişe
 
 Bullish senaryoda aylık açılış altına ilk ters hareket ve discount OTE aranır; bearish senaryoda aylık açılış üstündeki premium OTE aranır. Yeni ayın ilk işlem günündeki Asian açılış veya New York gece yarısı açılışı referans olabilir.
 
@@ -352,7 +345,7 @@ Ana hedefler eski günlük tepe/dip, günlük FVG ve buy-side/sell-side liquidit
 
 Fibonacci uzatması kendi başına hedef değildir; external liquidity ile örtüştüğünde kullanılır. Hedefe 100 pip alan yoksa bu, Model 3 kurulumu değildir.
 
-### Model 3 kontrol listesi
+### Bölüm sonu — kendini sınama
 
 - Aylık expansion yönü tek cümleyle yazılabiliyor mu?
 - 12 aylık commercial COT aralığı ve orta noktası hesaplandı mı?
@@ -367,21 +360,22 @@ Fibonacci uzatması kendi başına hedef değildir; external liquidity ile ört�
 :::
 
 ::: eleme
-**UYGULANABİLİRLİK KONTROLÜ**
+**Bu modelin zor tarafı**
 
 COT kategorisi ve 12 aylık orta nokta mekanik olarak hesaplanabilir. Fakat bu dönüşümün yön avantajı sağladığı kaynakta örneklemle gösterilmez. Mevsimsellik ve aylık bias aynı veriye bakılarak sonradan uyumlu seçilirse geriye dönük uyarlama riski doğar.
 
 Uzun hedefin parasal riski büyütmesine izin verilmemelidir. Stop mesafesi büyüdüğünde lot küçülür. Swing işlemin gece, hafta sonu ve gap riskini taşıdığı ayrıca hesaba katılmalıdır.
 :::
 
-## Model 4 — Çeyreklik ve mevsimsel pozisyon trade
+Model 3 büyük resmi tek bir aylık genişleme çevresinde kurdu. Model 4 aynı ufku daha da uzatırken filtre sayısını artıracak; dolayısıyla potansiyel hareket büyürken yorum alanı ve taşıma riski de büyüyecek.
+
+## Model 4 — Çeyreklik ve mevsimsel pozisyon işlemi
 
 ::: ders
-**DERS**
 
-### Kimin için ve neyi hedefler?
+### Modelin özü
 
-Model 4, birkaç hafta ile iki ay veya daha uzun süre pozisyon taşıyabilen, seyrek ve büyük hareket arayan trader içindir. Fırsat sınıfı **500 pip ve üzeridir**. Sahne güçlü bir seasonal tendency ile çakışan quarterly shift; kurulum altı aylık COT Hedging Program ve SMT divergence; giriş/çıkış deseni external range liquidity’dir.
+Model 4, birkaç hafta ile iki ay veya daha uzun süre pozisyon taşıyabilen ve seyrek ama büyük hareketler arayanlar içindir. Fırsat sınıfı **500 pip ve üzeridir**. Önce çeyreklik değişimle örtüşen güçlü bir mevsimsel eğilim aranır. Ardından altı aylık COT görünümü ve SMT ayrışması kurulumu destekler; giriş ile çıkışın haritasını ise dış aralık likiditesi belirler.
 
 ### Üçlü yön filtresi
 
@@ -401,7 +395,7 @@ Bullish senaryoda seasonal yukarıdır, COT bullish okunur, eski dip süpürül�
 
 Stop sonrası üst zaman dilimi tezi geçerliyse yeni kurulum beklenebilir.
 
-### Pyramiding
+### Pozisyona kademeli ekleme
 
 Pozisyona ekleme yalnız doğru range yarısında yapılır. Short’a equilibrium veya premiumda; long’a equilibrium veya discountta eklenir. Hedef tarafına geçildikten sonra yeni pozisyon açılmaz. Eklemeler küçülen boyutta olmalıdır; dersteki örnek **5–3–1** dağılımıdır. Bütün girişlerin toplam riski başlangıçta belirlenen üst sınırı aşamaz.
 
@@ -415,7 +409,7 @@ Pozisyona ekleme yalnız doğru range yarısında yapılır. Short’a equilibri
 
 İlk external liquidity alındıktan sonra yeni kısa vadeli dip/tepe etrafındaki `offset distribution` son çıkış için kullanılabilir. Büyük hedef uğruna ilk mantıklı likiditelerde hiç kâr almamak planın amacı değildir.
 
-### Model 4 kontrol listesi
+### Bölüm sonu — kendini sınama
 
 - Mevcut ay/çeyrek için önceden hazırlanmış seasonal aday listesi var mı?
 - Altı aylık commercial COT aralığı hesaplandı mı?
@@ -430,21 +424,22 @@ Pozisyona ekleme yalnız doğru range yarısında yapılır. Short’a equilibri
 :::
 
 ::: eleme
-**UYGULANABİLİRLİK KONTROLÜ**
+**Bu modelin zor tarafı**
 
 Bu model en çok seçim noktası taşıyan modellerden biridir. “Güçlü sezon”, commercial yön, SMT çifti, raid ve PD Array seçimi ayrı ayrı tanımlanmadığında aynı grafik sonradan farklı biçimde açıklanabilir.
 
 Mevsimsellik giriş değildir; COT gecikmeli haftalık veridir; SMT ise korelasyon rejimi değiştiğinde yanıltıcı olabilir. 500 pip ifadesi garanti değil, fırsat büyüklüğü etiketidir. Günlerce taşınan pozisyonda hafta sonu/gap riski nedeniyle kaynakta görülen geniş stop örnekleri lot küçültülmeden uygulanmamalıdır.
 :::
 
-## Model 5 — Seans içi volatilite expansion
+Çeyreklik model uzun süre beklemeyi ve çok sayıda filtreyi birlikte taşımayı gerektiriyordu. Şimdi yeniden gün içine dönüyoruz; Model 5’te büyük bağlam korunacak, fakat karar seans aralıklarının genişlemesi üzerinden verilecek.
+
+## Model 5 — Seans içi volatilite genişlemesi
 
 ::: ders
-**DERS**
 
-### Kimin için ve neyi hedefler?
+### Modelin özü
 
-Model 5, bütün günlük range’i değil, London veya New York seansındaki yönlü genişlemeyi almak isteyen day trader içindir. Nihai trade planı işlem başına **40–50 pip** hedefler. Sahne üst zaman dilimindeki likidite çekimi, kurulum intraday volatility expansion, giriş deseni seans swing’i ve Power of Three’dür.
+Model 5 bütün günün hareketini yakalamaya çalışmaz; London veya New York seansındaki yönlü genişlemenin **40–50 piplik** bölümünü arar. Üst zaman dilimi likidite hedefi yönü verir. Seans içindeki volatilite genişlemesi kurulumu, seans salınımı ile Power of Three ise giriş hikâyesini tamamlar.
 
 Pazartesi ve cuma resmî planda elenir. Salı ve çarşamba ana günlerdir. Perşembe, salı ve çarşamba zaten iki büyük range teslim etmediyse kullanılabilir. İki güçlü günün ardından perşembe yeni işlem aramak yerine konsolidasyon/retracement riski kabul edilir.
 
@@ -466,7 +461,7 @@ Range trend biçimindeyse kullanılmaz. Ölçümler 15 dakikalık grafikte tutar
 
 “Standard deviation” burada istatistiksel standart sapma değildir. Seçilen range’in 1, 1,5, 2, 2,5 gibi geometrik katlarla projeksiyonudur. Etiket tek başına hedef veya giriş değildir.
 
-### Setup ve giriş
+### İşlem nasıl gelişir?
 
 Bearish işlem:
 
@@ -491,7 +486,7 @@ Nihai planda short için ilgili premium/swing high’ın yaklaşık **15 pip üs
 
 Bu modelde stop sonrası, günlük tez ve Kill Zone hâlâ geçerliyse ikinci bir temiz kurulum izlenebilir. Bu izin intikam işlemi değildir; yeniden giriş şartları ilk işlemden önce yazılmalıdır.
 
-### Model 5 kontrol listesi
+### Bölüm sonu — kendini sınama
 
 - 20 günlük dealing range ve tek günlük draw net mi?
 - Hedef 40–50 pip alan veriyor mu?
@@ -506,14 +501,16 @@ Bu modelde stop sonrası, günlük tez ve Kill Zone hâlâ geçerliyse ikinci bi
 :::
 
 ::: eleme
-**UYGULANABİLİRLİK KONTROLÜ**
+**Bu modelin zor tarafı**
 
 Model 5’te range seçim protokolü sayısal görünse de “net konsolidasyon” ve birden çok ölçüm arasından seçim hâlâ özneldir. Testte hangi range’in seçileceği sonuç görülmeden belirlenmelidir.
 
 Transkriptte geçen, çok doğru işlem yapan müşteriyi brokerın çıkarabileceği ve bu nedenle bilinçli kötü işlem açılması gerektiği yönündeki iddia uygulanabilir bir risk kuralı değildir ve bu rehbere dâhil edilmemiştir. Bilinçli zarar üretmek yerine regülasyon, sözleşme koşulları, fiyat karşılaştırması ve eksiksiz işlem kaydı esas alınmalıdır.
 :::
 
-# BÖLÜM III — Modeller 6–13
+# BÖLÜM III — Teslimatın yolunu okumak: Modeller 6–13
+
+İlk beş model, farklı zaman ufuklarına göre kurulmuş işlem planlarıydı. Model 6 ve 7 biraz farklı çalışır: Bunlar tek başına giriş sistemi değil, fiyatın geniş hareket içindeki yolculuğunu okumaya yarayan ve birbirini aynalayan iki haritadır. Sonraki modeller bu haritayı yeniden daha dar, uygulanabilir giriş planlarına dönüştürecek.
 
 ## Model 6 ve 7’den önce — Market Maker profillerini doğru oku
 
@@ -528,16 +525,15 @@ Model 6 bu iki profilin **yukarı giden** taraflarını, Model 7 ise **aşağı 
 
 Örnek zaman dilimi zinciri haftalık sahne → günlük kurulum → 4 saatlik giriş veya günlük sahne → 4 saatlik kurulum → 1 saatlik/15 dakikalık giriş şeklindedir. Uzun vadeli pozisyon, giriş grafiğindeki her küçük salınım yüzünden yönetilmez.
 
-## Model 6 — Buy-side low-resistance liquidity run
+## Model 6 — Alış tarafına düşük dirençli likidite hareketi
 
 ::: ders
-**DERS**
 
-### Ana soru
+### Modelin özü
 
-Model 6 yalnız yukarı yönlü teslimatı işler. Başlangıç sorusu şudur: **Mevcut fiyat ile yukarıdaki hangi premium PD Array veya buy-side liquidity arasında düşük dirençli bir yol var?** Hedef eski/eşit tepe, bearish Order Block, FVG, liquidity void veya üst zaman dilimi premium bölgesi olabilir.
+Model 6 yalnız yukarı yönlü teslimatı inceler. Başlangıç sorusu basittir: **Mevcut fiyat ile yukarıdaki alış tarafı likiditesi arasında ne kadar açık bir yol var?** Varış noktası eski ya da eşit bir tepe, düşüş yönlü Order Block, FVG, likidite boşluğu veya üst zaman dilimindeki prim bölgesi olabilir.
 
-Son 20, 40 ve 60 işlem günlük range ölçeğe göre taranır. Mevcut fiyat tercihen discounttadır. Seasonality, COT ve SMT yönü güçlendirebilir; tek başına şart veya sinyal değildir.
+Bu yolu görmek için son 20, 40 ve 60 işlem gününü kapsayan aralıklar ölçeğe göre taranır. Fiyatın tercihen iskonto tarafında bulunması beklenir. Mevsimsellik, COT ve SMT yönü güçlendirebilir; hiçbiri tek başına giriş sinyali değildir.
 
 ### Senaryo A — Sell Model’in yukarı tarafı
 
@@ -565,17 +561,17 @@ Daha büyük şema sonunda düşüş üretecek olsa bile fiyat önce premium Ter
 
 Bu senaryoda dip tahmin edilmez. Sell-side hedef alındıktan sonra fiyatın bullish displacement ve yapı değişimiyle niyet göstermesi beklenir.
 
-### Formal giriş ve yönetim
+### Girişi adım adım kurmak
 
 Bias’ın tersine kısa süreli aşağı manipulation, tercihen haber kaynaklı volatility injection ile oluşur. London veya New York Open’da stage-1/stage-2 reaccumulation içinde 15/5 dakikalık bullish FVG, en fazla -3 projection, sell-stop raid veya bullish Entry Drill aranır. Buy limit, kaynak planında PD Array/projection birleşiminin yaklaşık 5 pip üstündedir.
 
 Stop ilgili swing low’un **20 pip altındadır**. İlk parça +20, ikinci parça +40 pipte kapanır. +60 pip görülürse toplam açık pozisyonun yüzde 80’i kapatılır, küçük runner hedef likiditeye bırakılır. Ortak yüzde 25/50/75 stop azaltma protokolü uygulanır.
 
-### Pyramiding sınırı
+### Kademeli ekleme sınırı
 
 Yeni ekleme ancak Terminus’a anlamlı mesafe kaldıysa ve gerçek bir ikinci reaccumulation oluştuysa yapılır. Fiyat yolun yarısından fazlasını kat etmişse veya hedefe yaklaşık 30 pipten az kalmışsa yeni stage icat edilmez. Üst zaman dilimlerinde iki aşama daha sık; 4 saatin altındaki yapılarda tek aşama daha olağan kabul edilir.
 
-### Model 6 kontrol listesi
+### Bölüm sonu — kendini sınama
 
 - Üst zaman dilimi premium hedefi tek fiyatla belli mi?
 - Uygun 20/40/60 günlük dealing range çizildi mi?
@@ -589,21 +585,22 @@ Yeni ekleme ancak Terminus’a anlamlı mesafe kaldıysa ve gerçek bir ikinci r
 :::
 
 ::: eleme
-**UYGULANABİLİRLİK KONTROLÜ**
+**Bu modelin zor tarafı**
 
 Model 6 bir hedef-yol haritasıdır; tek başına giriş sinyali değildir. “Low resistance” ölçüsü tanımlanmazsa yalnız başarılı örnekler sonradan düşük dirençli diye seçilebilir. Test için aradaki zıt swing sayısı, en büyük retracement veya hedefe kadar engel sayısı gibi önceden yazılmış bir ölçü gerekir.
 
 Stage-2, pozisyon eklemek için sonradan adlandırılmamalıdır. Yeni girişin kendi stopu ve toplam risk bütçesi olmalı; ilk işlem kâra geçti diye sınırsız risk eklenmemelidir.
 :::
 
-## Model 7 — Sell-side low-resistance liquidity run
+Yukarı giden yolu okuduk. Model 7’de yeni bir mantık öğrenmeyeceğiz; aynı haritayı ters çevirip fiyatın aşağıdaki likiditeye nasıl teslim edildiğini izleyeceğiz. Bu ayna ilişkisini görmek, iki modeli ayrı ayrı ezberlemekten daha değerlidir.
+
+## Model 7 — Satış tarafına düşük dirençli likidite hareketi
 
 ::: ders
-**DERS**
 
-### Ana soru
+### Modelin özü
 
-Model 7, Model 6’nın aynasıdır ve yalnız aşağı yönlü teslimatı işler: **Mevcut fiyat ile aşağıdaki hangi discount PD Array veya sell-side liquidity arasında düşük dirençli bir yol var?** Hedef old/equal low, bullish Order Block, bullish FVG veya başka bir discount bölgesi olabilir.
+Model 7, Model 6’nın aynasıdır ve yalnız aşağı yönlü teslimatı inceler. Bu kez şu soruyu sorarız: **Mevcut fiyat ile aşağıdaki satış tarafı likiditesi arasında ne kadar açık bir yol var?** Varış noktası eski ya da eşit bir dip, yükseliş yönlü Order Block, yükseliş yönlü FVG veya başka bir iskonto bölgesi olabilir.
 
 Sell-side hareketlerin daha hızlı, sert ve kaymalı gerçekleşebileceği vurgulanır. Bu, daha büyük lot gerekçesi değil; stop emrinde slippage ve gap riskinin daha ciddi olabileceği uyarısıdır.
 
@@ -631,7 +628,7 @@ Fiyat yalnız en yüksek değil, daha aşağıdaki ilk reaccumulation alanını 
 
 Bu ikinci senaryo “controlled demolition” olarak betimlenir: Daha büyük Buy Model’in dibe giden bacağıdır. Sell Model’in zaten bearish ortamda oluşan ikinci dağıtım bacağı ise daha sert devam hareketine dönüşebilir. Bu ayrım bir garanti değil, pozisyonu hangi hedefte kapatacağını belirleyen bağlamdır.
 
-### Formal giriş ve yönetim
+### Girişi adım adım kurmak
 
 Bias’ın tersine yukarı Judas Swing, mümkünse haber zamanı beklenir. London/NY Open’da 15/5 dakikalık premium bearish FVG, en fazla +3 projection, buy-stop raid ve bearish Entry Drill örtüşür. Sell limit birleşim seviyesinin yaklaşık 5 pip altındadır.
 
@@ -647,7 +644,7 @@ Bir dakikalık grafikte çok sayıda mum modeli gizleyebilir. Gürültüyü tek 
 4. Kırılma sonrası premium FVG dönüşünü short için kullan.
 5. Fiyat eski accumulation range’lerinin üstüne yerleşirse sell profili varsayımını iptal et.
 
-### Model 7 kontrol listesi
+### Bölüm sonu — kendini sınama
 
 - Discount hedef ve 20/40/60 günlük range belli mi?
 - Haftalık order flow gerçekten bearish mi?
@@ -662,25 +659,26 @@ Bir dakikalık grafikte çok sayıda mum modeli gizleyebilir. Gürültüyü tek 
 :::
 
 ::: eleme
-**UYGULANABİLİRLİK KONTROLÜ**
+**Bu modelin zor tarafı**
 
 “Controlled demolition” ile “crash” ayrımı önceden ölçü tanımlanmadığında yanlışlanamaz hâle gelir. Kâr yönetimi bu etikete dayandırılacaksa trend kuvveti, volatility percentile veya kırılan üst zaman dilimi seviyeleri gibi sabit kriterler gerekir.
 
 Sell-side hızında stop emri istenen fiyattan dolmayı garanti etmez. Backtestte mumun stopa dokunması kadar, gerçekçi slippage ve spread senaryosu da maliyete eklenmelidir.
 :::
 
+Model 6 ve 7 fiyatın yolunu tarif eden geniş haritalardı. Model 8’le birlikte yeniden sade bir çalışma düzenine dönüyoruz: Haftada tek fırsat, küçük bir hedef ve öğrenme sürecini koruyan düşük işlem sıklığı.
+
 ## Model 8 — Haftalık 25 pip ve aylık yüzde 6 hedefi
 
 ::: ders
-**DERS**
 
-### Amaç
+### Modelin özü
 
 Model 8, haftada tek sade fırsattan yaklaşık **25 pip** alarak disiplin geliştirmeyi hedefler. “Aylık yüzde 6”, bileşik olarak bir yılda yaklaşık iki kat özsermaye fikrinden gelir; yüzde 6’nın on iki kez bileşiği yaklaşık yüzde 101 artıştır. Ancak 25 pip ile yüzde getiri arasında otomatik bağ yoktur. Sonuç stop mesafesi, pozisyon büyüklüğü, kazanma oranı ve maliyete bağlıdır.
 
 Sahne haftalık range expansion; kurulum pazartesi–çarşamba ankrajı; pattern FVG, liquidity void ve likidite koşusudur.
 
-### Setup
+### Kurulum
 
 1. Son 20 işlem gününün dealing range’ini çıkar.
 2. Haftalık mumun kapanışını değil, hangi tarafta daha fazla genişleme üretme olasılığı olduğunu belirle.
@@ -697,7 +695,7 @@ Basit planda işlem +25 pipte tamamen kapatılır. Gelişmiş kullanımda fiyat 
 
 Kaynak stopu **15 pip**tir. Stop aynı zamanda FVG/Order Block ve setup swing’inin arkasında olmalıdır. Sabit 15 pip yapısal invalidasyonu korumuyorsa bu setup standart modele uymaz.
 
-### Model 8 kontrol listesi
+### Bölüm sonu — kendini sınama
 
 - Haftalık yön ve somut likidite hedefi net mi?
 - Son 20 günlük range çizildi mi?
@@ -712,19 +710,20 @@ Kaynak stopu **15 pip**tir. Stop aynı zamanda FVG/Order Block ve setup swing’
 :::
 
 ::: eleme
-**UYGULANABİLİRLİK KONTROLÜ**
+**Bu modelin zor tarafı**
 
 Aylık yüzde 6 bir performans hedefidir, setup özelliği değildir. Hedefi tutturmak için işlem zorlamak veya lot büyütmek modelin disiplin amacına ters düşer. 6% aylık bileşik hesabı matematiksel olarak doğru olsa da böyle bir getirinin sürdürülebileceğine ilişkin kaynakta istatistik sunulmaz.
 
 Başlangıç için bu modelin yararı az kural ve haftalık işlem sınırıdır. Dezavantajı haftalık biasın hâlâ öznel kalmasıdır. Yüzde hedefini tamamen çıkarıp sonucu R cinsinden ölçmek daha temiz bir test verir.
 :::
 
+Model 8’in gücü sadelikti. Model 9 aynı haftalık bağlamı koruyacak, fakat seçiciliği artırıp giriş fikrini “tek atış” mantığıyla daha dar bir bölgeye taşıyacak.
+
 ## Model 9 — One Shot One Kill
 
 ::: ders
-**DERS**
 
-### Amaç
+### Modelin özü
 
 Model 9, haftanın yüksek olasılıklı tepe veya dibine yakın tek ana girişle **50–75 pip** yakalamayı hedefler. Model 8’den daha seçicidir; ideal ankrajı kaçırınca fiyatı kovalamak yerine daha küçük hedefli modele geçilir.
 
@@ -739,7 +738,7 @@ IPDA penceresi burada son 20 **haftadır**. Haftalık grafik yön ve makro hedef
 
 Bu anahtar, “nerede girdim?” sorusunu “nerede çıkmalıyım?” sorusuna bağlar. Aynı sınıftan rastgele iki seviye seçilmez.
 
-### Setup ve giriş
+### Kurulumdan girişe
 
 Bearish işlemde haftalık draw aşağıdadır. Pazartesi–çarşamba bir tepe/likidite havuzu oluşur. Buy-side raid veya premium PD Array retracement’ı görülür. London/NY Kill Zone’da 15 dakikalık OTE ve seçilen PD Array birleştiğinde short alınır. Bullish senaryo tersidir.
 
@@ -747,7 +746,7 @@ Formal planda OTE/PD Array yakınsamasında market order kullanılabilir. Nomina
 
 ### Hedef ve stop yönetimi
 
-Basit seçenek +50 pipte tamamını kapatmaktır. Alternatifte +50 pipte yüzde 80 kapatılır, kalan yüzde 20 75 pipe veya uzaktaki likiditeye taşınır.
+Basit seçenek +50 pipte tamamını kapatmaktır. Alternatifte +50 pipte yüzde 80 kapatılır, kalan yüzde 20 ise 75 piplik hedefe veya uzaktaki likiditeye taşınır.
 
 Stop hemen başa başa çekilmez. Yaklaşık +25 pipte başlangıç riski yüzde 25 azaltılabilir; +37,5 pip civarında break-even düşünülebilir. Daha bağlamsal kural, stopu ancak daha düşük zaman dilimli scalp/day-trade modelinin kendi likidite hedefi gerçekleştiğinde taşımaktır. Çünkü o hedef sonrası retracement olasılığı artar.
 
@@ -757,7 +756,7 @@ Derste toplam yüzde 2 riski iki ayrı yüzde 1’lik emre bölme örneği veril
 
 Bu, yeni başlayan varsayılanı değildir. İlk model tek emir ve tek hedefle test edilmelidir.
 
-### Model 9 kontrol listesi
+### Bölüm sonu — kendini sınama
 
 - Son 20 haftalık dealing range çizildi mi?
 - Weekly draw on liquidity tek yönde net mi?
@@ -772,25 +771,26 @@ Bu, yeni başlayan varsayılanı değildir. İlk model tek emir ve tek hedefle t
 :::
 
 ::: eleme
-**UYGULANABİLİRLİK KONTROLÜ**
+**Bu modelin zor tarafı**
 
 Haftanın tepe/dibini önceden seçmek Model 9’un merkezindeki en zor ve en öznel adımdır. “Salı çoğu zaman tepe/dip yapar” sözü test edilmemiş varsayım olarak tutulmalıdır.
 
 İki emir aynı giriş ve aynı stopu taşıyorsa bunlar iki bağımsız işlem değil, toplam tek risk pozisyonudur. İlk emrin kârı ikinci emrin riskini psikolojik olarak görünmez yapmamalıdır. Bütün emirler ve eklemeler tek toplam risk bütçesinde hesaplanır.
 :::
 
-## Model 10 — External range’den karşı external range’e
+Model 9 giriş anını olabildiğince seçici hâle getirdi. Model 10 ise dikkati tek bir giriş tekniğinden alıp bütün aralığın yolculuğuna çevirir: Bir dış likidite süpürmesinden karşı taraftaki dış hedefe kadar.
+
+## Model 10 — Bir dış aralık seviyesinden karşı dış hedefe
 
 ::: ders
-**DERS**
 
-### Amaç ve yapı
+### Modelin özü
 
-Model 10, dış likidite baskınını giriş bağlamı, range’in karşı tarafındaki dış likiditeyi çıkış olarak kullanır. Hedef sınıfı haftada **50–75 pip**tir. Sahne haftalık range expansion; kurulum pazartesi, salı veya çarşamba ankrajı; pattern external range liquidity run’dır.
+Model 10’un rotası baştan bellidir: Fiyat önce aralığın bir tarafındaki dış likiditeyi süpürür, ardından karşı taraftaki dış likiditeye yönelir. Haftalık hedef sınıfı **50–75 pip**tir. Haftalık genişleme sahneyi, pazartesi–çarşamba arasında oluşan ankraj kurulumu, dış likidite hareketi ise giriş desenini oluşturur.
 
-Son 20, 40 ve 60 işlem günlük IPDA pencereleri incelenir. Haftalık/4 saatlik grafik bağlam, 15 dakikalık grafik giriş verir. Economic calendar ve London/NY Kill Zone işlemin zamanını sınırlar.
+Son 20, 40 ve 60 işlem gününü kapsayan IPDA pencereleri incelenir. Haftalık ve 4 saatlik grafik bağlamı, 15 dakikalık grafik ise girişi verir. Ekonomik takvim ile London/NY Kill Zone işlemin zamanını sınırlar.
 
-### Bearish prosedür
+### Düşüş senaryosu
 
 1. Haftalık expansion yönünü aşağı olarak belirle.
 2. Mevcut dealing range’in üstündeki eski tek tepe veya eşit tepeleri işaretle.
@@ -808,9 +808,9 @@ Soldaki, uzun süredir dokunulmamış üst zaman dilimi tepesi/dibi; yeni oluşm
 
 Resmî planda iki emir kullanılır: İlki +50 pipte, ikincisi 50–75 pip aralığında kapanır. Alternatif üç kâr alma dağılımı yüzde 50, yüzde 25, yüzde 25 olabilir. Hedefin yüzde 50’sinde başlangıç riski yüzde 25 azaltılabilir; yüzde 75’inde stop break-even’a alınabilir.
 
-Nominal stop **20 pip**tir. Stop raid ekstremi ve giriş PD Array’inin karşı tarafında olmalıdır. Bu yapısal koruma 20 pipe sığmıyorsa setup standart Model 10’a uymaz.
+Nominal stop **20 pip**tir. Stop, likidite süpürmesinin uç noktası ile giriş PD Array’inin karşı tarafında olmalıdır. Bu yapısal koruma 20 piplik mesafeye sığmıyorsa kurulum standart Model 10’a uymaz.
 
-### Model 10 kontrol listesi
+### Bölüm sonu — kendini sınama
 
 - 20/40/60 günlük range’ler sabit mi?
 - Haftalık expansion yönü net mi?
@@ -824,21 +824,22 @@ Nominal stop **20 pip**tir. Stop raid ekstremi ve giriş PD Array’inin karşı
 :::
 
 ::: eleme
-**UYGULANABİLİRLİK KONTROLÜ**
+**Bu modelin zor tarafı**
 
 Bu modelin en net cümlesi “bearishken eski tepenin üstünde sat, eski dibin altında kapat; bullishken tersini yap” kuralıdır. Fakat dealing range önceden sabitlenmezse aynı tepe bir ölçekte external, başka ölçekte internal olabilir.
 
 Raid tek başına dönüş kanıtı değildir. Bias, konum, zaman ve displacement tetikleyicisi çıkarıldığında model sıradan biçimde her tepenin üstünde short, her dibin altında long açmaya dönüşür.
 :::
 
-## Model 11 — Internal girişten günlük external hedefe 30 pip
+Model 10 haftanın iki dış sınırı arasında çalışıyordu. Model 11 aynı iç-dış likidite ilişkisini gün içine sıkıştırır ve daha yakın, 30 piplik bir teslimat arar.
+
+## Model 11 — İç bölgeden günlük dış likidite hedefine 30 pip
 
 ::: ders
-**DERS**
 
-### Amaç ve zaman dilimi zinciri
+### Modelin özü ve zaman dilimi zinciri
 
-Model 11, gün içinde **30 pip** teslimatı hedefleyen “bread and butter” modelidir. Sık görünmesi onu başlangıç için kolay yapmaz; düşük R katı ve çok fırsat, daha fazla seçicilik gerektirir.
+Model 11, gün içinde **30 piplik** bir teslimat arayan ve derslerde “temel çalışma modeli” diye sunulan plandır. Sık görünmesi onu kolaylaştırmaz; hedefin görece yakın, fırsatların çok olması daha fazla seçicilik gerektirir.
 
 - Haftalık grafik: 50–100 piplik olası expansion yönü.
 - Günlük grafik: hedeflenecek eski günlük tepe/dip.
@@ -848,7 +849,7 @@ Model 11, gün içinde **30 pip** teslimatı hedefleyen “bread and butter” m
 
 Modelin ana eşleşmesi **internal range liquidity giriş → external range liquidity çıkış**tır.
 
-### Setup ve giriş
+### Kurulumdan girişe
 
 Bearish işlem:
 
@@ -877,7 +878,7 @@ Hedef emri eski tepe/dibin tam noktasına bırakıldığında spread veya veri f
 
 Haftalık yönün tersine işlem yalnız ilk expansion **Terminus’a ulaştıktan sonra** düşünülür. External hedef alınmalı, belirgin Smart Money Reversal/MSS oluşmalı ve yeni reaccumulation/redistribution internal girişi görülmelidir. Sırf fiyat hızlı düştü veya yükseldi diye karşı tarafa geçilmez. Yeni öğrenci modelin yalnız ana-bias sürümünü çalışmalıdır.
 
-### Model 11 kontrol listesi
+### Bölüm sonu — kendini sınama
 
 - 20 günlük range ve weekly draw çizildi mi?
 - 30 pip hedef için yeterli runway var mı?
@@ -892,21 +893,22 @@ Haftalık yönün tersine işlem yalnız ilk expansion **Terminus’a ulaştıkt
 :::
 
 ::: eleme
-**UYGULANABİLİRLİK KONTROLÜ**
+**Bu modelin zor tarafı**
 
 30 pip hedef ve 20 pip stop brüt olarak 1,5R sunar; maliyet sonrası daha düşüktür. Kazanma oranı ayrıca ölçülmeden “sık oluşan bread and butter” ifadesi kârlılık kanıtı değildir.
 
 Günlük dış hedef alınmasa bile +30 pip görülmüşse model kendi tanımına göre görevini tamamlamıştır. Sonucu “asıl hedef sonra geldi” diye yeniden sınıflandırmak test disiplinini bozar.
 :::
 
-## Model 12 — Order Block retesti sonrası FVG ile 20 pip scalp
+Model 11 günlük hedefe doğru 30 piplik bir parça arıyordu. Model 12 hedefi biraz daha küçültür, fakat giriş için daha açık bir olay sırası ister: Order Block retesti, yapı değişimi, FVG ve geri dönüş.
+
+## Model 12 — Order Block retesti sonrası FVG ile 20 piplik kısa işlem
 
 ::: ders
-**DERS**
 
-### Amaç ve modelin özel sırası
+### Modelin özü ve özel olay sırası
 
-Model 12 tek seans içinde **20 pip** hedefler. Ana sahne günlük range expansion; 15 dakika kurulum alanı, 5 dakika giriş grafiğidir. London ve New York Open önceliklidir.
+Model 12 tek seans içinde **20 pip** hedefler. Günlük genişleme büyük resmi verir; on beş dakikalık grafik kurulum alanını, beş dakikalık grafik giriş anını gösterir. Öncelik London ve New York açılışlarındadır.
 
 Bu model “Order Block veya FVG gördüm, girdim” değildir. Olay sırası zorunludur:
 
@@ -920,7 +922,7 @@ Bu model “Order Block veya FVG gördüm, girdim” değildir. Olay sırası zo
 
 İlk Order Block’ın yanında FVG bulunması şart değildir. İşleme konu olan FVG, **Order Block retestinden sonraki displacement** içinde oluşmalıdır. Böylece ilk giriş kaçtıktan sonra daha doğrulanmış ikinci giriş aranır.
 
-### Bullish ve bearish yürütme
+### Yükseliş ve düşüş senaryoları
 
 Bullishte günlük/seans yönü yukarıdır. Bullish Order Block retesti yukarı displacement üretir. Expansion içindeki, parent swing’in discount yarısındaki FVG’ye dönüşte buy limit düşünülür. Hedef önceki gün/seans tepesi veya 20 pip koşudur.
 
@@ -943,7 +945,7 @@ Kaynak 2–5 pip stopların spread ve normal fiyat hareketi tarafından kolayca 
 
 Order Block retesti displacement üretmiyorsa; MSS yoksa; FVG yanlış premium/discount tarafındaysa; giriş dönüşü Kill Zone dışında kalıyorsa; hedefe 20 pip alan yoksa veya savunulması gereken swing kırılıyorsa işlem yoktur.
 
-### Model 12 kontrol listesi
+### Bölüm sonu — kendini sınama
 
 - Günlük/seans expansion yönü belli mi?
 - 15 dakikada 20 piplik hedef alanı var mı?
@@ -959,25 +961,26 @@ Order Block retesti displacement üretmiyorsa; MSS yoksa; FVG yanlış premium/d
 :::
 
 ::: eleme
-**UYGULANABİLİRLİK KONTROLÜ**
+**Bu modelin zor tarafı**
 
 20 pip hedefte işlem maliyeti ve stop dolumu sonucu belirgin etkiler. Çok küçük stop kullanarak kâğıt üzerindeki R’ı büyütmek, maliyeti R cinsinden de büyütür.
 
 Model sıralı olduğu için diğer kısa vadeli modellere göre daha kolay operasyonelleştirilebilir. En kritik test kararı, “displacement” ve “MSS” için kaç mum/kaç tick şartı koyulacağıdır. Bu tanım sonuca bakarak değişmemelidir.
 :::
 
-## Model 13 — 2022 index futures modeli
+İlk on iki modelde öğrendiğimiz likidite, yapı değişimi ve dengesizlik kavramları son bölümde tek bir kısa olay zincirinde birleşir. Model 13 bu nedenle yeni bir sözlük sunmaktan çok, önceki parçaları zaman penceresi belirli bir endeks vadeli işlem planında toplar.
+
+## Model 13 — 2022 endeks vadeli işlemler modeli
 
 ::: ders
-**DERS**
 
-### Amaç ve zaman pencereleri
+### Modelin özü ve zaman pencereleri
 
-Son video, önceki 12 modelden sonra eklenen ve özellikle **index futures** için anlatılan Model 13’tür. Ana fikir intraday likidite baskını sonrası kısa vadeli yapı değişimini, oluşan FVG’ye dönüşte işlemektir.
+Son video, önceki on iki modelin ardından özellikle **endeks vadeli işlemleri** için Model 13’ü ekler. Ana fikir, gün içi likidite süpürmesinden sonra oluşan kısa vadeli yapı değişimini görmek ve bu hareketin bıraktığı FVG’ye dönüşü işlemektir.
 
 Forex için genel pencere 07:00–10:00 New York; index futures AM penceresi **08:30–11:00 New York** olarak verilir. PM hazırlığı 12:00–13:00 lunch high/low’larını izler; işlem penceresi ağırlıkla **13:30–15:30 New York** arasındadır.
 
-### AM bearish kurulum
+### Sabah seansında düşüş senaryosu
 
 1. Üst zaman dilimi anlatısı ve hedef aşağıdadır.
 2. 08:30, 09:30, 10:00 veya 10:30 çevresinde eski/eşit tepe üzerindeki buy-side liquidity raid edilir.
@@ -987,13 +990,13 @@ Forex için genel pencere 07:00–10:00 New York; index futures AM penceresi **0
 6. Stop, FVG’yi oluşturan dış mum/swing tepesinin arkasındadır.
 7. Hedef, equilibrium altındaki en yakın discount PD Array; önceki session low, previous-day low, FVG veya bunların altındaki sell-side liquidity’dir.
 
-### AM bullish kurulum
+### Sabah seansında yükseliş senaryosu
 
 Eski/eşit dip altındaki sell-side raid edilir. Yakın 5–1 dakikalık swing high bullish displacement ile kırılır ve bullish FVG bırakır. FVG tercihen equilibrium’un altındadır. Geri dönüşte girişe yakın üst sınırdan buy limit düşünülür; stop outer swing low’un arkasındadır. Hedef premium PD Array, önceki session/day high veya buy-side liquidity’dir.
 
 Beş dakikadan aşağı inerken **ilk FVG’yi üreten grafik** kullanılır; sonradan daha güzel görünen bir zaman dilimi seçilmez.
 
-### PM kurulum
+### Öğleden sonra seansı
 
 Bearish PM setup, AM session high veya lunch hour high üzerindeki buy-side raid’i; bullish PM setup, AM/lunch low altındaki sell-side raid’i kullanır. Sabah seansında relative equal highs/lows varsa bunlar 12:00–13:00 içindeki tek bir lunch swing’inden daha önceliklidir. Sonra aynı raid → displacement/MSS → FVG → retracement sırası uygulanır.
 
@@ -1013,7 +1016,7 @@ Kaynak işlem başına toplam özsermayenin en fazla yüzde 2’sini, tercihen y
 
 Short hedefleri equilibrium altındaki en yakın discount PD Array, önceki session/day low veya bunların altındaki FVG/likiditedir. Long hedefleri bunun aynasıdır. Birden çok seviye varsa partial kullanılabilir; fakat oranlar işlemden önce sabitlenmelidir.
 
-### Model 13 kontrol listesi
+### Bölüm sonu — kendini sınama
 
 - Enstrüman gerçekten index futures mı; kontrat/tick değeri biliniyor mu?
 - AM veya PM penceresi New York saatine göre doğru mu?
@@ -1029,7 +1032,7 @@ Short hedefleri equilibrium altındaki en yakın discount PD Array, önceki sess
 :::
 
 ::: eleme
-**UYGULANABİLİRLİK KONTROLÜ**
+**Bu modelin zor tarafı**
 
 Model 13, raid → MSS → FVG → retracement sırasını açık verdiği için serinin daha kodlanabilir modellerindendir. Yine de hangi swing’in “yakın”, hangi hareketin “hızlı displacement” ve hangi FVG’nin “ideal” olduğu tanımlanmalıdır.
 
@@ -1037,6 +1040,8 @@ Bir dakikalık grafikte spread, tick size, komisyon, sıra önceliği ve slippag
 :::
 
 # BÖLÜM IV — Bu öğretilere göre nasıl işlem almalıyız?
+
+On üç model artık ayrı ayrı tanıdık geliyor olabilir; fakat bilgi yığını henüz işlem planı değildir. Bu bölümde bütün kavramları yeniden tek bir karar zincirine indireceğiz. Amaç daha çok kurulum görmek değil, hangi durumda bekleyeceğini ve hangi durumda hiç işlem yapmayacağını önceden bilmektir.
 
 ## Kısa cevap
 
@@ -1059,13 +1064,13 @@ Bu yedi adımın herhangi biri eksikse doğru eylem **işlem almamaktır**.
 | İhtiyaç | Uygun başlangıç adayı | Neden | Şimdilik uzak dur |
 |---|---|---|---|
 | Forex, yalnız New York, gece taşıma yok | Model 1 | Gün/saat/giriş/stop açık | 3–4 |
-| Forex, haftada tek küçük hedef | Model 8 | 25 pip ve düşük işlem sıklığı | 9 pyramiding |
-| Forex, tek seans day trade | Model 5 veya 12 | Seans ve setup sırası belirli | Aynı anda ikisini karıştırma |
-| Haftalık swing | Model 10 | External→external kuralı sade | Model 4 |
-| Index futures intraday | Model 13 | Raid→MSS→FVG sırası açık | 1–5 pip Forex tamponları |
+| Forex, haftada tek küçük hedef | Model 8 | 25 pip ve düşük işlem sıklığı | Model 9’da kademeli ekleme |
+| Forex, tek seanslık işlem | Model 5 veya 12 | Seans ve kurulum sırası belirli | Aynı anda ikisini karıştırma |
+| Haftalık salınım işlemi | Model 10 | Bir dış hedeften karşı dış hedefe giden kural sade | Model 4 |
+| Endeks vadeli işlemleri, gün içi | Model 13 | Süpürme→MSS→FVG sırası açık | 1–5 piplik Forex tamponları |
 | COT ve mevsimsellik araştırması | Model 3 | Daha az değişkenli swing | Model 4’ün üçlü filtresi |
 
-Model 6 ve 7 giriş sistemi seçmekten çok, mevcut setup’ın büyük market-maker profilinin hangi tarafında olduğunu anlamak için kullanılmalıdır. Model 11 ve 12 sık oluşur; bu nedenle kolay değil, aşırı işlem riski yüksek modellerdir.
+Model 6 ve 7, giriş sistemi seçmekten çok mevcut kurulumun büyük piyasa yapıcı profilinin hangi tarafında olduğunu anlamak için kullanılmalıdır. Model 11 ve 12 sık oluşur; bu onları kolay değil, aşırı işlem riski yüksek modeller hâline getirir.
 
 ## Tek sayfalık kural kartını doldur
 
@@ -1073,13 +1078,13 @@ Model 6 ve 7 giriş sistemi seçmekten çok, mevcut setup’ın büyük market-m
 
 | Alan | Yazılacak bilgi |
 |---|---|
-| Piyasa ve kontrat | Örneğin EURUSD spot veya Micro E-mini Nasdaq futures |
+| Piyasa ve kontrat | Örneğin EURUSD spot veya Micro E-mini Nasdaq vadeli işlemi |
 | Model | Yalnız bir numara |
 | Grafik saat dilimi | America/New_York |
-| Sahne | Haftalık/günlük expansion tanımı |
-| Dealing range | İki sabit ankraj ve equilibrium |
-| Tek hedef | Tam fiyat seviyesi ve liquidity sınıfı |
-| Kurulum | Raid, OB retesti, day-of-week vb. |
+| Sahne | Haftalık veya günlük genişleme tanımı |
+| Fiyat aralığı | İki sabit ankraj ve denge noktası |
+| Tek hedef | Tam fiyat seviyesi ve likidite sınıfı |
+| Kurulum | Likidite süpürmesi, OB retesti, haftanın günü vb. |
 | Tetikleyici | OTE, MSS+FVG, IOFED vb. |
 | Giriş | Emir tipi ve tam fiyat formülü |
 | Stop | Yapısal geçersizlik ve fiyat |
@@ -1089,7 +1094,7 @@ Model 6 ve 7 giriş sistemi seçmekten çok, mevcut setup’ın büyük market-m
 | Yeniden giriş | Var/yok ve nesnel şartı |
 | İşlem yok | Kurulumu iptal eden maddeler |
 
-“Weekly bias bearish, güzel FVG bulursam satarım” bir kural kartı değildir. “20 günlük range’in üst yarısında, önceden işaretli tepe raid edildikten ve 5 dakikalık swing low displacement ile kırıldıktan sonra ilk bearish FVG dönüşünde; stop raid high üstünde, hedef önceki gün low” gibi bir cümle test edilebilir bir başlangıçtır.
+“Haftalık yönüm düşüş, güzel bir FVG bulursam satarım” bir kural kartı değildir. Şu cümle ise test edilebilir bir başlangıçtır: “Fiyat 20 günlük aralığın üst yarısındayken, önceden işaretlediğim tepe süpürülecek; beş dakikalık yakın dip güçlü bir hareketle kırılırsa ilk düşüş yönlü FVG dönüşünde gireceğim. Stop süpürülen tepenin üstünde, hedef önceki günün dibinde olacak.”
 
 ## Hafta sonu hazırlığı
 
@@ -1175,7 +1180,7 @@ Birden çok emir açmak toplam riski çoğaltmaz. İki emir varsa örneğin topl
 
 Tam 1R kayıp sonrası kaynak protokolü bir sonraki risk oranını yarıya indirir. Azaltılmış riskte bir kayıp daha gelirse yeniden yarıya iner. Önceki kaybın yarısı geri kazanılınca bir üst seviyeye dönülebilir. Risk, kayıptan sonra büyütülmez; martingale kullanılmaz.
 
-## Stop, break-even ve partial seçimi
+## Stop, başa baş ve kısmi çıkış seçimi
 
 Kaynakta iki ayrı stop yönetimi ailesi vardır:
 
@@ -1196,7 +1201,7 @@ Partial oranı da test değişkenidir. Yüzde 80/20, yüzde 50/25/25 veya tam ç
 - Setup’ın zorunlu raid, retest, displacement veya MSS sırası tamamlanmadıysa.
 - Giriş ideal bölgeden uzaklaştıysa ve fiyat kovalanacaksa.
 - Yapısal stop, risk bütçesine sığmıyorsa.
-- Economic calendar bilinmiyor veya saat dönüşümü doğrulanmadıysa.
+- Ekonomik takvim bilinmiyor veya saat dönüşümü doğrulanmadıysa.
 - Modelin seans/hafta hedefi zaten alındıysa.
 - Aynı kaybı geri alma, sıkıntıyı giderme veya sosyal medyaya sonuç gösterme isteği varsa.
 - İşlem maliyeti beklenen avantajın büyük bölümünü tüketiyorsa.
@@ -1246,7 +1251,7 @@ Canlı deneme ancak maliyet sonrası beklenti pozitif, ayrılmış veri ve demo 
 |---|---|
 | Tarih / piyasa / seans |  |
 | Model ve sürüm |  |
-| HTF draw on liquidity |  |
+| Üst zaman dilimi likidite hedefi |  |
 | Dealing range ankrajları |  |
 | Premium / discount |  |
 | Kurulum sırası |  |
@@ -1260,22 +1265,40 @@ Canlı deneme ancak maliyet sonrası beklenti pozitif, ayrılmış veri ve demo 
 | Ekran görüntüsü |  |
 | Tek cümlelik ders |  |
 
-## Sonuç — yarın ne yapmalıyız?
-
-Yarın canlı piyasada on üç modeli taramak yerine şu işi yap:
-
-1. İşlem yaptığın piyasaya göre **Model 1, 8, 10, 12 veya 13’ten birini** seç.
-2. O modelin tek sayfalık kural kartını doldur.
-3. Grafiği New York saatine getir ve bir geçmiş ayı bar-replay ile çalış.
-4. Her geçerli ve geçersiz günü kaydet.
-5. İlk 100 işlemi, kural değiştirmeden ve maliyet ekleyerek tamamla.
-6. Sonuç pozitifse aynı modeli demo ortamında ileriye dönük uygula.
-7. Canlı sermaye ancak bu iki aşama aynı davranışı gösterirse düşünülür.
-
-Başlangıç için en önemli kazanç pip değildir. **Aynı koşulu, sonucu bilmeden aynı biçimde tanıyabilmektir.** Bunu yapamıyorsan yeni bir ICT kavramı eklemek yerine mevcut kuraldaki belirsizliği kapatmalısın.
+# EKLER — Kaynak ve editör notları
 
 ## Risk için bağımsız okuma
 
 ABD CFTC’nin yatırımcı uyarısı, kaldıraçlı OTC Forex’te kaldıraç nedeniyle bütün marjın ve bazı koşullarda daha fazlasının kaybedilebileceğini; yalnız kaybı karşılanabilir risk sermayesiyle işlem yapılmasını ve demo ortamında pratik yapılmasını hatırlatır. Bu kaynak ABD düzenlemesi bağlamındadır ama kaldıraç ve işlem maliyeti uyarıları geneldir: [CFTC — Forex işleminden önce bilinmesi gerekenler](https://www.cftc.gov/LearnAndProtect/AdvisoriesAndArticles/CustomerAdvisory_MustKnowForex.html) ve [CFTC — Forex dolandırıcılıklarına karşı rehber](https://www.cftc.gov/LearnAndProtect/forexfrauds).
 
 Bu rehber, kaynak transkriptteki yöntemleri öğretir ve ölçülebilir hâle getirir; hiçbir piyasa, yön veya getiri için güncel tavsiye vermez.
+
+## Kaynak haritası
+
+| Videolar | Model | Ana konu | Kaynak satırları |
+|---|---|---|---:|
+| 1–3 | Model 1 | Gün içi kısa işlem · önceki günlük tepe/dip | 1–1545 |
+| 4–5 | Model 2 | Kısa vadeli haftalık aralık | 1546–2713 |
+| 6–7 | Model 3 | Salınım işlemi · günlük likidite | 2714–4082 |
+| 8–10 | Model 4 | Pozisyon işlemi · çeyrek ve mevsimsellik | 4083–5326 |
+| 11–14 | Model 5 | Seans içi volatilite genişlemesi | 5327–7079 |
+| 15–20 | Model 6 | Evrensel alış tarafı modeli ve fraktallar | 7080–9233 |
+| 21–23 | Model 7 | Evrensel satış tarafı modeli ve fraktallar | 9234–11187 |
+| 24–25 | Model 8 | Haftalık 25 pip / aylık %6 hedefi | 11188–12272 |
+| 26–27 | Model 9 | One Shot One Kill | 12273–13224 |
+| 28–29 | Model 10 | Dış likiditeden karşı dış hedefe | 13225–13988 |
+| 30–31 | Model 11 | 30 piplik gün içi model | 13989–15074 |
+| 32–33 | Model 12 | 20 piplik kısa işlem | 15075–16120 |
+| 34 | Model 13 | 2022 endeks vadeli işlemler modeli | 16121–16670 |
+
+## Editör notu — otomatik transkript terimleri
+
+Otomatik transkriptte bozulan terimler bağlama göre düzeltildi. `IPA`, `IPTO` ve `iPod data range` ifadeleri **IPDA veri aralığı**; `coot` ifadesi **COT**; `opal trade entry` ifadesi **OTE**; `Juda/Judith swing` ifadesi **Judas Swing**; `fair value got` ifadesi **Fair Value Gap** olarak okunmalıdır.
+
+# SON SÖZ — Yarın ne yapmalıyız?
+
+Yarın canlı piyasada on üç modeli birden tarama. İşlem yaptığın piyasaya göre **Model 1, 8, 10, 12 veya 13’ten birini** seç ve o modelin tek sayfalık kural kartını doldur. Grafiği New York saatine getir; önce bir geçmiş ayı bar replay ile çalış ve yalnız kazananları değil, geçerli olup kaybeden veya hiç oluşmayan bütün kurulumları kaydet.
+
+İlk 100 işlemi kuralları değiştirmeden ve maliyetleri ekleyerek tamamla. Sonuç pozitifse aynı modeli ileriye dönük demo ortamında uygula. Canlı sermaye ancak geçmiş çalışma ile demo uygulaması aynı davranışı gösterdiğinde düşünülebilir; o aşamaya kadar doğru risk miktarı sıfırdır.
+
+Başlangıç için en önemli kazanç pip değildir. **Asıl beceri, aynı koşulu sonucu bilmeden her defasında aynı biçimde tanıyabilmektir.** Bunu yapamıyorsan yeni bir ICT kavramı eklemek yerine mevcut kuraldaki belirsizliği kapatmalısın.

@@ -56,7 +56,7 @@ body{
 a{ color:var(--accent); }
 button{ font:inherit; color:inherit; }
 ::selection{ background:var(--accent-soft); }
-a:focus-visible,button:focus-visible,input:focus-visible,[tabindex]:focus-visible{
+a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible,[tabindex]:focus-visible{
   outline:3px solid var(--accent); outline-offset:3px;
 }
 .skip-link{
@@ -184,6 +184,8 @@ a:focus-visible,button:focus-visible,input:focus-visible,[tabindex]:focus-visibl
   letter-spacing:.06em; margin-top:16px; }
 .toc a.lvl-2{ padding-left:12px; }
 .toc a.lvl-3{ padding-left:24px; font-size:12.6px; color:var(--ink-faint); display:block; }
+.toc.compact a.lvl-3{ display:none; }
+.toc.compact a.lvl-3.show{ display:block; }
 .toc a.active{ background:var(--accent-soft); color:var(--accent); border-left-color:var(--accent); font-weight:640; }
 
 /* ============ İçerik ============ */
@@ -345,6 +347,58 @@ mark{ background:var(--accent-soft); color:inherit; border-radius:3px; padding:0
 .block .table-wrap{ box-shadow:none; }
 .block-ders .table-wrap{ background:var(--surface); }
 
+/* Charter Content — uzun-form kitap görünümü */
+#doc-ict-charter-content-egitim-rehberi{ max-width:760px; }
+#doc-ict-charter-content-egitim-rehberi .doc-kicker,
+#doc-ict-charter-content-egitim-rehberi .doc-meta .mono{ display:none; }
+#doc-ict-charter-content-egitim-rehberi .doc-body{
+  max-inline-size:70ch; line-height:1.68;
+}
+#doc-ict-charter-content-egitim-rehberi .doc-body p{
+  margin-bottom:.9em; text-wrap:pretty;
+}
+#doc-ict-charter-content-egitim-rehberi .doc-body h2,
+#doc-ict-charter-content-egitim-rehberi .doc-body h3{
+  text-wrap:balance;
+}
+#doc-ict-charter-content-egitim-rehberi .doc-body h3{ font-weight:620; }
+#doc-ict-charter-content-egitim-rehberi .doc-body ul,
+#doc-ict-charter-content-egitim-rehberi .doc-body ol{ margin-bottom:1.15em; }
+#doc-ict-charter-content-egitim-rehberi .doc-body li{ margin-bottom:.35em; }
+#doc-ict-charter-content-egitim-rehberi .doc-body table{ line-height:1.5; }
+#doc-ict-charter-content-egitim-rehberi .block-ders{
+  margin:0 0 1.75rem; padding:0; border:0; background:transparent;
+}
+#doc-ict-charter-content-egitim-rehberi .block-eleme{
+  margin:2rem 0 3.5rem; padding:16px 18px;
+  border-left:2px solid var(--accent); border-radius:0 8px 8px 0;
+  background:color-mix(in srgb, var(--accent-soft) 52%, transparent);
+}
+#doc-ict-charter-content-egitim-rehberi .block-eleme > p:first-child{
+  margin-bottom:.65rem;
+}
+.chapter-check{
+  margin:2rem 0 .75rem; border-block:1px solid var(--line);
+  font-family:var(--font-ui);
+}
+.chapter-check summary{
+  min-height:48px; display:grid; grid-template-columns:auto minmax(0,1fr) auto;
+  align-items:center; gap:11px; padding:10px 2px; cursor:pointer;
+  color:var(--ink-soft); font-size:14px; font-weight:650; list-style:none;
+}
+.chapter-check summary::-webkit-details-marker{ display:none; }
+.chapter-check summary::before{
+  content:""; width:7px; height:7px; border-right:2px solid currentColor;
+  border-bottom:2px solid currentColor; transform:rotate(-45deg); transition:transform .15s ease;
+}
+.chapter-check[open] summary{ color:var(--accent); }
+.chapter-check[open] summary::before{ transform:rotate(45deg); }
+.chapter-check summary small{ color:var(--ink-faint); font-size:11.5px; font-weight:550; }
+.chapter-check ul{
+  margin:.25rem 0 1.2rem; padding-left:28px; font-family:var(--font-read);
+  font-size:.94em; line-height:1.58;
+}
+
 /* ============ Duyarlı ============ */
 @media (max-width:1080px){
   .shell{ grid-template-columns:1fr; gap:0; }
@@ -406,6 +460,7 @@ mark{ background:var(--accent-soft); color:inherit; border-radius:3px; padding:0
   .doc-body h1,.doc-body h2,.doc-body h3,.doc-body h4{ break-after:avoid-page; }
   .table-wrap{ overflow:visible; }
   tr,blockquote{ break-inside:avoid; }
+  .chapter-check > ul{ display:block !important; }
   .table-wrap,.doc-body blockquote{ box-shadow:none; }
 }
 </style>
@@ -539,6 +594,7 @@ document.addEventListener('click', e => { if(!pickerMenu.contains(e.target)) clo
 /* ---------- İçindekiler ---------- */
 function buildToc(i){
   const toc = $('#toc'); toc.innerHTML = '';
+  toc.classList.toggle('compact', DOCS[i].toc.filter(h => h.level <= 3).length > 60);
   let parent = null;
   DOCS[i].toc.forEach(h => {
     if(h.level > 3) return;
@@ -582,6 +638,8 @@ function goTo(id){
     art.querySelector('#' + CSS.escape(id))
   ) : null;
   if(!el) return;
+  const collapsed = el.closest('details:not([open])');
+  if(collapsed) collapsed.open = true;
   el.scrollIntoView({ behavior:scrollMode(), block:'start' });
   el.classList.remove('flash'); void el.offsetWidth; el.classList.add('flash');
   if(!el.hasAttribute('tabindex')) el.setAttribute('tabindex','-1');
