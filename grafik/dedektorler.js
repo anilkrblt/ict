@@ -258,16 +258,28 @@
     kaynak: '§13.3 · §13.4 · §13.5',
     secimNoktasi: 2,
     tanim: 'Yönlü hareketten önceki son karşı renkli mum. Geçerlilik: sonraki bir mumun GÖVDESİ ' +
-      'bloğun ötesine geçmeli. Güç: hareket, gövdenin en az 3 katı. Ardışık aynı renkli mumlar ' +
-      'birleştirilir. Giriş = mumun açılışı, stop = gövdenin altı. Mean threshold = gövdenin orta noktası.',
-    uyari: 'Hiyerarşide 5. sırada, ve ön koşulu ("destek seviyesine yakın") kaynağın kendi ' +
-      'itirafıyla tanımsız — merkezde belirsizlik var. Breaker ve mitigation block daha yanlışlanabilir.',
+      'bloğun ötesine geçmeli. Güç: hareket, gövdenin en az 3 katı. Ardışık mumlar birleştirilir; ' +
+      'gövdesi küçük ve öncekine kapsanmış mum kullanılmaz (§13.5). Giriş = mumun açılışı, ' +
+      'stop = gövdenin altı. Mean threshold = gövdenin orta noktası.',
+    uyari: 'Hiyerarşide 5. ve SON sırada, çünkü ön koşulu ("destek seviyesine yakın") kaynağın kendi ' +
+      'itirafıyla tanımsız — belirsizlik kuralın merkezinde. Breaker ve mitigation block daha ' +
+      'yanlışlanabilir. Ayrıca belgenin VERMEDİĞİ üç sayıyı burada ben seçtim: impuls penceresinin ' +
+      'kaç mum olduğu, hareketin nereden ölçüldüğü, ve "gövdesi çok küçük"ün eşiği. Üçü de aşağıda ' +
+      'parametre — değiştirdiğinde bulgular değişir. §10 yön filtresi uygulanmaz: boğa ortamında ' +
+      'bearish order block da çizilir, onu yalnız kâr almak için kullanman senin işin.',
     parametreler: [
       { id: 'impuls', ad: 'İmpuls penceresi (mum)', tip: 'sayi', varsayilan: 3, min: 1, max: 10, adim: 1 },
       { id: 'gucKati', ad: 'Güç eşiği (gövde katı)', tip: 'sayi', varsayilan: 3, min: 0.5, max: 10, adim: 0.5 },
-      { id: 'birlestir', ad: 'Ardışık mumları birleştir', tip: 'onay', varsayilan: true },
+      { id: 'birlestir', ad: 'Ardışık mumları birleştir (§13.5/3)', tip: 'onay', varsayilan: true },
+      { id: 'maxBirlesim', ad: 'En çok kaç mum birleşsin', tip: 'sayi', varsayilan: 2, min: 1, max: 5, adim: 1 },
+      { id: 'kapsanma', ad: 'Kapsanma kuralı (§13.5/2)', tip: 'onay', varsayilan: true },
+      { id: 'kapsanmaOrani', ad: '"Çok küçük gövde" eşiği (önceki gövdenin katı)', tip: 'sayi',
+        varsayilan: 0.5, min: 0.1, max: 1, adim: 0.05 },
       { id: 'tukenme', ad: 'Tükenme kuralı (§13.6)', tip: 'onay', varsayilan: true },
       { id: 'mt', ad: 'Mean threshold çizgisi', tip: 'onay', varsayilan: true },
+      { id: 'mtTanim', ad: 'Mean threshold tanımı', tip: 'secim', varsayilan: 'govde', secenekler: [
+        { d: 'govde', ad: 'Gövdenin ortası' },
+        { d: 'ucMum', ad: 'Üç mumun gövde aralığı (belirsiz)' }] },
     ],
     calistir(mumlar, p, ctx) {
       const bulgular = [];
@@ -278,14 +290,29 @@
         if (!bogaOB && !ayiOB) continue;
         const yon = bogaOB ? 'boga' : 'ayi';
 
-        // Ardışık aynı renkli mumları birleştir (§13.5/3)
-        let bas = i;
+        /* §13.5/2 Kapsanma: gövdesi çok küçük ve öncekinin içine kapsanmış mumu KULLANMA,
+           daha kalın gövdeliyi kullan.
+           "Kapsanma" MENZİL olarak okunuyor (fitiller dahil, klasik inside bar). Gövde olarak
+           okunamaz: sürekli piyasada bir mumun açılışı öncekinin kapanışına eşittir, dolayısıyla
+           aynı renkli iki mumun gövdeleri iç içe geçemez, yan yana dizilir — o okuma hiçbir zaman
+           tetiklenmezdi (500 mumluk BTCUSDT 1s verisinde 0 kez).
+           Önceki mum da aynı renkli olmalı; aksi halde blok ters renkli bir muma kayardı. */
+        let obSon = i, kapsandi = false;
+        if (p.kapsanma && i > 0) {
+          const onceki = mumlar[i - 1];
+          const kucuk = govde(m) < p.kapsanmaOrani * govde(onceki);
+          const icinde = m.h <= onceki.h && m.l >= onceki.l;
+          if (kucuk && icinde && yukariMum(onceki) === yukariMum(m)) { obSon = i - 1; kapsandi = true; }
+        }
+
+        // §13.5/3 Ardışık aynı renkli mumları birleştir
+        let bas = obSon;
         if (p.birlestir) {
           while (bas > 0 && yukariMum(mumlar[bas - 1]) === yukariMum(m)) bas--;
-          if (i - bas > 2) bas = i - 2;   // en fazla üç mum birleşsin
+          if (obSon - bas > p.maxBirlesim - 1) bas = obSon - (p.maxBirlesim - 1);
         }
         let kutuUst = -Infinity, kutuAlt = Infinity, fitilUst = -Infinity, fitilAlt = Infinity;
-        for (let j = bas; j <= i; j++) {
+        for (let j = bas; j <= obSon; j++) {
           kutuUst = Math.max(kutuUst, govdeUst(mumlar[j]));
           kutuAlt = Math.min(kutuAlt, govdeAlt(mumlar[j]));
           fitilUst = Math.max(fitilUst, mumlar[j].h);
@@ -315,7 +342,18 @@
         const durum = dokunus !== null ? 'tükendi' : 'aktif';
         const bitis = (p.tukenme && dokunus !== null) ? dokunus : null;
         const renk = bogaOB ? RENK.boga : RENK.ayi;
-        const mt = (kutuUst + kutuAlt) / 2;
+        /* Mean threshold. Belge iki tanım veriyor: "gövdenin orta noktası" ve "netleşmiş tanım:
+           üç mumun gövde aralıkları içindeki en yüksek tepe ve en düşük dip, onun ortası".
+           HANGİ üç mum olduğunu söylemiyor — burada blok mumu ve onu izleyen iki mum alındı. */
+        let mt = (kutuUst + kutuAlt) / 2;
+        if (p.mtTanim === 'ucMum') {
+          let u = -Infinity, a = Infinity;
+          for (let j = obSon; j <= Math.min(mumlar.length - 1, obSon + 2); j++) {
+            u = Math.max(u, govdeUst(mumlar[j]));
+            a = Math.min(a, govdeAlt(mumlar[j]));
+          }
+          mt = (u + a) / 2;
+        }
         const cizimler = [
           { tip: 'kutu', i1: bas, i2: bitis, p1: kutuAlt, p2: kutuUst, renk,
             dolguAlfa: durum === 'tükendi' ? 0.06 : 0.18, kesikli: durum === 'tükendi',
@@ -332,7 +370,10 @@
             ['Fitil ucu', bogaOB ? fitilAlt : fitilUst],
             ['Mean threshold', mt],
             ['Güç', guc.toFixed(2) + '× gövde'],
-            ['Birleşen mum', (i - bas + 1)],
+            ['Güç ölçümü', 'gövde ' + (bogaOB ? 'dibinden' : 'tepesinden') + ' impuls ucuna (' + p.impuls + ' mum)'],
+            ['Birleşen mum', (obSon - bas + 1)],
+            ['Kapsanma kuralı', kapsandi ? 'uygulandı — küçük mum atıldı' : '—'],
+            ['Mean threshold tanımı', p.mtTanim === 'ucMum' ? 'üç mum gövde aralığı' : 'gövde ortası'],
             ['Durum', durum],
           ],
           cizimler,
