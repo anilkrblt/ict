@@ -80,6 +80,21 @@ input[type=text]{ width:110px; } input[type=number]{ width:78px; }
 .dugme.ikincil{ background:transparent; color:var(--ink-soft); border:1px solid var(--line-strong); font-weight:500; }
 .dugme:disabled{ opacity:.5; cursor:default; }
 .ust .sag{ margin-left:auto; display:flex; align-items:center; gap:10px; }
+.canli-dugme{ display:inline-flex; align-items:center; gap:6px; }
+.canli-dugme.aktif{
+  border-color:color-mix(in srgb,var(--boga) 55%,transparent);
+  color:var(--boga); background:color-mix(in srgb,var(--boga) 12%,transparent);
+}
+.nabiz{ width:7px; height:7px; border-radius:50%; background:var(--boga); flex:none; }
+.canli-dugme.aktif .nabiz{ animation:nabiz 1.7s ease-in-out infinite; }
+.canli-dugme.bekliyor{ border-color:color-mix(in srgb,var(--accent) 55%,transparent); color:var(--accent); }
+.canli-dugme.bekliyor .nabiz{ background:var(--accent); animation:nabiz 1s ease-in-out infinite; }
+.canli-dugme.kopuk{ border-color:color-mix(in srgb,var(--ayi) 55%,transparent); color:var(--ayi); background:transparent; }
+.canli-dugme.kopuk .nabiz{ background:var(--ayi); animation:none; }
+@keyframes nabiz{ 0%,100%{ opacity:1; transform:scale(1); } 50%{ opacity:.35; transform:scale(.72); } }
+@media (prefers-reduced-motion: reduce){ .canli-dugme.aktif .nabiz{ animation:none; } }
+.fiyat-rozet{ font-family:var(--font-mono); font-size:12px; font-weight:600; }
+.fiyat-rozet.yukari{ color:var(--boga); } .fiyat-rozet.asagi{ color:var(--ayi); }
 .durum{ font-size:11.5px; color:var(--ink-faint); font-family:var(--font-mono); }
 .durum.hata{ color:var(--ayi); }
 
@@ -189,8 +204,10 @@ main{ flex:1; display:grid; grid-template-columns:288px 1fr 320px; min-height:0;
         </select>
       </div>
       <div class="alan" id="sembolAlan">
-        <label for="sembol">Sembol</label>
-        <input type="text" id="sembol" value="BTCUSDT" spellcheck="false">
+        <label for="sembol">Parite</label>
+        <select id="sembol"></select>
+        <input type="text" id="sembolSerbest" value="BTCUSDT" spellcheck="false"
+               placeholder="ör. ARBUSDT" hidden>
       </div>
       <div class="alan">
         <label for="aralik">Aralık</label>
@@ -206,6 +223,8 @@ main{ flex:1; display:grid; grid-template-columns:288px 1fr 320px; min-height:0;
         <input type="number" id="kayma" value="0" min="-12" max="12" step="0.5" style="width:56px">
       </div>
       <button class="dugme" id="yukle">Yükle</button>
+      <button class="dugme ikincil canli-dugme" id="canli" title="Binance WebSocket akışı">
+        <span class="nabiz" hidden></span>Canlı</button>
       <div class="alan">
         <label for="pip" title="0 = kapalı; mesafeler fiyat olarak gösterilir">pip</label>
         <input type="number" id="pip" value="0" min="0" step="0.0001">
@@ -213,6 +232,7 @@ main{ flex:1; display:grid; grid-template-columns:288px 1fr 320px; min-height:0;
     </div>
 
     <div class="sag">
+      <span class="fiyat-rozet" id="fiyatRozet"></span>
       <span class="durum" id="durum">hazır</span>
       <a class="dugme ikincil" href="index.html#islem-claude" title="Eleme notları okuyucusu">Notlar</a>
       <button class="dugme ikincil" id="tema" title="Tema">◐</button>
@@ -238,6 +258,7 @@ main{ flex:1; display:grid; grid-template-columns:288px 1fr 320px; min-height:0;
       <div class="panel-baslik">Bulgular <span class="sayac" id="bulguSayac"></span></div>
       <div style="padding:7px 12px;border-bottom:1px solid var(--line);display:flex;gap:12px;flex-wrap:wrap">
         <label class="suz" title="Tükenmiş, kırılmış ve test edilmiş array’ler grafikten de kalkar (§13.6 tükenme kuralı)"><input type="checkbox" id="suzAktif"> yalnız tükenmemişler</label>
+        <label class="suz" title="Kapanmamış son mum çizilir ama analize katılmaz — §16: “MUM KAPANMIŞ olmalı”"><input type="checkbox" id="kapaliMum" checked> yalnız kapanmış mumlar</label>
         <label class="suz"><input type="checkbox" id="etiketAc" checked> etiketler</label>
       </div>
       <div id="bulguListe"></div>

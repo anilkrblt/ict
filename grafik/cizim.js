@@ -27,16 +27,23 @@
     this.fare = null;       // {x, y}
     this.vurgulu = null;    // bulguId
     this.etiketGoster = true;
+    this.sonFiyatGoster = true;
+    this.acikMumVar = false;   // son mum kapanmadıysa: çizilir ama analiz edilmez
     this.olay = secenekler && secenekler.olay || function () {};
     this.basamak = 2;
     this._bagla();
   }
 
-  Grafik.prototype.veriKur = function (mumlar) {
+  Grafik.prototype.veriKur = function (mumlar, gorunumuKoru) {
+    const yapisik = gorunumuKoru && this.mumlar.length ? this.sagdaMi() : false;
     this.mumlar = mumlar || [];
     this.basamak = this._basamakBul();
-    this.adet = Math.min(160, Math.max(30, this.mumlar.length));
-    this.i0 = Math.max(0, this.mumlar.length - this.adet);
+    if (!gorunumuKoru) {
+      this.adet = Math.min(160, Math.max(30, this.mumlar.length));
+      this.i0 = Math.max(0, this.mumlar.length - this.adet);
+    } else if (yapisik) {
+      this.sagaYapis();
+    }
     this.ciz();
   };
 
@@ -270,6 +277,7 @@
     this._katmanCiz(ctx, d, stil, ['kutu']);
     this._mumlarCiz(ctx, d, stil);
     this._katmanCiz(ctx, d, stil, ['seviye', 'cizgi', 'isaret', 'mum']);
+    this._sonFiyatCiz(ctx, d, stil);
     this._eksenCiz(ctx, d, stil);
     this._imlecCiz(ctx, d, stil);
   };
@@ -470,6 +478,53 @@
         : tarih.toLocaleTimeString('tr-TR', { hour: '2-digit', minute: '2-digit' });
       ctx.fillText(metin, d.x(i), o.y1 + 6);
     }
+  };
+
+  /* Son fiyat çizgisi ve sağ kenardaki etiket. Canlı akışta anlık kapanışı gösterir;
+     son mum kapanmamışsa o mum ayrıca işaretlenir — çünkü analiz onu saymaz (§16). */
+  Grafik.prototype._sonFiyatCiz = function (ctx, d, stil) {
+    if (!this.sonFiyatGoster || !this.mumlar.length) return;
+    const o = d.olcu;
+    const sonIx = this.mumlar.length - 1;
+    const m = this.mumlar[sonIx];
+    const y = d.y(m.c);
+    if (y < o.y0 || y > o.y1) return;
+    const renk = m.c >= m.o ? stil.yukari : stil.asagi;
+    ctx.save();
+    if (this.acikMumVar) {
+      const x = d.x(sonIx);
+      const gen = Math.max(3, d.mumGen * 0.9);
+      ctx.fillStyle = renkAlfa(renk, 0.1);
+      ctx.fillRect(x - gen / 2, o.y0, gen, o.gh);
+    }
+    ctx.strokeStyle = renkAlfa(renk, 0.7);
+    ctx.setLineDash([2, 3]);
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(o.x0, Math.round(y) + 0.5);
+    ctx.lineTo(o.x1, Math.round(y) + 0.5);
+    ctx.stroke();
+    ctx.setLineDash([]);
+    const metin = this.fiyatYaz(m.c);
+    ctx.font = '10.5px ui-monospace, SFMono-Regular, Menlo, monospace';
+    const gen = ctx.measureText(metin).width;
+    ctx.fillStyle = renk;
+    ctx.fillRect(o.x1 + 2, y - 8, gen + 8, 16);
+    ctx.fillStyle = stil.zemin;
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(metin, o.x1 + 6, y);
+    ctx.restore();
+  };
+
+  /* Görünüm sağ kenara yapışıksa yeni mum geldiğinde orada kalsın. */
+  Grafik.prototype.sagdaMi = function () {
+    return this.i0 + this.adet >= this.mumlar.length - 2;
+  };
+
+  Grafik.prototype.sagaYapis = function () {
+    this.i0 = this.mumlar.length - this.adet;
+    this._sinirla();
   };
 
   Grafik.prototype._imlecCiz = function (ctx, d, stil) {

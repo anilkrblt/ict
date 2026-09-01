@@ -11,12 +11,26 @@
   'use strict';
 
   const ARALIKLAR = [
+    // 1 dakika §16 Örüntü 3 için: "5 dakikadan 1 dakikaya, ilk uygun grafikte".
+    { id: '1m',  ad: '1 dakika',  ms: 60e3 },
     { id: '5m',  ad: '5 dakika',  ms: 5 * 60e3 },
     { id: '15m', ad: '15 dakika', ms: 15 * 60e3 },
+    { id: '30m', ad: '30 dakika', ms: 30 * 60e3 },
     { id: '1h',  ad: '1 saat',    ms: 60 * 60e3 },
     { id: '4h',  ad: '4 saat',    ms: 4 * 60 * 60e3 },
     { id: '1d',  ad: 'Günlük',    ms: 24 * 60 * 60e3 },
     { id: '1w',  ad: 'Haftalık',  ms: 7 * 24 * 60 * 60e3 },
+  ];
+
+  // Hepsi Binance SPOT'ta işlem görüyor (exchangeInfo ile doğrulandı).
+  const SEMBOLLER = [
+    { d: 'BTCUSDT', ad: 'BTC / USDT' }, { d: 'ETHUSDT', ad: 'ETH / USDT' },
+    { d: 'SOLUSDT', ad: 'SOL / USDT' }, { d: 'BNBUSDT', ad: 'BNB / USDT' },
+    { d: 'XRPUSDT', ad: 'XRP / USDT' }, { d: 'DOGEUSDT', ad: 'DOGE / USDT' },
+    { d: 'ADAUSDT', ad: 'ADA / USDT' }, { d: 'AVAXUSDT', ad: 'AVAX / USDT' },
+    { d: 'LINKUSDT', ad: 'LINK / USDT' }, { d: 'TRXUSDT', ad: 'TRX / USDT' },
+    { d: 'DOTUSDT', ad: 'DOT / USDT' }, { d: 'LTCUSDT', ad: 'LTC / USDT' },
+    { d: 'ETHBTC', ad: 'ETH / BTC' }, { d: 'PAXGUSDT', ad: 'PAXG / USDT (altın)' },
   ];
 
   function aralikMs(id) {
@@ -41,6 +55,76 @@
     return ham.map(k => ({
       t: k[0], o: +k[1], h: +k[2], l: +k[3], c: +k[4], v: +k[5],
     }));
+  }
+
+  /* ---------- Binance canlı akış (WebSocket) ---------- */
+
+  /* geriCagirim'a iki tür olay gider:
+   *   {tip:'durum', durum:'baglaniyor'|'bagli'|'koptu'|'hata', mesaj}
+   *   {tip:'mum', mum:{t,o,h,l,c,v}, kapandi:bool}
+   * Dönen nesnenin kapat() metodu akışı sonlandırır ve yeniden bağlanmayı durdurur.
+   */
+  function binanceCanli(sembol, aralik, geriCagirim) {
+    let ws = null, kapatildi = false, deneme = 0, zamanlayici = null;
+
+    function bagla() {
+      if (kapatildi) return;
+      const url = 'wss://stream.binance.com:9443/ws/' +
+        sembol.toLowerCase() + '@kline_' + aralik;
+      geriCagirim({ tip: 'durum', durum: 'baglaniyor' });
+      try { ws = new WebSocket(url); } catch (e) {
+        geriCagirim({ tip: 'durum', durum: 'hata', mesaj: e.message });
+        return yenidenDene();
+      }
+      ws.onopen = () => {
+        if (kapatildi) return;
+        deneme = 0;
+        geriCagirim({ tip: 'durum', durum: 'bagli' });
+      };
+      ws.onmessage = olay => {
+        if (kapatildi) return;
+        let d;
+        try { d = JSON.parse(olay.data); } catch (e) { return; }
+        const k = d && d.k;
+        if (!k) return;
+        geriCagirim({
+          tip: 'mum',
+          mum: { t: k.t, o: +k.o, h: +k.h, l: +k.l, c: +k.c, v: +k.v },
+          kapandi: !!k.x,
+        });
+      };
+      ws.onerror = () => {
+        if (kapatildi) return;
+        geriCagirim({ tip: 'durum', durum: 'hata', mesaj: 'bağlantı hatası' });
+      };
+      ws.onclose = () => {
+        if (kapatildi) return;
+        geriCagirim({ tip: 'durum', durum: 'koptu' });
+        yenidenDene();
+      };
+    }
+
+    function yenidenDene() {
+      if (kapatildi) return;
+      // Üstel bekleme, 15 saniyede sınırlanır. Binance akışları 24 saatte bir kapanır.
+      const bekle = Math.min(15000, 1000 * Math.pow(2, deneme++));
+      clearTimeout(zamanlayici);
+      zamanlayici = setTimeout(bagla, bekle);
+    }
+
+    bagla();
+    return {
+      kapat() {
+        kapatildi = true;
+        clearTimeout(zamanlayici);
+        if (ws) {
+          // Kapanış sırasında gelen error/close olayları arayüze yansımasın.
+          ws.onclose = ws.onerror = ws.onmessage = ws.onopen = null;
+          try { ws.close(); } catch (e) {}
+          ws = null;
+        }
+      },
+    };
   }
 
   /* ---------- CSV ---------- */
@@ -188,5 +272,5 @@
     return mumlar;
   }
 
-  global.ICTVeri = { ARALIKLAR, aralikMs, binanceCek, csvCozumle, ornekVeri };
+  global.ICTVeri = { ARALIKLAR, SEMBOLLER, aralikMs, binanceCek, binanceCanli, csvCozumle, ornekVeri };
 })(window);

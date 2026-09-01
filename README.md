@@ -43,9 +43,23 @@ Tarayıcıda `grafik.html` dosyasını aç. Kurulum, derleme, sunucu gerekmiyor.
 
 | Kaynak | Not |
 |---|---|
-| **Binance** | Anahtar gerekmiyor, doğrudan tarayıcıdan. `BTCUSDT`, `ETHUSDT`, … |
+| **Binance** | Anahtar gerekmiyor, doğrudan tarayıcıdan. Hazır pariteler: BTC, ETH, SOL, BNB, XRP, DOGE, ADA, AVAX, LINK, TRX, DOT, LTC (USDT), ETH/BTC, PAXG. "Diğer…" ile herhangi bir Binance sembolü yazılabilir |
 | **CSV** | TradingView / MT4 / genel dışa aktarımlar. Ayraç, ondalık virgül ve `Date`+`Time` sütunları otomatik çözülür. Saat dilimi işareti yoksa **UTC** varsayılır — broker saatini hizalamak için "saat kayması" alanı var |
 | **Örnek** | Sentetik, sabit tohumlu. Çevrimdışı çalışmak ve dedektörü denemek için |
+
+Zaman dilimleri: 1 dk · 5 dk · 15 dk · 30 dk · 1 sa · 4 sa · günlük · haftalık.
+1 dakika §16 Örüntü 3 için var — *"5 dakikadan 1 dakikaya, ilk uygun grafikte"*.
+
+### Canlı akış
+
+**Canlı** düğmesi Binance WebSocket akışını açar. Son mum her tikte güncellenir, yeni mum
+kendiliğinden eklenir, görünüm sağ kenardaysa orada kalır. Bağlantı koparsa üstel bekleyerek
+yeniden bağlanır; arada mum atlandıysa geçmiş yeniden çekilip hizalanır.
+
+**Dedektörler her tikte değil, yalnız mum KAPANINCA yeniden koşar.** §16'nın kuralı bu:
+*"MUM KAPANMIŞ olmalı."* Kapanmamış son mum grafikte çizilir ve soluk bir bantla işaretlenir,
+ama hiçbir dedektöre girmez — "yalnız kapanmış mumlar" kutusu bunu kontrol eder. Aksi halde
+her tikte beliren ve kaybolan array'ler görürsün; hiçbiri işlem edilebilir değildir.
 
 ### Çizilen öğretiler
 
@@ -79,11 +93,12 @@ işlem görmüş array çizilmez.
 Görünüm URL'ye yazılabilir:
 
 ```
-grafik.html?k=fvg,orderblock,konum&kaynak=binance&sembol=ETHUSDT&aralik=1h&adet=500&suz=1
+grafik.html?k=fvg,orderblock,konum&sembol=SOLUSDT&aralik=5m&adet=500&suz=1&canli=1
 ```
 
-`k` katman kimlikleri · `kaynak` binance|csv|ornek · `suz=1` tükenmişleri gizler ·
-`pip` mesafeleri pip cinsinden yazar · `kayma` CSV saat kaydırması.
+`k` katman kimlikleri · `kaynak` binance|csv|ornek · `sembol` · `aralik` · `adet` ·
+`canli=1` akışı açar · `suz=1` tükenmişleri gizler · `pip` mesafeleri pip cinsinden yazar ·
+`kayma` CSV saat kaydırması.
 
 ### Sınır
 

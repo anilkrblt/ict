@@ -25,6 +25,8 @@
     acik: new Set(),
     bulgular: [], seciliBulgu: null,
     suzAktif: sorgu.get('suz') === '1',
+    analiz: [],           // dedektörlere giden mumlar (kapanmamış son mum hariç)
+    canli: false, akis: null, araMs: 3600e3,
   };
 
   /* ---------- tema ---------- */
@@ -181,6 +183,20 @@
     return sat;
   }
 
+  /* ---------- analiz penceresi ----------
+   * §16: "MUM KAPANMIŞ olmalı". Binance hem geçmişte hem canlı akışta son mumu
+   * kapanmadan verir; o mum çizilir ama dedektörlere girmez. */
+  function analizMumlari() {
+    return ($('#kapaliMum').checked && durum.mumlar.length > 3)
+      ? durum.mumlar.slice(0, -1) : durum.mumlar;
+  }
+
+  function ctxKur() {
+    durum.analiz = analizMumlari();
+    durum.ctx = window.ICTDedektorler.baglamKur(durum.analiz, { pip: parseFloat($('#pip').value) || 0 });
+    grafik.acikMumVar = durum.analiz.length < durum.mumlar.length;
+  }
+
   /* ---------- çalıştırma ---------- */
   let zamanlayici = null;
   function yenile() {
@@ -189,7 +205,7 @@
   }
 
   function calistir() {
-    if (!durum.mumlar.length) return;
+    if (!durum.analiz.length) return;
     const t0 = performance.now();
     const bulgular = [];
     const katmanlar = [];
@@ -198,7 +214,7 @@
       if (!durum.secili.has(det.id)) continue;
       let liste;
       try {
-        liste = det.calistir(durum.mumlar, parAl(det), durum.ctx) || [];
+        liste = det.calistir(durum.analiz, parAl(det), durum.ctx) || [];
       } catch (e) {
         console.error(det.id, e);
         durumYaz(det.ad + ' hata verdi: ' + e.message, true);
@@ -292,17 +308,18 @@
     e.className = 'durum' + (hataMi ? ' hata' : '');
   }
 
-  function veriKur(mumlar, etiket) {
+  function veriKur(mumlar, etiket, gorunumuKoru) {
     durum.mumlar = mumlar;
+    durum.araMs = window.ICTVeri.aralikMs($('#aralik').value);
     // Forex benzeri fiyat aralığında pip alanı boşsa 0,0001 öner — "10–20 pip" kuralları okunur olsun.
     if (!parseFloat($('#pip').value)) {
       const orta = mumlar[Math.floor(mumlar.length / 2)].c;
       if (orta > 0.2 && orta < 20) $('#pip').value = orta > 5 ? 0.01 : 0.0001;
     }
-    const pip = parseFloat($('#pip').value) || 0;
-    durum.ctx = window.ICTDedektorler.baglamKur(mumlar, { pip });
-    grafik.veriKur(mumlar);
-    durum.seciliBulgu = null; grafik.vurgulu = null;
+    ctxKur();
+    grafik.veriKur(mumlar, gorunumuKoru);
+    if (!gorunumuKoru) { durum.seciliBulgu = null; grafik.vurgulu = null; }
+    fiyatRozetiYaz();
     const ilk = new Date(mumlar[0].t).toLocaleDateString('tr-TR');
     const son = new Date(mumlar[mumlar.length - 1].t).toLocaleDateString('tr-TR');
     durumYaz(etiket + ' · ' + mumlar.length + ' mum · ' + ilk + '–' + son);
@@ -316,10 +333,11 @@
     $('#yukle').disabled = true;
     try {
       if (kaynak === 'binance') {
-        const sembol = $('#sembol').value.trim().toUpperCase() || 'BTCUSDT';
+        const sembol = sembolAl();
         durumYaz('Binance: ' + sembol + ' çekiliyor…');
         const mumlar = await window.ICTVeri.binanceCek(sembol, aralik, adet);
         veriKur(mumlar, 'Binance ' + sembol + ' ' + aralik);
+        if (durum.canli) canliBasla();          // sembol/aralık değiştiyse akışı taşı
       } else if (kaynak === 'csv') {
         const dosya = $('#dosya').files[0];
         if (!dosya) { durumYaz('Önce bir CSV dosyası seç.', true); return; }
@@ -336,7 +354,119 @@
     }
   }
 
+  /* ---------- canlı akış ---------- */
+
+  // Tik başına yeniden çizim yerine kare başına: saniyede onlarca mesaj gelebiliyor.
+  let cizimIstendi = false;
+  function cizIste() {
+    if (cizimIstendi) return;
+    cizimIstendi = true;
+    requestAnimationFrame(() => { cizimIstendi = false; grafik.ciz(); });
+  }
+
+  function fiyatRozetiYaz() {
+    const e = $('#fiyatRozet');
+    const m = durum.mumlar[durum.mumlar.length - 1];
+    if (!m) { e.textContent = ''; return; }
+    const yukari = m.c >= m.o;
+    const fark = ((m.c - m.o) / m.o) * 100;
+    e.className = 'fiyat-rozet ' + (yukari ? 'yukari' : 'asagi');
+    e.textContent = grafik.fiyatYaz(m.c) + '  ' + (yukari ? '▲' : '▼') +
+      Math.abs(fark).toFixed(2) + '%';
+  }
+
+  function canliDurumYaz(d, mesaj) {
+    const dugme = $('#canli');
+    const nabiz = dugme.querySelector('.nabiz');
+    nabiz.hidden = !durum.canli;
+    dugme.classList.toggle('aktif', durum.canli && d === 'bagli');
+    dugme.classList.toggle('bekliyor', durum.canli && d === 'baglaniyor');
+    dugme.classList.toggle('kopuk', durum.canli && (d === 'koptu' || d === 'hata'));
+    if (!durum.canli) { dugme.title = 'Binance WebSocket akışı'; return; }
+    const metinler = {
+      baglaniyor: 'bağlanıyor…', bagli: 'akış açık',
+      koptu: 'koptu — yeniden bağlanıyor', hata: 'hata: ' + (mesaj || ''),
+    };
+    dugme.title = 'Canlı — ' + (metinler[d] || d);
+    if (d !== 'bagli') durumYaz('Canlı akış ' + (metinler[d] || d), d === 'hata');
+  }
+
+  // Akış koptuğunda birkaç mum atlanmış olabilir; boşluk görülürse geçmiş yeniden çekilir.
+  let boslukDolduruluyor = false;
+  async function boslukDoldur() {
+    if (boslukDolduruluyor || $('#kaynak').value !== 'binance') return;
+    boslukDolduruluyor = true;
+    try {
+      const mumlar = await window.ICTVeri.binanceCek(
+        sembolAl(), $('#aralik').value,
+        Math.max(60, Math.min(1000, parseInt($('#adet').value, 10) || 500)));
+      veriKur(mumlar, 'Binance ' + sembolAl() + ' ' + $('#aralik').value + ' · yeniden hizalandı', true);
+      calistir();
+    } catch (e) {
+      durumYaz('Yeniden hizalama başarısız: ' + e.message, true);
+    } finally {
+      boslukDolduruluyor = false;
+    }
+  }
+
+  function canliOlay(olay) {
+    if (olay.tip === 'durum') { canliDurumYaz(olay.durum, olay.mesaj); return; }
+    const yeni = olay.mum;
+    const son = durum.mumlar[durum.mumlar.length - 1];
+    if (!son) return;
+    if (yeni.t === son.t) {
+      durum.mumlar[durum.mumlar.length - 1] = yeni;
+    } else if (yeni.t > son.t) {
+      // Beklenenden ileri bir mum: arada boşluk var, geçmişi yeniden çek.
+      if (yeni.t > son.t + durum.araMs) { boslukDoldur(); return; }
+      durum.mumlar.push(yeni);
+      if (durum.mumlar.length > 2000) durum.mumlar.splice(0, durum.mumlar.length - 1500);
+      if (grafik.sagdaMi()) grafik.sagaYapis();
+    } else {
+      return;   // geç kalmış mesaj
+    }
+    fiyatRozetiYaz();
+    // Mum kapanmadan dedektör çalıştırılmaz — kural kapanmış mum ister (§16).
+    if (olay.kapandi) { ctxKur(); calistir(); }
+    else cizIste();
+  }
+
+  function canliBasla() {
+    canliDurdur(true);
+    if ($('#kaynak').value !== 'binance') return;
+    durum.canli = true;
+    $('#canli').setAttribute('aria-pressed', 'true');
+    durum.akis = window.ICTVeri.binanceCanli(sembolAl(), $('#aralik').value, canliOlay);
+  }
+
+  function canliDurdur(sessiz) {
+    if (durum.akis) { durum.akis.kapat(); durum.akis = null; }
+    if (!sessiz) {
+      durum.canli = false;
+      $('#canli').setAttribute('aria-pressed', 'false');
+      canliDurumYaz('kapali');
+    }
+  }
+
+  window.addEventListener('beforeunload', () => canliDurdur());
+
   /* ---------- kurulum ---------- */
+  function sembolAl() {
+    return ($('#sembol').value === '__diger__'
+      ? $('#sembolSerbest').value.trim().toUpperCase()
+      : $('#sembol').value) || 'BTCUSDT';
+  }
+
+  const sembolSec = $('#sembol');
+  for (const x of window.ICTVeri.SEMBOLLER) {
+    const o = document.createElement('option');
+    o.value = x.d; o.textContent = x.ad;
+    sembolSec.appendChild(o);
+  }
+  const digerSecenek = document.createElement('option');
+  digerSecenek.value = '__diger__'; digerSecenek.textContent = 'Diğer…';
+  sembolSec.appendChild(digerSecenek);
+
   const aralikSec = $('#aralik');
   const istenenAralik = sorgu.get('aralik') || '1h';
   for (const a of window.ICTVeri.ARALIKLAR) {
@@ -345,7 +475,13 @@
     aralikSec.appendChild(o);
   }
   if (sorgu.get('kaynak')) $('#kaynak').value = sorgu.get('kaynak');
-  if (sorgu.get('sembol')) $('#sembol').value = sorgu.get('sembol');
+  if (sorgu.get('sembol')) {
+    const istenen = sorgu.get('sembol').toUpperCase();
+    const bilinen = window.ICTVeri.SEMBOLLER.some(x => x.d === istenen);
+    $('#sembol').value = bilinen ? istenen : '__diger__';
+    $('#sembolSerbest').value = istenen;
+    $('#sembolSerbest').hidden = bilinen;
+  }
   if (sorgu.get('adet')) $('#adet').value = sorgu.get('adet');
   if (sorgu.get('pip')) $('#pip').value = sorgu.get('pip');
   if (sorgu.get('kayma')) $('#kayma').value = sorgu.get('kayma');
@@ -356,20 +492,32 @@
     const k = $('#kaynak').value;
     $('#dosyaAlan').hidden = k !== 'csv';
     $('#sembolAlan').hidden = k !== 'binance';
+    $('#canli').disabled = k !== 'binance';
+    // Kapanmamış son mum yalnız Binance verisinde var; CSV ve örnek veride hepsi kapalı.
+    $('#kapaliMum').checked = k === 'binance';
+    if (k !== 'binance') canliDurdur();
   };
+  $('#sembol').onchange = () => {
+    const diger = $('#sembol').value === '__diger__';
+    $('#sembolSerbest').hidden = !diger;
+    if (diger) $('#sembolSerbest').focus(); else yukle();
+  };
+  $('#sembolSerbest').addEventListener('keydown', e => { if (e.key === 'Enter') yukle(); });
+  $('#canli').onclick = () => { if (durum.canli) canliDurdur(); else canliBasla(); };
+  $('#kapaliMum').onchange = () => { ctxKur(); calistir(); };
   $('#yukle').onclick = yukle;
   $('#dosya').onchange = () => { if ($('#dosya').files[0]) yukle(); };
   $('#aralik').onchange = yukle;
   $('#pip').onchange = () => {
-    if (durum.mumlar.length) {
-      durum.ctx = window.ICTDedektorler.baglamKur(durum.mumlar, { pip: parseFloat($('#pip').value) || 0 });
-      calistir();
-    }
+    if (durum.mumlar.length) { ctxKur(); calistir(); }
   };
-  $('#sembol').addEventListener('keydown', e => { if (e.key === 'Enter') yukle(); });
   $('#suzAktif').onchange = e => { durum.suzAktif = e.target.checked; calistir(); };
   $('#etiketAc').onchange = e => { grafik.etiketGoster = e.target.checked; grafik.ciz(); };
 
+  $('#canli').disabled = $('#kaynak').value !== 'binance';
+  $('#kapaliMum').checked = $('#kaynak').value === 'binance';
+  canliDurumYaz('kapali');
+
   listeCiz();
-  yukle();
+  yukle().then(() => { if (sorgu.get('canli') === '1') canliBasla(); });
 })();
